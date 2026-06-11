@@ -7,7 +7,7 @@
 - `index.html`：页面内容
 - `styles.css`：视觉样式与响应式布局
 - `script.js`：滚动显隐、导航玻璃态与轻量视差
-- `assets/orbital-horizon.jpg`：本地生成的电影感背景图
+- `assets/paper-field.jpg`：本地生成的纸感与玻璃感背景图
 
 ## GitHub Pages
 

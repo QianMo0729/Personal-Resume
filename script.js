@@ -7,13 +7,13 @@ const wordNext = document.querySelector("[data-word-next]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const sceneWords = [
-  { text: "SUSTech", color: "#f58220", opacity: 0.14 },
-  { text: "SUSTech", color: "#f58220", opacity: 0.12 },
-  { text: "⧖", color: "#7b61ff", opacity: 0.18 },
-  { text: "⧖", color: "#7b61ff", opacity: 0.16 },
-  { text: "Stack", color: "#25a87f", opacity: 0.1 },
-  { text: "2029", color: "#f58220", opacity: 0.11 },
-  { text: "Hello", color: "#10110f", opacity: 0.08 },
+  { text: "SONG HE", color: "#10110f", opacity: 0.075 },
+  { text: "PROFILE", color: "#25a87f", opacity: 0.08 },
+  { text: "SUSTech", color: "#f58220", opacity: 0.13 },
+  { text: "STACK", color: "#25a87f", opacity: 0.1 },
+  { text: "⧖", color: "#7b61ff", opacity: 0.17 },
+  { text: "1st", color: "#f58220", opacity: 0.13 },
+  { text: "HELLO", color: "#10110f", opacity: 0.08 },
 ];
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));

@@ -59,7 +59,7 @@ body::before {
   font-size: clamp(150px, 25vw, 430px);
   line-height: 0.8;
   font-weight: 860;
-  letter-spacing: -0.05em;
+  letter-spacing: 0;
   transform: translate3d(var(--scene-word-x, 0px), var(--scene-word-y, 0px), 0) scale(var(--scene-word-scale, 1));
   transition: transform 160ms linear;
   mix-blend-mode: multiply;
@@ -67,8 +67,8 @@ body::before {
 
 .scene-word span {
   grid-area: 1 / 1;
-  color: var(--word-current-color, #f58220);
-  opacity: var(--word-current-opacity, 0.14);
+  color: var(--word-current-color, #10110f);
+  opacity: var(--word-current-opacity, 0.075);
   transform: translate3d(0, 0, 0);
   transition: opacity 420ms var(--ease), transform 420ms var(--ease), color 420ms var(--ease);
   will-change: opacity, transform;
@@ -191,12 +191,16 @@ main {
 }
 
 .hero {
-  min-height: 100svh;
+  min-height: 96svh;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(420px, 1.1fr);
+  grid-template-columns: minmax(0, 860px);
   align-items: center;
-  gap: 48px;
-  padding: 118px 0 72px;
+  justify-content: start;
+  padding: 132px 0 86px;
+}
+
+.hero-copy {
+  max-width: 880px;
 }
 
 .eyebrow {
@@ -221,6 +225,15 @@ main {
   font-size: clamp(22px, 3vw, 38px);
   line-height: 1.22;
   font-weight: 650;
+}
+
+.lead span {
+  display: block;
+}
+
+.lead span + span {
+  margin-top: 10px;
+  color: rgba(16, 17, 15, 0.5);
 }
 
 .hero-actions {
@@ -498,6 +511,44 @@ main {
     rgba(255, 255, 255, 0.56);
 }
 
+.project-visual {
+  position: relative;
+  min-height: 350px;
+  display: grid;
+  place-items: center;
+  margin: 30px 0;
+  overflow: hidden;
+  border: 1px solid rgba(16, 17, 15, 0.08);
+  border-radius: 20px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.72), rgba(102, 229, 191, 0.1)),
+    rgba(255, 255, 255, 0.42);
+}
+
+.project-visual .mint-rings {
+  top: 24px;
+  right: -118px;
+  width: min(500px, 96%);
+  opacity: 0.62;
+}
+
+.mint-rings-small span {
+  border-width: 22px;
+}
+
+.mini-product-card {
+  width: min(300px, 84%);
+  min-height: 318px;
+  padding: 22px;
+  border-radius: 22px;
+  box-shadow: 0 34px 90px rgba(16, 17, 15, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  transform: rotate(calc(var(--scene-rotate) * 0.35));
+}
+
+.mini-product-card .product-number strong {
+  font-size: clamp(72px, 8vw, 108px);
+}
+
 .project span {
   color: var(--mint-dark);
   font-size: 12px;
@@ -717,6 +768,22 @@ main {
     min-height: 365px;
     border-radius: 20px;
     padding: 20px;
+  }
+
+  .project-visual {
+    min-height: 300px;
+    margin: 24px 0;
+    border-radius: 18px;
+  }
+
+  .project-visual .mint-rings {
+    right: -156px;
+    width: 430px;
+  }
+
+  .mini-product-card {
+    width: min(260px, 88%);
+    min-height: 278px;
   }
 
   .story,
