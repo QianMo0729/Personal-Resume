@@ -2,19 +2,33 @@ const header = document.querySelector("[data-header]");
 const revealItems = document.querySelectorAll(".reveal");
 const scenes = Array.from(document.querySelectorAll("[data-scene]"));
 const sceneWord = document.querySelector("[data-scene-word]");
+const wordCurrent = document.querySelector("[data-word-current]");
+const wordNext = document.querySelector("[data-word-next]");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const sceneWords = [
   { text: "SUSTech", color: "#f58220", opacity: 0.14 },
-  { text: "Ship", color: "#25a87f", opacity: 0.13 },
+  { text: "SUSTech", color: "#f58220", opacity: 0.12 },
   { text: "⧖", color: "#7b61ff", opacity: 0.18 },
-  { text: "Work", color: "#7b61ff", opacity: 0.12 },
+  { text: "⧖", color: "#7b61ff", opacity: 0.16 },
   { text: "Stack", color: "#25a87f", opacity: 0.1 },
   { text: "2029", color: "#f58220", opacity: 0.11 },
   { text: "Hello", color: "#10110f", opacity: 0.08 },
 ];
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+let activeWordIndex = 0;
+let activeWordSignature = `${sceneWords[0].text}|${sceneWords[0].color}`;
+let wordTransitionTimer = null;
+
+const applyCurrentWord = (config) => {
+  if (!wordCurrent) return;
+  wordCurrent.textContent = config.text;
+  sceneWord.style.setProperty("--word-current-color", config.color);
+  sceneWord.style.setProperty("--word-current-opacity", config.opacity);
+};
+
+applyCurrentWord(sceneWords[0]);
 
 const setHeaderState = () => {
   if (!header) return;
@@ -72,13 +86,33 @@ const updateSceneMotion = () => {
   });
 
   if (sceneWord) {
-    const config = sceneWords[Math.min(activeIndex, sceneWords.length - 1)];
-    sceneWord.textContent = config.text;
-    sceneWord.style.setProperty("--scene-word-color", config.color);
-    sceneWord.style.setProperty("--scene-word-opacity", config.opacity);
+    const nextIndex = Math.min(activeIndex, sceneWords.length - 1);
+    const config = sceneWords[nextIndex];
+    const signature = `${config.text}|${config.color}`;
     sceneWord.style.setProperty("--scene-word-x", `${((activeIndex % 2) * 24).toFixed(2)}px`);
     sceneWord.style.setProperty("--scene-word-y", `${(window.scrollY * -0.018).toFixed(2)}px`);
     sceneWord.style.setProperty("--scene-word-scale", `${(1 + activeIndex * 0.018).toFixed(3)}`);
+
+    if (signature !== activeWordSignature && wordNext && wordCurrent) {
+      const direction = nextIndex > activeWordIndex ? 1 : -1;
+      clearTimeout(wordTransitionTimer);
+      sceneWord.style.setProperty("--word-current-y", `${(-52 * direction).toFixed(2)}px`);
+      sceneWord.style.setProperty("--word-next-y", `${(52 * direction).toFixed(2)}px`);
+      sceneWord.style.setProperty("--word-next-color", config.color);
+      sceneWord.style.setProperty("--word-next-opacity", config.opacity);
+      wordNext.textContent = config.text;
+      sceneWord.classList.add("is-changing");
+
+      wordTransitionTimer = window.setTimeout(() => {
+        applyCurrentWord(config);
+        activeWordIndex = nextIndex;
+        activeWordSignature = signature;
+        wordNext.textContent = "";
+        sceneWord.classList.remove("is-changing");
+      }, 430);
+    } else if (nextIndex !== activeWordIndex) {
+      activeWordIndex = nextIndex;
+    }
   }
 };
 

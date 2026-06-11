@@ -54,16 +54,40 @@ body::before {
   right: -0.08em;
   bottom: -0.22em;
   z-index: 0;
+  display: grid;
   pointer-events: none;
-  color: var(--scene-word-color, #f58220);
-  opacity: var(--scene-word-opacity, 0.16);
   font-size: clamp(150px, 25vw, 430px);
   line-height: 0.8;
   font-weight: 860;
   letter-spacing: -0.05em;
   transform: translate3d(var(--scene-word-x, 0px), var(--scene-word-y, 0px), 0) scale(var(--scene-word-scale, 1));
-  transition: color 520ms var(--ease), opacity 520ms var(--ease), transform 160ms linear;
+  transition: transform 160ms linear;
   mix-blend-mode: multiply;
+}
+
+.scene-word span {
+  grid-area: 1 / 1;
+  color: var(--word-current-color, #f58220);
+  opacity: var(--word-current-opacity, 0.14);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 420ms var(--ease), transform 420ms var(--ease), color 420ms var(--ease);
+  will-change: opacity, transform;
+}
+
+.scene-word [data-word-next] {
+  color: var(--word-next-color, #7b61ff);
+  opacity: 0;
+  transform: translate3d(0, var(--word-next-y, 56px), 0);
+}
+
+.scene-word.is-changing [data-word-current] {
+  opacity: 0;
+  transform: translate3d(0, var(--word-current-y, -56px), 0);
+}
+
+.scene-word.is-changing [data-word-next] {
+  opacity: var(--word-next-opacity, 0.14);
+  transform: translate3d(0, 0, 0);
 }
 
 a {
