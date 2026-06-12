@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#top" data-i18n="skipLink">跳到主体内容</a>
     <svg class="liquid-filter" width="0" height="0" aria-hidden="true" focusable="false">
       <defs>
         <filter id="liquid-glass-filter" x="-18%" y="-18%" width="136%" height="136%">
@@ -84,17 +85,31 @@
       <section id="education" class="education education-section resume-section motion-scene" data-scene>
         <div class="section-copy reveal">
           <p class="section-index">01 / Education</p>
-          <h2 data-i18n="educationTitle">本科 · 南方科技大学</h2>
+          <h2 class="split-title education-title">
+            <span data-i18n="educationTitleDegree">本科</span>
+            <span data-i18n="educationTitleSchool">南方科技大学</span>
+          </h2>
+          <p class="section-note" data-i18n="educationBody">通识与学科基础部 · 本科在读 · 2025.09 - 2029.06</p>
         </div>
         <div class="education-panel reveal" aria-label="教育摘要">
           <div class="education-metric">
+            <span data-i18n="metricGrad">预计毕业</span>
             <strong>2029</strong>
           </div>
           <div class="education-metric">
+            <span data-i18n="metricSchool">南方科技大学</span>
             <strong>SUSTech</strong>
           </div>
           <div class="education-stack">
-            <strong>Java / Python / Swift</strong>
+            <span data-i18n="educationStackLabel">技术栈</span>
+            <strong>
+              <span>Java</span>
+              <i>/</i>
+              <span>Python</span>
+              <i>/</i>
+              <span>Swift</span>
+            </strong>
+            <p>SwiftUI · CloudKit · WidgetKit · JavaFX</p>
           </div>
         </div>
       </section>
@@ -102,7 +117,16 @@
       <section id="campus" class="campus-section resume-section motion-scene" data-scene>
         <div class="section-copy reveal">
           <p class="section-index">02 / Campus</p>
-          <h2 data-i18n="campusTitle">校园经历</h2>
+          <h2 class="split-title campus-title">
+            <span data-i18n="campusTitleCampus">校园</span>
+            <span data-i18n="campusTitleExperience">经历</span>
+          </h2>
+          <p class="section-note" data-i18n="campusBody">学生会、提案大赛、学生发展与指导中心，把真实问题推进成可协作的校园方案。</p>
+          <div class="campus-track" aria-label="校园经历关键词">
+            <span data-i18n="campusTagUnion">学生会</span>
+            <span data-i18n="campusTagProposal">提案大赛</span>
+            <span data-i18n="campusTagDevelopment">学生发展与指导中心</span>
+          </div>
         </div>
         <div class="campus-stage reveal">
           <article class="image-card campus-card card-union" data-campus-card>

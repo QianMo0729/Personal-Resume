@@ -14,6 +14,7 @@ const translations = {
   zh: {
     pageTitle: "宋和 | iOS Product Engineer",
     pageDescription: "宋和的个人简历网站：iOS 产品工程、SwiftUI、CloudKit、WidgetKit、算法与真实项目经历。",
+    skipLink: "跳到主体内容",
     navHome: "首页",
     navEducation: "教育",
     navCampus: "校园",
@@ -23,8 +24,18 @@ const translations = {
     heroLeadOne: "南方科技大学本科。",
     heroLeadTwo: "目标：iOS 开发 / 产品经理日常实习。",
     ctaApp: "查看上线应用",
-    educationTitle: "本科 · 南方科技大学",
-    campusTitle: "校园经历",
+    educationTitleDegree: "本科",
+    educationTitleSchool: "南方科技大学",
+    educationBody: "通识与学科基础部 · 本科在读 · 2025.09 - 2029.06",
+    metricGrad: "预计毕业",
+    metricSchool: "南方科技大学",
+    educationStackLabel: "技术栈",
+    campusTitleCampus: "校园",
+    campusTitleExperience: "经历",
+    campusBody: "学生会、提案大赛、学生发展与指导中心，把真实问题推进成可协作的校园方案。",
+    campusTagUnion: "学生会",
+    campusTagProposal: "提案大赛",
+    campusTagDevelopment: "学生发展与指导中心",
     campusStudentUnionTitle: "学生会",
     campusProposalTitle: "提案大赛",
     campusDevelopmentTitle: "学生发展与指导中心",
@@ -34,6 +45,7 @@ const translations = {
   en: {
     pageTitle: "Song He | iOS Product Engineer",
     pageDescription: "Song He's resume site: iOS product engineering, SwiftUI, CloudKit, WidgetKit, algorithms, and shipped work.",
+    skipLink: "Skip to main content",
     navHome: "Home",
     navEducation: "Education",
     navCampus: "Campus",
@@ -43,8 +55,18 @@ const translations = {
     heroLeadOne: "Undergraduate at SUSTech.",
     heroLeadTwo: "Seeking daily internships in iOS development or product management.",
     ctaApp: "View App Store",
-    educationTitle: "Undergraduate · SUSTech",
-    campusTitle: "Campus Experience",
+    educationTitleDegree: "Undergraduate",
+    educationTitleSchool: "SUSTech",
+    educationBody: "General and foundational studies · 2025.09 - 2029.06",
+    metricGrad: "Expected graduation",
+    metricSchool: "Southern University of Science and Technology",
+    educationStackLabel: "Stack",
+    campusTitleCampus: "Campus",
+    campusTitleExperience: "Experience",
+    campusBody: "Student Union, proposal competition, and student-development support translated into collaborative campus solutions.",
+    campusTagUnion: "Student Union",
+    campusTagProposal: "Proposal Competition",
+    campusTagDevelopment: "Student Development Center",
     campusStudentUnionTitle: "Student Union",
     campusProposalTitle: "Proposal Competition",
     campusDevelopmentTitle: "Student Development Center",
@@ -103,6 +125,7 @@ let activeWordIndex = 0;
 let activeWordSignature = `${sceneWords[0].text}|${sceneWords[0].color}`;
 let activeWordAnimation = null;
 let activeWork = "liquid";
+let portfolioOrbitMetrics = null;
 
 const portfolioDetailEls = {
   title: document.querySelector("[data-portfolio-title]"),
@@ -331,11 +354,9 @@ const initFallbackMotion = () => {
   window.addEventListener("resize", requestSceneMotion);
 };
 
-const arrangePortfolioOrbit = (rotation) => {
+const measurePortfolioOrbit = () => {
   if (!portfolioOrbit || !portfolioCards.length) return;
 
-  const cardCount = portfolioCards.length;
-  const step = (Math.PI * 2) / cardCount;
   const rect = portfolioOrbit.getBoundingClientRect();
   const cardWidth = portfolioCards[0]?.getBoundingClientRect().width || 260;
   const isNarrow = window.innerWidth < 760;
@@ -343,12 +364,27 @@ const arrangePortfolioOrbit = (rotation) => {
   const radius = isNarrow
     ? clamp(Math.min(rect.width, rect.height) * 0.2, 72, maxNarrowRadius)
     : Math.max(120, Math.min(rect.width, rect.height) * 0.33);
-  const yRadius = radius * (isNarrow ? 0.5 : 0.42);
+
+  portfolioOrbitMetrics = {
+    radius,
+    yRadius: radius * (isNarrow ? 0.5 : 0.42),
+  };
+
+  return portfolioOrbitMetrics;
+};
+
+const arrangePortfolioOrbit = (rotation) => {
+  if (!portfolioOrbit || !portfolioCards.length) return;
+
+  const cardCount = portfolioCards.length;
+  const step = (Math.PI * 2) / cardCount;
+  const metrics = portfolioOrbitMetrics || measurePortfolioOrbit();
+  if (!metrics) return;
 
   portfolioCards.forEach((card, index) => {
     const theta = rotation + index * step;
-    const x = Math.cos(theta) * radius;
-    const y = Math.sin(theta) * yRadius;
+    const x = Math.cos(theta) * metrics.radius;
+    const y = Math.sin(theta) * metrics.yRadius;
     const depth = (Math.sin(theta) + 1) / 2;
     const scale = 0.78 + depth * 0.22;
     const opacity = 0.58 + depth * 0.42;
@@ -366,8 +402,10 @@ const initPortfolioOrbit = () => {
   const step = (Math.PI * 2) / portfolioCards.length;
   let targetRotation = Math.PI / 2;
   let renderedRotation = targetRotation;
-  let velocity = 0.00016;
+  let velocity = 0;
   let lastTime = performance.now();
+  let animationFrame = null;
+  let orbitActive = true;
   let isDragging = false;
   let pointerStartX = 0;
   let pointerLastX = 0;
@@ -378,8 +416,39 @@ const initPortfolioOrbit = () => {
     targetRotation = Math.PI / 2 - index * step;
   };
 
+  const selectWorkCard = (card) => {
+    if (!card?.dataset.work) return;
+    setPortfolioDetail(card.dataset.work);
+    setSelectedRotation(card.dataset.work);
+    requestOrbitFrame();
+  };
+
+  const findClosestCard = (x, y) => {
+    const candidates = portfolioCards
+      .map((card) => {
+        const rect = card.getBoundingClientRect();
+        const inside =
+          x >= rect.left - 8 &&
+          x <= rect.right + 8 &&
+          y >= rect.top - 8 &&
+          y <= rect.bottom + 8;
+        const distance = Math.hypot(x - (rect.left + rect.width / 2), y - (rect.top + rect.height / 2));
+        return { card, inside, distance };
+      })
+      .filter((candidate) => candidate.inside)
+      .sort((a, b) => a.distance - b.distance);
+
+    return candidates[0]?.card || null;
+  };
+
   setSelectedRotation(activeWork);
+  measurePortfolioOrbit();
   arrangePortfolioOrbit(renderedRotation);
+
+  const requestOrbitFrame = () => {
+    if (animationFrame || prefersReducedMotion.matches) return;
+    animationFrame = window.requestAnimationFrame(tick);
+  };
 
   portfolioCards.forEach((card) => {
     card.addEventListener("click", (event) => {
@@ -387,9 +456,18 @@ const initPortfolioOrbit = () => {
         event.preventDefault();
         return;
       }
-      setPortfolioDetail(card.dataset.work);
-      setSelectedRotation(card.dataset.work);
+      selectWorkCard(card);
     });
+  });
+
+  portfolioOrbit.addEventListener("click", (event) => {
+    if (dragDistance > 7) return;
+
+    const closestCard = findClosestCard(event.clientX, event.clientY);
+    if (closestCard) {
+      event.preventDefault();
+      selectWorkCard(closestCard);
+    }
   });
 
   portfolioOrbit.addEventListener("pointerdown", (event) => {
@@ -400,6 +478,8 @@ const initPortfolioOrbit = () => {
     dragDistance = 0;
     portfolioOrbit.classList.add("is-dragging");
     portfolioOrbit.setPointerCapture?.(event.pointerId);
+    measurePortfolioOrbit();
+    requestOrbitFrame();
   });
 
   portfolioOrbit.addEventListener("pointermove", (event) => {
@@ -410,6 +490,7 @@ const initPortfolioOrbit = () => {
     targetRotation -= dx * 0.012;
     velocity = clamp(-dx * 0.00024, -0.0048, 0.0048);
     arrangePortfolioOrbit(targetRotation);
+    requestOrbitFrame();
   });
 
   const endDrag = (event) => {
@@ -427,21 +508,43 @@ const initPortfolioOrbit = () => {
 
   if (prefersReducedMotion.matches) return;
 
+  const portfolioSection = portfolioOrbit.closest(".portfolio-section");
+  if ("IntersectionObserver" in window && portfolioSection) {
+    const orbitObserver = new IntersectionObserver(
+      (entries) => {
+        orbitActive = entries.some((entry) => entry.isIntersecting);
+        if (orbitActive) requestOrbitFrame();
+      },
+      { threshold: 0.12 }
+    );
+    orbitObserver.observe(portfolioSection);
+  }
+
+  window.addEventListener("resize", () => {
+    measurePortfolioOrbit();
+    arrangePortfolioOrbit(renderedRotation);
+  });
+
   const tick = (time) => {
+    animationFrame = null;
     const delta = Math.min(34, time - lastTime);
     lastTime = time;
 
     if (!isDragging) {
       targetRotation += velocity * delta;
-      velocity += (0.00016 - velocity) * 0.018;
+      velocity *= 0.94;
+      if (Math.abs(velocity) < 0.00002) velocity = 0;
       renderedRotation += (targetRotation - renderedRotation) * 0.12;
       arrangePortfolioOrbit(renderedRotation);
     }
 
-    window.requestAnimationFrame(tick);
+    const stillSettling = Math.abs(targetRotation - renderedRotation) > 0.001;
+    if (isDragging || (orbitActive && (velocity !== 0 || stillSettling))) {
+      requestOrbitFrame();
+    }
   };
 
-  window.requestAnimationFrame(tick);
+  requestOrbitFrame();
 };
 
 const initSectionSnapGuard = () => {
@@ -480,7 +583,10 @@ const initSectionSnapGuard = () => {
 
     isSettling = true;
     lockUntil = performance.now() + 980;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    target.scrollIntoView({
+      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      block: "start",
+    });
     clearTimeout(releaseTimer);
     releaseTimer = window.setTimeout(() => {
       isSettling = false;
@@ -576,6 +682,7 @@ const initGsapMotion = ({ isDesktop }) => {
           start: "top top",
           end: "bottom bottom",
           scrub: 1.1,
+          invalidateOnRefresh: true,
         },
       }
     );
@@ -689,7 +796,10 @@ const initGsapMotion = ({ isDesktop }) => {
   let refreshTimer = null;
   const scheduleRefresh = () => {
     clearTimeout(refreshTimer);
-    refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 180);
+    refreshTimer = window.setTimeout(() => {
+      ScrollTrigger.refresh();
+      revealVisibleTargets();
+    }, 180);
   };
 
   window.addEventListener("load", scheduleRefresh, { once: true });
