@@ -21,6 +21,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 92px;
   background: var(--paper);
 }
 
@@ -713,6 +714,27 @@ main {
   padding: 28px 0 46px;
   color: rgba(16, 17, 15, 0.48);
   font-size: 13px;
+}
+
+@media (pointer: fine) and (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
+
+  .hero,
+  .story,
+  .education,
+  .skills,
+  .projects,
+  .launch-frame,
+  .contact {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .site-footer {
+    scroll-snap-align: end;
+  }
 }
 
 .reveal {
