@@ -6,8 +6,10 @@
 
 - `index.html`：页面内容
 - `styles.css`：视觉样式与响应式布局
-- `script.js`：滚动显隐、导航玻璃态与轻量视差
+- `script.js`：GSAP / ScrollTrigger 滚动动效、导航玻璃态与降级逻辑
 - `assets/paper-field.jpg`：本地生成的纸感与玻璃感背景图
+- `assets/vendor/`：本地 vendored GSAP 运行库
+- `.github/workflows/deploy-pages.yml`：GitHub Pages 静态部署工作流
 
 ## GitHub Pages
 

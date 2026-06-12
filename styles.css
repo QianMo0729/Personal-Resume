@@ -190,6 +190,16 @@ main {
   position: relative;
 }
 
+.gsap-ready .scene-word,
+.gsap-ready .scene-word span,
+.js.gsap-ready .reveal,
+.gsap-ready .hero-visual,
+.gsap-ready .launch-visual,
+.gsap-ready .mint-rings,
+.gsap-ready .product-card {
+  transition: none;
+}
+
 .hero {
   min-height: 96svh;
   display: grid;
@@ -523,6 +533,7 @@ main {
   background:
     linear-gradient(160deg, rgba(255, 255, 255, 0.72), rgba(102, 229, 191, 0.1)),
     rgba(255, 255, 255, 0.42);
+  will-change: transform;
 }
 
 .project-visual .mint-rings {
