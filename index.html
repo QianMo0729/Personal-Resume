@@ -20,6 +20,28 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <svg class="liquid-filter" width="0" height="0" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="liquid-glass-filter" x="-18%" y="-18%" width="136%" height="136%">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.006 0.012"
+            numOctaves="2"
+            seed="9"
+            result="liquidNoise"
+          />
+          <feGaussianBlur in="liquidNoise" stdDeviation="1.7" result="liquidMap" />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="liquidMap"
+            scale="28"
+            xChannelSelector="R"
+            yChannelSelector="B"
+          />
+        </filter>
+      </defs>
+    </svg>
+
     <div class="scene-word" aria-hidden="true" data-scene-word>
       <span data-word-current>SONG HE</span>
       <span data-word-next></span>
@@ -32,10 +54,10 @@
       </a>
       <div class="header-actions">
         <nav aria-label="主导航">
-          <a href="#profile" data-i18n="navProfile">概览</a>
+          <a href="#top" data-i18n="navHome">首页</a>
           <a href="#education" data-i18n="navEducation">教育</a>
-          <a href="#skills" data-i18n="navSkills">技能</a>
-          <a href="#projects" data-i18n="navProjects">项目</a>
+          <a href="#campus" data-i18n="navCampus">校园</a>
+          <a href="#portfolio" data-i18n="navPortfolio">作品</a>
           <a href="#contact" data-i18n="navContact">联系</a>
         </nav>
         <button class="language-toggle" type="button" data-lang-toggle aria-label="Switch language">
@@ -45,12 +67,11 @@
     </header>
 
     <main id="top">
-      <section class="hero motion-scene" data-scene>
+      <section class="hero resume-section motion-scene" data-scene>
         <div class="hero-copy reveal">
-          <p class="eyebrow" data-i18n="heroEyebrow">iOS Product Engineering / Internship</p>
           <h1 data-i18n="heroName">宋和</h1>
           <p class="lead">
-            <span data-i18n="heroLeadOne">南方科技大学本科在读。</span>
+            <span data-i18n="heroLeadOne">南方科技大学本科。</span>
             <span data-i18n="heroLeadTwo">目标：iOS 开发 / 产品经理日常实习。</span>
           </p>
           <div class="hero-actions">
@@ -60,173 +81,102 @@
         </div>
       </section>
 
-      <section id="profile" class="story motion-scene" data-scene>
-        <div class="scene-copy reveal">
-          <p class="eyebrow">01 / Profile</p>
-          <h2 data-i18n="profileTitle">能从需求、界面、工程到上线完整推进产品。</h2>
-          <p>
-            <span data-i18n="profileBody">我关注 iOS 产品的完整链路：从真实问题、交互取舍，到 SwiftUI 实现、CloudKit 同步和 App Store 发布。</span>
-          </p>
+      <section id="education" class="education education-section resume-section motion-scene" data-scene>
+        <div class="section-copy reveal">
+          <p class="section-index">01 / Education</p>
+          <h2 data-i18n="educationTitle">本科 · 南方科技大学</h2>
         </div>
-        <div class="scene-board reveal">
-          <div class="route-line">
-            <span>Learn</span>
-            <i></i>
-            <span>Build</span>
-            <i></i>
-            <span>Ship</span>
-            <i></i>
-            <span>Iterate</span>
-          </div>
-          <div class="board-grid">
-            <article>
-              <strong>Client</strong>
-              <p data-i18n="profileCardClient">SwiftUI、MVVM 和系统组件。</p>
-            </article>
-            <article>
-              <strong>Algorithm</strong>
-              <p data-i18n="profileCardAlgorithm">Minimax 与 Alpha-Beta 剪枝。</p>
-            </article>
-            <article>
-              <strong>Product</strong>
-              <p data-i18n="profileCardProduct">从真实需求到可交付产品。</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="education" class="education motion-scene" data-scene>
-        <div class="education-card reveal">
-          <p class="eyebrow">02 / Education</p>
-          <h2 data-i18n="educationTitle">南方科技大学（SUSTech）</h2>
-          <p data-i18n="educationBody">通识与学科基础部，本科在读。2025.09 - 2029.06。</p>
-        </div>
-        <div class="metrics reveal" aria-label="关键摘要">
-          <div>
+        <div class="education-panel reveal" aria-label="教育摘要">
+          <div class="education-metric">
             <strong>2029</strong>
-            <span data-i18n="metricGrad">预计本科毕业</span>
           </div>
-          <div>
+          <div class="education-metric">
             <strong>SUSTech</strong>
-            <span data-i18n="metricSchool">南方科技大学</span>
           </div>
-          <div>
-            <strong>Shenzhen</strong>
-            <span data-i18n="metricCity">当前城市</span>
+          <div class="education-stack">
+            <strong>Java / Python / Swift</strong>
           </div>
         </div>
       </section>
 
-      <section id="skills" class="skills motion-scene" data-scene>
-        <div class="section-heading reveal">
-          <p class="eyebrow">03 / Technical Skills</p>
-          <h2 data-i18n="skillsTitle">围绕 iOS 产品交付建立工程能力。</h2>
+      <section id="campus" class="campus-section resume-section motion-scene" data-scene>
+        <div class="section-copy reveal">
+          <p class="section-index">02 / Campus</p>
+          <h2 data-i18n="campusTitle">校园经历</h2>
         </div>
-        <div class="skill-rows">
-          <div class="skill-row reveal">
-            <span data-i18n="skillLanguagesLabel">Languages</span>
-            <p data-i18n="skillLanguages">Java、Python、Swift</p>
-          </div>
-          <div class="skill-row reveal">
-            <span data-i18n="skillIosLabel">iOS Development</span>
-            <p data-i18n="skillIos">SwiftUI、MVVM、WidgetKit、Core Data、CloudKit、AppIntents</p>
-          </div>
-          <div class="skill-row reveal">
-            <span data-i18n="skillAlgoLabel">Algorithms & Engineering</span>
-            <p data-i18n="skillAlgo">数据结构与算法、Minimax、Alpha-Beta 剪枝、Git</p>
-          </div>
-          <div class="skill-row reveal">
-            <span data-i18n="skillWorkflowLabel">Product Workflow</span>
-            <p data-i18n="skillWorkflow">需求拆解、原型判断、AI 辅助调试与文档整理</p>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="projects motion-scene" data-scene>
-        <div class="section-heading reveal">
-          <p class="eyebrow">04 / Projects</p>
-          <h2 data-i18n="projectsTitle">项目经历</h2>
-        </div>
-
-        <div class="project-grid">
-          <article class="project project-large reveal">
-            <span data-i18n="liquidMeta">iOS / 2026.02 - Now</span>
-            <h3>Liquid Deadline</h3>
-            <p data-i18n="liquidBody">已上架 App Store。独立完成 SwiftUI + MVVM、Core Data + CloudKit、WidgetKit + AppIntents 与 ICS 日历订阅，把截止日期管理做成可使用、可同步、可迭代的 iOS 产品。</p>
-            <div class="project-visual" aria-hidden="true">
-              <div class="mint-rings mint-rings-small">
-                <span></span>
-                <span></span>
-              </div>
-              <div class="product-card mini-product-card">
-                <div class="product-card-top">
-                  <span>Liquid Deadline</span>
-                  <span>Live</span>
-                </div>
-                <div class="product-number">
-                  <strong>27</strong>
-                  <small>days left</small>
-                </div>
-                <div class="product-pills">
-                  <span>SwiftUI</span>
-                  <span>CloudKit</span>
-                  <span>WidgetKit</span>
-                </div>
-              </div>
+        <div class="campus-stage reveal">
+          <article class="image-card campus-card card-union" data-campus-card>
+            <div class="card-media media-product" aria-hidden="true"></div>
+            <div class="card-glass" aria-hidden="true"></div>
+            <div class="card-caption">
+              <h3 data-i18n="campusStudentUnionTitle">学生会</h3>
             </div>
+          </article>
+          <article class="image-card campus-card card-proposal" data-campus-card>
+            <div class="card-media media-proposal" aria-hidden="true"></div>
+            <div class="card-glass" aria-hidden="true"></div>
+            <div class="card-caption">
+              <h3 data-i18n="campusProposalTitle">提案大赛</h3>
+            </div>
+          </article>
+          <article class="image-card campus-card card-development" data-campus-card>
+            <div class="card-media media-course" aria-hidden="true"></div>
+            <div class="card-glass" aria-hidden="true"></div>
+            <div class="card-caption">
+              <h3 data-i18n="campusDevelopmentTitle">学生发展与指导中心</h3>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="portfolio" class="portfolio-section resume-section motion-scene" data-scene>
+        <div class="portfolio-copy reveal">
+          <p class="section-index">03 / Portfolio</p>
+          <h2 data-i18n="portfolioTitle">作品集</h2>
+          <div class="portfolio-detail" data-portfolio-detail>
+            <h3 data-portfolio-title>Liquid Deadline</h3>
             <div class="project-links">
-              <a href="https://github.com/QianMo0729/liquid-deadline" target="_blank" rel="noreferrer">GitHub</a>
-              <a href="https://apps.apple.com/us/app/liquid-deadline/id6760516153" target="_blank" rel="noreferrer">App Store</a>
+              <a href="https://apps.apple.com/us/app/liquid-deadline/id6760516153" target="_blank" rel="noreferrer" data-portfolio-primary>App Store</a>
+              <a href="https://github.com/QianMo0729/liquid-deadline" target="_blank" rel="noreferrer" data-portfolio-secondary>GitHub</a>
             </div>
-          </article>
-
-          <article class="project reveal">
-            <span data-i18n="xiangqiMeta">Java / JavaFX / 2025.10 - 2025.12</span>
-            <h3 data-i18n="xiangqiTitle">中国象棋桌面应用</h3>
-            <p data-i18n="xiangqiBody">课程没有要求完整产品化，但我按可交付应用推进：规则引擎、AI 对弈、安全存档、界面状态与跨平台打包，最终形成可运行的桌面产品。</p>
-            <a href="https://github.com/QianMo0729/SUSTech-XiangQi" target="_blank" rel="noreferrer" data-i18n="repoLink">查看仓库</a>
-          </article>
-
-          <article class="project reveal">
-            <span data-i18n="shippingMeta">Product</span>
-            <h3 data-i18n="shippingTitle">完整交付意识</h3>
-            <p data-i18n="shippingBody">在课程要求之外补齐账号、存档、状态恢复和打包细节，把功能练习推进到更接近真实产品的完成度。</p>
-          </article>
-        </div>
-      </section>
-
-      <section id="awards" class="launch-frame motion-scene" data-scene>
-        <div class="launch-copy reveal">
-          <p class="eyebrow">05 / Competition</p>
-          <h2 data-i18n="awardTitle">南方科技大学“权系你我·智汇南科”校园提案大赛一等奖</h2>
-          <p data-i18n="awardBody">围绕校园电动车管理提出系统性方案，覆盖停车规划、车道安全、夜间照明等问题，并参与答辩与材料整合。</p>
-        </div>
-        <div class="launch-visual reveal" aria-hidden="true">
-          <div class="mint-rings mint-rings-large">
-            <span></span>
-            <span></span>
           </div>
-          <div class="product-card launch-card">
-            <div class="product-card-top">
-              <span>Campus Proposal</span>
-              <span>1st Prize</span>
-            </div>
-            <div class="product-number">
-              <strong>01</strong>
-              <small>system solution</small>
-            </div>
-            <div class="product-pills">
-              <span>Parking</span>
-              <span>Safety</span>
-              <span>Lighting</span>
-            </div>
+        </div>
+        <div class="portfolio-stage reveal" data-portfolio-stage>
+          <div class="portfolio-orbit" data-portfolio-orbit aria-label="作品集转盘">
+            <button class="image-card work-card is-selected" type="button" data-work-card data-work="liquid" aria-label="Liquid Deadline">
+              <span class="work-card-inner">
+                <span class="card-media media-liquid" aria-hidden="true"></span>
+                <span class="card-glass" aria-hidden="true"></span>
+                <span class="card-caption">
+                  <strong>Liquid Deadline</strong>
+                </span>
+              </span>
+            </button>
+            <button class="image-card work-card" type="button" data-work-card data-work="xiangqi" aria-label="SUSTech XiangQi">
+              <span class="work-card-inner">
+                <span class="card-media media-xiangqi" aria-hidden="true"></span>
+                <span class="card-glass" aria-hidden="true"></span>
+                <span class="card-caption">
+                  <strong>SUSTech XiangQi</strong>
+                </span>
+              </span>
+            </button>
+            <button class="image-card work-card" type="button" data-work-card data-work="campus" aria-label="Campus Proposal">
+              <span class="work-card-inner">
+                <span class="card-media media-proposal" aria-hidden="true"></span>
+                <span class="card-glass" aria-hidden="true"></span>
+                <span class="card-caption">
+                  <strong>Campus Proposal</strong>
+                </span>
+              </span>
+            </button>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="contact motion-scene" data-scene>
+      <section id="contact" class="contact contact-section resume-section motion-scene" data-scene>
         <div class="contact-card reveal">
-          <p class="eyebrow">06 / Contact</p>
+          <p class="section-index">04 / Contact</p>
           <h2 data-i18n="contactTitle">聊聊 iOS、产品实习或协作。</h2>
           <address>
             <a href="mailto:12512808@mail.sustech.edu.cn">12512808@mail.sustech.edu.cn</a>
@@ -239,7 +189,6 @@
 
     <footer class="site-footer">
       <span>Song He</span>
-      <span data-i18n="footerNote">Static resume demo for GitHub Pages</span>
     </footer>
 
     <script src="assets/vendor/gsap.min.js"></script>

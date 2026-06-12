@@ -6,119 +6,111 @@ const wordCurrent = document.querySelector("[data-word-current]");
 const wordNext = document.querySelector("[data-word-next]");
 const langToggle = document.querySelector("[data-lang-toggle]");
 const langCurrent = document.querySelector("[data-lang-current]");
+const portfolioOrbit = document.querySelector("[data-portfolio-orbit]");
+const portfolioCards = Array.from(document.querySelectorAll("[data-work-card]"));
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const translations = {
   zh: {
     pageTitle: "宋和 | iOS Product Engineer",
     pageDescription: "宋和的个人简历网站：iOS 产品工程、SwiftUI、CloudKit、WidgetKit、算法与真实项目经历。",
-    navProfile: "概览",
+    navHome: "首页",
     navEducation: "教育",
-    navSkills: "技能",
-    navProjects: "项目",
+    navCampus: "校园",
+    navPortfolio: "作品",
     navContact: "联系",
-    heroEyebrow: "iOS Product Engineering / Internship",
     heroName: "宋和",
-    heroLeadOne: "南方科技大学本科在读。",
+    heroLeadOne: "南方科技大学本科。",
     heroLeadTwo: "目标：iOS 开发 / 产品经理日常实习。",
     ctaApp: "查看上线应用",
-    profileTitle: "能从需求、界面、工程到上线完整推进产品。",
-    profileBody: "我关注 iOS 产品的完整链路：从真实问题、交互取舍，到 SwiftUI 实现、CloudKit 同步和 App Store 发布。",
-    profileCardClient: "SwiftUI、MVVM 和系统组件。",
-    profileCardAlgorithm: "Minimax 与 Alpha-Beta 剪枝。",
-    profileCardProduct: "从真实需求到可交付产品。",
-    educationTitle: "南方科技大学（SUSTech）",
-    educationBody: "通识与学科基础部，本科在读。2025.09 - 2029.06。",
-    metricGrad: "预计本科毕业",
-    metricSchool: "南方科技大学",
-    metricCity: "当前城市",
-    skillsTitle: "围绕 iOS 产品交付建立工程能力。",
-    skillLanguagesLabel: "Languages",
-    skillLanguages: "Java、Python、Swift",
-    skillIosLabel: "iOS Development",
-    skillIos: "SwiftUI、MVVM、WidgetKit、Core Data、CloudKit、AppIntents",
-    skillAlgoLabel: "Algorithms & Engineering",
-    skillAlgo: "数据结构与算法、Minimax、Alpha-Beta 剪枝、Git",
-    skillWorkflowLabel: "Product Workflow",
-    skillWorkflow: "需求拆解、原型判断、AI 辅助调试与文档整理",
-    projectsTitle: "项目经历",
-    liquidMeta: "iOS / 2026.02 - Now",
-    liquidBody: "已上架 App Store。独立完成 SwiftUI + MVVM、Core Data + CloudKit、WidgetKit + AppIntents 与 ICS 日历订阅，把截止日期管理做成可使用、可同步、可迭代的 iOS 产品。",
-    xiangqiMeta: "Java / JavaFX / 2025.10 - 2025.12",
-    xiangqiTitle: "中国象棋桌面应用",
-    xiangqiBody: "课程没有要求完整产品化，但我按可交付应用推进：规则引擎、AI 对弈、安全存档、界面状态与跨平台打包，最终形成可运行的桌面产品。",
-    repoLink: "查看仓库",
-    shippingMeta: "Product",
-    shippingTitle: "完整交付意识",
-    shippingBody: "在课程要求之外补齐账号、存档、状态恢复和打包细节，把功能练习推进到更接近真实产品的完成度。",
-    awardTitle: "南方科技大学“权系你我·智汇南科”校园提案大赛一等奖",
-    awardBody: "围绕校园电动车管理提出系统性方案，覆盖停车规划、车道安全、夜间照明等问题，并参与答辩与材料整合。",
+    educationTitle: "本科 · 南方科技大学",
+    campusTitle: "校园经历",
+    campusStudentUnionTitle: "学生会",
+    campusProposalTitle: "提案大赛",
+    campusDevelopmentTitle: "学生发展与指导中心",
+    portfolioTitle: "作品集",
     contactTitle: "聊聊 iOS、产品实习或协作。",
-    footerNote: "Static resume demo for GitHub Pages",
   },
   en: {
     pageTitle: "Song He | iOS Product Engineer",
     pageDescription: "Song He's resume site: iOS product engineering, SwiftUI, CloudKit, WidgetKit, algorithms, and shipped work.",
-    navProfile: "Profile",
+    navHome: "Home",
     navEducation: "Education",
-    navSkills: "Skills",
-    navProjects: "Work",
+    navCampus: "Campus",
+    navPortfolio: "Work",
     navContact: "Contact",
-    heroEyebrow: "iOS Product Engineering / Internship",
     heroName: "Song He",
     heroLeadOne: "Undergraduate at SUSTech.",
-    heroLeadTwo: "Seeking off-cycle internships in iOS development or product management.",
+    heroLeadTwo: "Seeking daily internships in iOS development or product management.",
     ctaApp: "View App Store",
-    profileTitle: "I turn product questions into shipped iOS work.",
-    profileBody: "I work across the full iOS product loop: user problem, interaction decisions, SwiftUI implementation, CloudKit sync, and App Store release.",
-    profileCardClient: "SwiftUI, MVVM, and Apple platform components.",
-    profileCardAlgorithm: "Minimax with Alpha-Beta pruning.",
-    profileCardProduct: "From real needs to deliverable products.",
-    educationTitle: "Southern University of Science and Technology",
-    educationBody: "General and foundational studies. Undergraduate student, 2025.09 - 2029.06.",
-    metricGrad: "Expected graduation",
-    metricSchool: "Southern University of Science and Technology",
-    metricCity: "Current city",
-    skillsTitle: "Engineering skills shaped around iOS product delivery.",
-    skillLanguagesLabel: "Languages",
-    skillLanguages: "Java, Python, Swift",
-    skillIosLabel: "iOS Development",
-    skillIos: "SwiftUI, MVVM, WidgetKit, Core Data, CloudKit, AppIntents",
-    skillAlgoLabel: "Algorithms & Engineering",
-    skillAlgo: "Data structures, Minimax, Alpha-Beta pruning, Git",
-    skillWorkflowLabel: "Product Workflow",
-    skillWorkflow: "Requirement breakdown, product judgment, AI-assisted debugging, and documentation",
-    projectsTitle: "Selected Work",
-    liquidMeta: "iOS / 2026.02 - Now",
-    liquidBody: "Published on the App Store. I built SwiftUI + MVVM, Core Data + CloudKit, WidgetKit + AppIntents, and ICS calendar subscriptions to make deadline management usable, synced, and ready to iterate.",
-    xiangqiMeta: "Java / JavaFX / 2025.10 - 2025.12",
-    xiangqiTitle: "Chinese Chess Desktop App",
-    xiangqiBody: "The course did not require a complete product, but I treated it as one: rules engine, AI play, secure saves, UI state, and cross-platform packaging.",
-    repoLink: "Repository",
-    shippingMeta: "Product",
-    shippingTitle: "Product Completion",
-    shippingBody: "Beyond the assignment scope, I completed account, save, recovery, and packaging details so the work behaved closer to a real product.",
-    awardTitle: "First Prize, SUSTech Campus Proposal Competition",
-    awardBody: "Proposed a systematic e-bike management plan covering parking, lane safety, night lighting, and campus governance, then supported the pitch and materials.",
+    educationTitle: "Undergraduate · SUSTech",
+    campusTitle: "Campus Experience",
+    campusStudentUnionTitle: "Student Union",
+    campusProposalTitle: "Proposal Competition",
+    campusDevelopmentTitle: "Student Development Center",
+    portfolioTitle: "Portfolio",
     contactTitle: "Open to iOS, product internships, and collaboration.",
-    footerNote: "Static resume demo for GitHub Pages",
+  },
+};
+
+const portfolioContent = {
+  zh: {
+    liquid: {
+      title: "Liquid Deadline",
+      primary: { label: "App Store", href: "https://apps.apple.com/us/app/liquid-deadline/id6760516153" },
+      secondary: { label: "GitHub", href: "https://github.com/QianMo0729/liquid-deadline" },
+    },
+    xiangqi: {
+      title: "SUSTech XiangQi",
+      primary: { label: "GitHub", href: "https://github.com/QianMo0729/SUSTech-XiangQi" },
+      secondary: null,
+    },
+    campus: {
+      title: "校园提案一等奖",
+      primary: { label: "联系了解", href: "mailto:12512808@mail.sustech.edu.cn" },
+      secondary: null,
+    },
+  },
+  en: {
+    liquid: {
+      title: "Liquid Deadline",
+      primary: { label: "App Store", href: "https://apps.apple.com/us/app/liquid-deadline/id6760516153" },
+      secondary: { label: "GitHub", href: "https://github.com/QianMo0729/liquid-deadline" },
+    },
+    xiangqi: {
+      title: "SUSTech XiangQi",
+      primary: { label: "GitHub", href: "https://github.com/QianMo0729/SUSTech-XiangQi" },
+      secondary: null,
+    },
+    campus: {
+      title: "Campus Proposal",
+      primary: { label: "Contact", href: "mailto:12512808@mail.sustech.edu.cn" },
+      secondary: null,
+    },
   },
 };
 
 const sceneWords = [
-  { text: "SONG HE", color: "#10110f", opacity: 0.075 },
-  { text: "PROFILE", color: "#25a87f", opacity: 0.08 },
-  { text: "SUSTech", color: "#f58220", opacity: 0.13 },
-  { text: "STACK", color: "#25a87f", opacity: 0.1 },
-  { text: "⧖", color: "#7b61ff", opacity: 0.17 },
-  { text: "1st", color: "#f58220", opacity: 0.13 },
-  { text: "HELLO", color: "#10110f", opacity: 0.08 },
+  { text: "SONG HE", color: "#11120f", opacity: 0.075 },
+  { text: "SUSTech", color: "#f58220", opacity: 0.14 },
+  { text: "CAMPUS", color: "#f58220", opacity: 0.11 },
+  { text: "⧖", color: "#7666ff", opacity: 0.18 },
+  { text: "HELLO", color: "#11120f", opacity: 0.08 },
 ];
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 let activeWordIndex = 0;
 let activeWordSignature = `${sceneWords[0].text}|${sceneWords[0].color}`;
 let activeWordAnimation = null;
+let activeWork = "liquid";
+
+const portfolioDetailEls = {
+  title: document.querySelector("[data-portfolio-title]"),
+  primary: document.querySelector("[data-portfolio-primary]"),
+  secondary: document.querySelector("[data-portfolio-secondary]"),
+};
+
+const currentLanguage = () => (document.documentElement.lang === "en" ? "en" : "zh");
 
 const readStoredLanguage = () => {
   try {
@@ -132,13 +124,44 @@ const writeStoredLanguage = (language) => {
   try {
     window.localStorage.setItem("resume-language", language);
   } catch {
-    // Static previews can restrict storage; language still switches for the session.
+    // Static previews can restrict storage; the visible switch still works.
   }
 };
 
 const setMetaContent = (selector, value) => {
   const element = document.querySelector(selector);
   if (element) element.setAttribute("content", value);
+};
+
+const setPortfolioLink = (element, link) => {
+  if (!element) return;
+  if (!link) {
+    element.hidden = true;
+    element.removeAttribute("href");
+    element.textContent = "";
+    return;
+  }
+  element.hidden = false;
+  element.href = link.href;
+  element.textContent = link.label;
+};
+
+const setPortfolioDetail = (work = activeWork) => {
+  if (!portfolioDetailEls.title) return;
+
+  const language = currentLanguage();
+  const content = portfolioContent[language][work] || portfolioContent[language].liquid;
+  activeWork = work;
+
+  portfolioDetailEls.title.textContent = content.title;
+  setPortfolioLink(portfolioDetailEls.primary, content.primary);
+  setPortfolioLink(portfolioDetailEls.secondary, content.secondary);
+
+  portfolioCards.forEach((card) => {
+    const selected = card.dataset.work === activeWork;
+    card.classList.toggle("is-selected", selected);
+    card.setAttribute("aria-pressed", selected ? "true" : "false");
+  });
 };
 
 const setLanguage = (language) => {
@@ -163,7 +186,9 @@ const setLanguage = (language) => {
       nextLanguage === "zh" ? "Switch to English" : "切换到中文"
     );
   }
+
   writeStoredLanguage(nextLanguage);
+  setPortfolioDetail(activeWork);
 };
 
 const setHeaderState = () => {
@@ -176,15 +201,6 @@ const applyCurrentWord = (config) => {
   wordCurrent.textContent = config.text;
   sceneWord.style.setProperty("--word-current-color", config.color);
   sceneWord.style.setProperty("--word-current-opacity", config.opacity);
-};
-
-const showReducedMotion = () => {
-  applyCurrentWord(sceneWords[0]);
-  revealItems.forEach((item) => item.classList.add("is-visible"));
-  if (window.gsap) {
-    window.gsap.set(revealItems, { autoAlpha: 1, y: 0, clearProps: "transform,visibility" });
-    window.gsap.set(sceneWord, { autoAlpha: 1, y: 0, scale: 1 });
-  }
 };
 
 const setSceneWord = (nextIndex, immediate = false) => {
@@ -208,7 +224,7 @@ const setSceneWord = (nextIndex, immediate = false) => {
 
   wordNext.textContent = config.text;
   window.gsap.set(wordNext, {
-    y: direction * 46,
+    y: direction * 48,
     autoAlpha: 0,
     color: config.color,
   });
@@ -231,11 +247,11 @@ const setSceneWord = (nextIndex, immediate = false) => {
   });
 
   activeWordAnimation
-    .to(wordCurrent, { y: -direction * 46, autoAlpha: 0 }, 0)
+    .to(wordCurrent, { y: -direction * 48, autoAlpha: 0 }, 0)
     .to(wordNext, { y: 0, autoAlpha: config.opacity }, 0);
 };
 
-const initFallbackMotion = () => {
+const revealWithFallback = () => {
   const revealObserver = "IntersectionObserver" in window
     ? new IntersectionObserver(
         (entries) => {
@@ -255,6 +271,20 @@ const initFallbackMotion = () => {
   } else {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
+};
+
+const showReducedMotion = () => {
+  applyCurrentWord(sceneWords[0]);
+  revealItems.forEach((item) => item.classList.add("is-visible"));
+  arrangePortfolioOrbit(Math.PI / 2);
+  if (window.gsap) {
+    window.gsap.set(revealItems, { autoAlpha: 1, y: 0, clearProps: "transform,visibility" });
+    window.gsap.set(sceneWord, { autoAlpha: 1, y: 0, scale: 1 });
+  }
+};
+
+const initFallbackMotion = () => {
+  revealWithFallback();
 
   let fallbackFrame = null;
 
@@ -269,11 +299,11 @@ const initFallbackMotion = () => {
       const progress = clamp((center - rect.top) / Math.max(1, rect.height), 0, 1);
       const distance = Math.abs(rect.top + rect.height * 0.5 - center);
 
-      scene.style.setProperty("--scene-enter", `${((0.5 - progress) * 40).toFixed(2)}px`);
-      scene.style.setProperty("--scene-visual-y", `${((0.5 - progress) * 54).toFixed(2)}px`);
-      scene.style.setProperty("--scene-visual-x", `${((progress - 0.5) * 34).toFixed(2)}px`);
-      scene.style.setProperty("--scene-rotate", `${((progress - 0.5) * 5).toFixed(2)}deg`);
-      scene.style.setProperty("--scene-scale", `${(1 + Math.sin(progress * Math.PI) * 0.025).toFixed(4)}`);
+      scene.style.setProperty("--scene-enter", `${((0.5 - progress) * 32).toFixed(2)}px`);
+      scene.style.setProperty("--scene-visual-y", `${((0.5 - progress) * 42).toFixed(2)}px`);
+      scene.style.setProperty("--scene-visual-x", `${((progress - 0.5) * 26).toFixed(2)}px`);
+      scene.style.setProperty("--scene-rotate", `${((progress - 0.5) * 4).toFixed(2)}deg`);
+      scene.style.setProperty("--scene-scale", `${(1 + Math.sin(progress * Math.PI) * 0.02).toFixed(4)}`);
 
       if (distance < closestDistance) {
         closestDistance = distance;
@@ -283,8 +313,8 @@ const initFallbackMotion = () => {
 
     setSceneWord(activeIndex);
     if (sceneWord) {
-      sceneWord.style.setProperty("--scene-word-y", `${(window.scrollY * -0.018).toFixed(2)}px`);
-      sceneWord.style.setProperty("--scene-word-scale", `${(1 + activeIndex * 0.018).toFixed(3)}`);
+      sceneWord.style.setProperty("--scene-word-y", `${(window.scrollY * -0.014).toFixed(2)}px`);
+      sceneWord.style.setProperty("--scene-word-scale", `${(1 + activeIndex * 0.014).toFixed(3)}`);
     }
   };
 
@@ -301,6 +331,195 @@ const initFallbackMotion = () => {
   window.addEventListener("resize", requestSceneMotion);
 };
 
+const arrangePortfolioOrbit = (rotation) => {
+  if (!portfolioOrbit || !portfolioCards.length) return;
+
+  const cardCount = portfolioCards.length;
+  const step = (Math.PI * 2) / cardCount;
+  const rect = portfolioOrbit.getBoundingClientRect();
+  const cardWidth = portfolioCards[0]?.getBoundingClientRect().width || 260;
+  const isNarrow = window.innerWidth < 760;
+  const maxNarrowRadius = Math.max(72, rect.width / 2 - cardWidth * 0.44);
+  const radius = isNarrow
+    ? clamp(Math.min(rect.width, rect.height) * 0.2, 72, maxNarrowRadius)
+    : Math.max(120, Math.min(rect.width, rect.height) * 0.33);
+  const yRadius = radius * (isNarrow ? 0.5 : 0.42);
+
+  portfolioCards.forEach((card, index) => {
+    const theta = rotation + index * step;
+    const x = Math.cos(theta) * radius;
+    const y = Math.sin(theta) * yRadius;
+    const depth = (Math.sin(theta) + 1) / 2;
+    const scale = 0.78 + depth * 0.22;
+    const opacity = 0.58 + depth * 0.42;
+    const rotate = Math.cos(theta) * -7;
+
+    card.style.transform = `translate(-50%, -50%) translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${scale.toFixed(3)}) rotate(${rotate.toFixed(2)}deg)`;
+    card.style.opacity = opacity.toFixed(3);
+    card.style.zIndex = String(Math.round(100 + depth * 100));
+  });
+};
+
+const initPortfolioOrbit = () => {
+  if (!portfolioOrbit || !portfolioCards.length) return;
+
+  const step = (Math.PI * 2) / portfolioCards.length;
+  let targetRotation = Math.PI / 2;
+  let renderedRotation = targetRotation;
+  let velocity = 0.00016;
+  let lastTime = performance.now();
+  let isDragging = false;
+  let pointerStartX = 0;
+  let pointerLastX = 0;
+  let dragDistance = 0;
+
+  const setSelectedRotation = (work) => {
+    const index = Math.max(0, portfolioCards.findIndex((card) => card.dataset.work === work));
+    targetRotation = Math.PI / 2 - index * step;
+  };
+
+  setSelectedRotation(activeWork);
+  arrangePortfolioOrbit(renderedRotation);
+
+  portfolioCards.forEach((card) => {
+    card.addEventListener("click", (event) => {
+      if (dragDistance > 7) {
+        event.preventDefault();
+        return;
+      }
+      setPortfolioDetail(card.dataset.work);
+      setSelectedRotation(card.dataset.work);
+    });
+  });
+
+  portfolioOrbit.addEventListener("pointerdown", (event) => {
+    if (event.button !== 0 && event.pointerType === "mouse") return;
+    isDragging = true;
+    pointerStartX = event.clientX;
+    pointerLastX = event.clientX;
+    dragDistance = 0;
+    portfolioOrbit.classList.add("is-dragging");
+    portfolioOrbit.setPointerCapture?.(event.pointerId);
+  });
+
+  portfolioOrbit.addEventListener("pointermove", (event) => {
+    if (!isDragging) return;
+    const dx = event.clientX - pointerLastX;
+    pointerLastX = event.clientX;
+    dragDistance = Math.max(dragDistance, Math.abs(event.clientX - pointerStartX));
+    targetRotation -= dx * 0.012;
+    velocity = clamp(-dx * 0.00024, -0.0048, 0.0048);
+    arrangePortfolioOrbit(targetRotation);
+  });
+
+  const endDrag = (event) => {
+    if (!isDragging) return;
+    isDragging = false;
+    portfolioOrbit.classList.remove("is-dragging");
+    portfolioOrbit.releasePointerCapture?.(event.pointerId);
+    window.setTimeout(() => {
+      dragDistance = 0;
+    }, 0);
+  };
+
+  portfolioOrbit.addEventListener("pointerup", endDrag);
+  portfolioOrbit.addEventListener("pointercancel", endDrag);
+
+  if (prefersReducedMotion.matches) return;
+
+  const tick = (time) => {
+    const delta = Math.min(34, time - lastTime);
+    lastTime = time;
+
+    if (!isDragging) {
+      targetRotation += velocity * delta;
+      velocity += (0.00016 - velocity) * 0.018;
+      renderedRotation += (targetRotation - renderedRotation) * 0.12;
+      arrangePortfolioOrbit(renderedRotation);
+    }
+
+    window.requestAnimationFrame(tick);
+  };
+
+  window.requestAnimationFrame(tick);
+};
+
+const initSectionSnapGuard = () => {
+  if (
+    prefersReducedMotion.matches ||
+    !window.matchMedia("(pointer: fine) and (min-width: 760px)").matches ||
+    scenes.length < 2
+  ) {
+    return;
+  }
+
+  let isSettling = false;
+  let releaseTimer = null;
+  let lockUntil = 0;
+
+  const nearestSceneIndex = () => {
+    const viewportCenter = window.innerHeight * 0.5;
+    let closest = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    scenes.forEach((scene, index) => {
+      const rect = scene.getBoundingClientRect();
+      const distance = Math.abs(rect.top + rect.height * 0.5 - viewportCenter);
+      if (distance < closestDistance) {
+        closest = index;
+        closestDistance = distance;
+      }
+    });
+
+    return closest;
+  };
+
+  const settleToScene = (index) => {
+    const target = scenes[index];
+    if (!target) return;
+
+    isSettling = true;
+    lockUntil = performance.now() + 980;
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    clearTimeout(releaseTimer);
+    releaseTimer = window.setTimeout(() => {
+      isSettling = false;
+    }, 1280);
+  };
+
+  const releaseAfterInertia = () => {
+    const delay = Math.max(260, lockUntil - performance.now());
+    clearTimeout(releaseTimer);
+    releaseTimer = window.setTimeout(() => {
+      isSettling = false;
+    }, delay);
+  };
+
+  window.addEventListener(
+    "wheel",
+    (event) => {
+      if (event.ctrlKey || event.metaKey || Math.abs(event.deltaY) < 28) return;
+      if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+
+      if (isSettling) {
+        event.preventDefault();
+        releaseAfterInertia();
+        return;
+      }
+
+      const current = nearestSceneIndex();
+      const direction = event.deltaY > 0 ? 1 : -1;
+      const target = clamp(current + direction, 0, scenes.length - 1);
+
+      if (target === current) return;
+
+      event.preventDefault();
+      settleToScene(target);
+    },
+    { passive: false }
+  );
+};
+
 const initGsapMotion = ({ isDesktop }) => {
   const { gsap, ScrollTrigger } = window;
   document.documentElement.classList.add("gsap-ready");
@@ -309,8 +528,18 @@ const initGsapMotion = ({ isDesktop }) => {
   gsap.defaults({ duration: 0.72, ease: "power3.out" });
 
   const revealTargets = revealItems.filter((item) => !item.closest(".hero"));
+  const campusCards = gsap.utils.toArray("[data-campus-card]");
+  const workCardInners = gsap.utils.toArray(".work-card-inner");
+
   gsap.set(".hero .reveal", { autoAlpha: 1, y: 0 });
   gsap.set(revealTargets, { autoAlpha: 0, y: 34 });
+  gsap.set(campusCards, {
+    "--deal-x": (index) => `${(index - 1) * -42}px`,
+    "--deal-y": "230px",
+    "--deal-r": "-12deg",
+    autoAlpha: 0,
+  });
+  gsap.set(workCardInners, { "--flight-x": "0px", "--flight-scale": 1, autoAlpha: 1 });
   setSceneWord(0, true);
   sceneWord?.style.removeProperty("--scene-word-y");
   sceneWord?.style.removeProperty("--scene-word-scale");
@@ -322,34 +551,34 @@ const initGsapMotion = ({ isDesktop }) => {
 
   heroTimeline
     .from(header, { y: -18, autoAlpha: 0, duration: 0.66 })
-    .from(".hero .eyebrow", { y: 18, autoAlpha: 0, duration: 0.5 }, "-=0.18")
-    .from(".hero h1", { y: 42, scale: 0.985, autoAlpha: 0, duration: 0.84 }, "-=0.32")
+    .from(".hero h1", { y: 42, scale: 0.985, autoAlpha: 0, duration: 0.84 }, "-=0.18")
     .from(".hero .lead span", { y: 28, autoAlpha: 0, stagger: 0.08 }, "-=0.48")
     .from(".hero-actions .button", { y: 18, autoAlpha: 0, stagger: 0.08, duration: 0.52 }, "-=0.36");
 
   if (sceneWord) {
     heroTimeline.fromTo(
       sceneWord,
-      { y: 90, scale: 0.97, autoAlpha: 0 },
+      { y: 88, scale: 0.97, autoAlpha: 0 },
       { y: 0, scale: 1, autoAlpha: 1, duration: 1.05, ease: "power4.out" },
       "-=0.82"
     );
 
-    gsap.fromTo(sceneWord, {
-      y: 0,
-      scale: 1,
-    }, {
-      y: () => Math.max(-220, -window.innerHeight * 0.22),
-      scale: isDesktop ? 1.14 : 1.08,
-      ease: "none",
-      immediateRender: false,
-      scrollTrigger: {
-        trigger: document.body,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.1,
-      },
-    });
+    gsap.fromTo(
+      sceneWord,
+      { y: 0, scale: 1 },
+      {
+        y: () => Math.max(-190, -window.innerHeight * 0.2),
+        scale: isDesktop ? 1.12 : 1.06,
+        ease: "none",
+        immediateRender: false,
+        scrollTrigger: {
+          trigger: document.body,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 1.1,
+        },
+      }
+    );
   }
 
   ScrollTrigger.batch(revealTargets, {
@@ -367,22 +596,38 @@ const initGsapMotion = ({ isDesktop }) => {
     },
   });
 
+  const revealVisibleTargets = () => {
+    const visibleTargets = revealTargets.filter((target) => {
+      const rect = target.getBoundingClientRect();
+      return rect.top < window.innerHeight * 0.9 && rect.bottom > 0;
+    });
+
+    if (visibleTargets.length) {
+      gsap.to(visibleTargets, {
+        autoAlpha: 1,
+        y: 0,
+        stagger: { each: 0.05, from: "start" },
+        overwrite: true,
+      });
+    }
+  };
+
   scenes.forEach((scene, index) => {
     gsap.fromTo(
       scene,
       {
-        "--scene-enter": "34px",
-        "--scene-visual-y": "58px",
-        "--scene-visual-x": "-28px",
-        "--scene-rotate": "-3.8deg",
-        "--scene-scale": 0.985,
+        "--scene-enter": "28px",
+        "--scene-visual-y": "46px",
+        "--scene-visual-x": "-22px",
+        "--scene-rotate": "-3.2deg",
+        "--scene-scale": 0.988,
       },
       {
-        "--scene-enter": "-34px",
-        "--scene-visual-y": "-58px",
-        "--scene-visual-x": "28px",
-        "--scene-rotate": "3.8deg",
-        "--scene-scale": 1.025,
+        "--scene-enter": "-28px",
+        "--scene-visual-y": "-46px",
+        "--scene-visual-x": "22px",
+        "--scene-rotate": "3.2deg",
+        "--scene-scale": 1.018,
         ease: "none",
         scrollTrigger: {
           trigger: scene,
@@ -396,50 +641,50 @@ const initGsapMotion = ({ isDesktop }) => {
 
     ScrollTrigger.create({
       trigger: scene,
-      start: "top 58%",
-      end: "bottom 42%",
+      start: "top 56%",
+      end: "bottom 44%",
       refreshPriority: index,
       onEnter: () => setSceneWord(index),
       onEnterBack: () => setSceneWord(index),
     });
   });
 
-  gsap.to(".project-visual .mini-product-card", {
-    y: isDesktop ? -18 : -10,
-    rotation: isDesktop ? -2.2 : -1,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".project-visual",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 0.75,
-    },
-  });
+  if (campusCards.length) {
+    gsap.to(campusCards, {
+      "--deal-y": "0px",
+      "--deal-x": "0px",
+      "--deal-r": "0deg",
+      autoAlpha: 1,
+      duration: 0.92,
+      stagger: { each: 0.14, from: "start" },
+      ease: "back.out(1.08)",
+      scrollTrigger: {
+        trigger: ".campus-section",
+        start: "top 62%",
+        once: true,
+      },
+    });
+  }
 
-  gsap.to(".project-visual .mint-rings-small", {
-    x: isDesktop ? -32 : -16,
-    y: isDesktop ? -16 : -8,
-    rotation: isDesktop ? 8 : 4,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".project-visual",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 0.9,
-    },
-  });
-
-  gsap.to(".launch-card", {
-    y: isDesktop ? -28 : -14,
-    rotation: isDesktop ? 2.2 : 1,
-    ease: "none",
-    scrollTrigger: {
-      trigger: ".launch-frame",
-      start: "top bottom",
-      end: "bottom top",
-      scrub: 0.9,
-    },
-  });
+  if (workCardInners.length) {
+    gsap.fromTo(
+      workCardInners,
+      { "--flight-x": "280px", "--flight-scale": 0.94, autoAlpha: 0 },
+      {
+        "--flight-x": "0px",
+        "--flight-scale": 1,
+        autoAlpha: 1,
+        duration: 0.92,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".portfolio-section",
+          start: "top 62%",
+          once: true,
+        },
+      }
+    );
+  }
 
   let refreshTimer = null;
   const scheduleRefresh = () => {
@@ -449,9 +694,17 @@ const initGsapMotion = ({ isDesktop }) => {
 
   window.addEventListener("load", scheduleRefresh, { once: true });
   window.addEventListener("resize", scheduleRefresh);
+  window.requestAnimationFrame(() => {
+    ScrollTrigger.refresh();
+    revealVisibleTargets();
+  });
 };
 
 setLanguage(readStoredLanguage() || "zh");
+setPortfolioDetail(activeWork);
+initPortfolioOrbit();
+initSectionSnapGuard();
+
 langToggle?.addEventListener("click", () => {
   const nextLanguage = document.documentElement.lang === "zh-CN" ? "en" : "zh";
   setLanguage(nextLanguage);

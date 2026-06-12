@@ -8,6 +8,7 @@
 - `styles.css`：视觉样式与响应式布局
 - `script.js`：GSAP / ScrollTrigger 滚动动效、导航玻璃态与降级逻辑
 - `assets/paper-field.jpg`：本地生成的纸感与玻璃感背景图
+- `assets/sustech-education-blur.png`：教育经历卡片的高斯模糊背景图
 - `assets/vendor/`：本地 vendored GSAP 运行库
 - `.github/workflows/deploy-pages.yml`：GitHub Pages 静态部署工作流
 
