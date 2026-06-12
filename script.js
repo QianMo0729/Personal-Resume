@@ -159,6 +159,7 @@ const initGsapMotion = ({ isDesktop }) => {
   gsap.set(".hero .reveal", { autoAlpha: 1, y: 0 });
   gsap.set(revealTargets, { autoAlpha: 0, y: 34 });
   setSceneWord(0, true);
+  gsap.set(sceneWord, { "--scene-word-y": "0px", "--scene-word-scale": 1, autoAlpha: 1 });
 
   const heroTimeline = gsap.timeline({
     defaults: { duration: 0.76, ease: "power3.out" },
@@ -172,12 +173,21 @@ const initGsapMotion = ({ isDesktop }) => {
     .from(".hero-actions .button", { y: 18, autoAlpha: 0, stagger: 0.08, duration: 0.52 }, "-=0.36");
 
   if (sceneWord) {
-    heroTimeline.from(sceneWord, { y: 90, scale: 0.97, autoAlpha: 0, duration: 1.05, ease: "power4.out" }, "-=0.82");
+    heroTimeline.fromTo(
+      sceneWord,
+      { "--scene-word-y": "90px", "--scene-word-scale": 0.97, autoAlpha: 0 },
+      { "--scene-word-y": "0px", "--scene-word-scale": 1, autoAlpha: 1, duration: 1.05, ease: "power4.out" },
+      "-=0.82"
+    );
 
-    gsap.to(sceneWord, {
+    gsap.fromTo(sceneWord, {
+      "--scene-word-y": "0px",
+      "--scene-word-scale": 1,
+    }, {
       "--scene-word-y": () => `${Math.max(-220, -window.innerHeight * 0.22)}px`,
       "--scene-word-scale": isDesktop ? 1.14 : 1.08,
       ease: "none",
+      immediateRender: false,
       scrollTrigger: {
         trigger: document.body,
         start: "top top",
