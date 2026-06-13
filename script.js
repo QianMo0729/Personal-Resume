@@ -116,7 +116,7 @@ const sceneWords = [
   { text: "SONG HE", color: "#11120f", opacity: 0.075 },
   { text: "SUSTech", color: "#f58220", opacity: 0.14 },
   { text: "CAMPUS", color: "#f58220", opacity: 0.11 },
-  { text: "⧖", color: "#7666ff", opacity: 0.18 },
+  { text: "WORKS", color: "#7666ff", opacity: 0.12 },
   { text: "HELLO", color: "#11120f", opacity: 0.08 },
 ];
 
