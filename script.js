@@ -121,6 +121,23 @@ const sceneWords = [
 ];
 
 const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
+const nearestSceneIndex = (anchor = 0.54) => {
+  const viewportAnchor = window.innerHeight * anchor;
+  let closest = 0;
+  let closestDistance = Number.POSITIVE_INFINITY;
+
+  scenes.forEach((scene, index) => {
+    const rect = scene.getBoundingClientRect();
+    const distance = Math.abs(rect.top + rect.height * 0.5 - viewportAnchor);
+    if (distance < closestDistance) {
+      closest = index;
+      closestDistance = distance;
+    }
+  });
+
+  return closest;
+};
+
 let activeWordIndex = 0;
 let activeWordSignature = `${sceneWords[0].text}|${sceneWords[0].color}`;
 let activeWordAnimation = null;
@@ -242,12 +259,14 @@ const setSceneWord = (nextIndex, immediate = false) => {
     return;
   }
 
-  const direction = safeIndex > activeWordIndex ? 1 : -1;
   activeWordAnimation?.kill();
+  activeWordIndex = safeIndex;
+  activeWordSignature = signature;
 
   wordNext.textContent = config.text;
+  window.gsap.set(wordCurrent, { y: 0 });
   window.gsap.set(wordNext, {
-    y: direction * 48,
+    y: 0,
     autoAlpha: 0,
     color: config.color,
   });
@@ -256,8 +275,6 @@ const setSceneWord = (nextIndex, immediate = false) => {
     defaults: { duration: 0.48, ease: "power3.inOut", overwrite: true },
     onComplete: () => {
       applyCurrentWord(config);
-      activeWordIndex = safeIndex;
-      activeWordSignature = signature;
       wordNext.textContent = "";
       window.gsap.set(wordCurrent, {
         y: 0,
@@ -270,8 +287,8 @@ const setSceneWord = (nextIndex, immediate = false) => {
   });
 
   activeWordAnimation
-    .to(wordCurrent, { y: -direction * 48, autoAlpha: 0 }, 0)
-    .to(wordNext, { y: 0, autoAlpha: config.opacity }, 0);
+    .to(wordCurrent, { autoAlpha: 0 }, 0)
+    .to(wordNext, { autoAlpha: config.opacity }, 0);
 };
 
 const revealWithFallback = () => {
@@ -314,31 +331,24 @@ const initFallbackMotion = () => {
   const updateSceneMotion = () => {
     setHeaderState();
     const center = window.innerHeight * 0.54;
-    let activeIndex = 0;
-    let closestDistance = Number.POSITIVE_INFINITY;
 
     scenes.forEach((scene, index) => {
       const rect = scene.getBoundingClientRect();
       const progress = clamp((center - rect.top) / Math.max(1, rect.height), 0, 1);
-      const distance = Math.abs(rect.top + rect.height * 0.5 - center);
 
       scene.style.setProperty("--scene-enter", `${((0.5 - progress) * 32).toFixed(2)}px`);
       scene.style.setProperty("--scene-visual-y", `${((0.5 - progress) * 42).toFixed(2)}px`);
       scene.style.setProperty("--scene-visual-x", `${((progress - 0.5) * 26).toFixed(2)}px`);
       scene.style.setProperty("--scene-rotate", `${((progress - 0.5) * 4).toFixed(2)}deg`);
       scene.style.setProperty("--scene-scale", `${(1 + Math.sin(progress * Math.PI) * 0.02).toFixed(4)}`);
-
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        activeIndex = index;
-      }
     });
 
-    setSceneWord(activeIndex);
+    const activeIndex = nearestSceneIndex();
     if (sceneWord) {
       sceneWord.style.setProperty("--scene-word-y", `${(window.scrollY * -0.014).toFixed(2)}px`);
       sceneWord.style.setProperty("--scene-word-scale", `${(1 + activeIndex * 0.014).toFixed(3)}`);
     }
+    setSceneWord(activeIndex);
   };
 
   const requestSceneMotion = () => {
@@ -547,7 +557,7 @@ const initPortfolioOrbit = () => {
   requestOrbitFrame();
 };
 
-const initSectionSnapGuard = () => {
+const initSectionSettle = () => {
   if (
     prefersReducedMotion.matches ||
     !window.matchMedia("(pointer: fine) and (min-width: 760px)").matches ||
@@ -556,73 +566,41 @@ const initSectionSnapGuard = () => {
     return;
   }
 
+  let gestureStartIndex = null;
+  let gestureDirection = 0;
+  let settleTimer = null;
   let isSettling = false;
-  let releaseTimer = null;
-  let lockUntil = 0;
 
-  const nearestSceneIndex = () => {
-    const viewportCenter = window.innerHeight * 0.5;
-    let closest = 0;
-    let closestDistance = Number.POSITIVE_INFINITY;
+  const settleToScene = () => {
+    if (gestureStartIndex === null || gestureDirection === 0) return;
 
-    scenes.forEach((scene, index) => {
-      const rect = scene.getBoundingClientRect();
-      const distance = Math.abs(rect.top + rect.height * 0.5 - viewportCenter);
-      if (distance < closestDistance) {
-        closest = index;
-        closestDistance = distance;
-      }
-    });
+    const targetIndex = clamp(gestureStartIndex + gestureDirection, 0, scenes.length - 1);
+    const target = scenes[targetIndex];
+    gestureStartIndex = null;
+    gestureDirection = 0;
 
-    return closest;
-  };
-
-  const settleToScene = (index) => {
-    const target = scenes[index];
     if (!target) return;
-
     isSettling = true;
-    lockUntil = performance.now() + 980;
-    target.scrollIntoView({
-      behavior: prefersReducedMotion.matches ? "auto" : "smooth",
-      block: "start",
-    });
-    clearTimeout(releaseTimer);
-    releaseTimer = window.setTimeout(() => {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.setTimeout(() => {
       isSettling = false;
-    }, 1280);
-  };
-
-  const releaseAfterInertia = () => {
-    const delay = Math.max(260, lockUntil - performance.now());
-    clearTimeout(releaseTimer);
-    releaseTimer = window.setTimeout(() => {
-      isSettling = false;
-    }, delay);
+    }, 760);
   };
 
   window.addEventListener(
     "wheel",
     (event) => {
-      if (event.ctrlKey || event.metaKey || Math.abs(event.deltaY) < 28) return;
+      if (event.ctrlKey || event.metaKey || Math.abs(event.deltaY) < 22) return;
       if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+      if (isSettling) return;
 
-      if (isSettling) {
-        event.preventDefault();
-        releaseAfterInertia();
-        return;
-      }
+      if (gestureStartIndex === null) gestureStartIndex = nearestSceneIndex(0.5);
+      gestureDirection = event.deltaY > 0 ? 1 : -1;
 
-      const current = nearestSceneIndex();
-      const direction = event.deltaY > 0 ? 1 : -1;
-      const target = clamp(current + direction, 0, scenes.length - 1);
-
-      if (target === current) return;
-
-      event.preventDefault();
-      settleToScene(target);
+      clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(settleToScene, 130);
     },
-    { passive: false }
+    { passive: true }
   );
 };
 
@@ -719,6 +697,16 @@ const initGsapMotion = ({ isDesktop }) => {
     }
   };
 
+  let sceneWordFrame = null;
+  const updateSceneWordFromViewport = () => {
+    sceneWordFrame = null;
+    setSceneWord(nearestSceneIndex());
+  };
+  const requestSceneWordUpdate = () => {
+    if (sceneWordFrame) return;
+    sceneWordFrame = window.requestAnimationFrame(updateSceneWordFromViewport);
+  };
+
   scenes.forEach((scene, index) => {
     gsap.fromTo(
       scene,
@@ -745,16 +733,11 @@ const initGsapMotion = ({ isDesktop }) => {
         },
       }
     );
-
-    ScrollTrigger.create({
-      trigger: scene,
-      start: "top 56%",
-      end: "bottom 44%",
-      refreshPriority: index,
-      onEnter: () => setSceneWord(index),
-      onEnterBack: () => setSceneWord(index),
-    });
   });
+
+  window.addEventListener("scroll", requestSceneWordUpdate, { passive: true });
+  ScrollTrigger.addEventListener("refresh", requestSceneWordUpdate);
+  requestSceneWordUpdate();
 
   if (campusCards.length) {
     gsap.to(campusCards, {
@@ -813,7 +796,7 @@ const initGsapMotion = ({ isDesktop }) => {
 setLanguage(readStoredLanguage() || "zh");
 setPortfolioDetail(activeWork);
 initPortfolioOrbit();
-initSectionSnapGuard();
+initSectionSettle();
 
 langToggle?.addEventListener("click", () => {
   const nextLanguage = document.documentElement.lang === "zh-CN" ? "en" : "zh";

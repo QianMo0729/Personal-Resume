@@ -102,20 +102,22 @@ button {
 
 .scene-word {
   position: fixed;
-  left: 50%;
-  right: auto;
+  left: 0;
+  right: 0;
   bottom: -0.22em;
   z-index: 0;
   display: grid;
-  width: max-content;
+  justify-items: center;
+  width: 100vw;
   pointer-events: none;
   font-size: clamp(150px, 25vw, 430px);
   line-height: 0.8;
   font-weight: 860;
   letter-spacing: 0;
   text-align: center;
-  transform: translate3d(calc(-50% + var(--scene-word-x, 0px)), var(--scene-word-y, 0), 0)
+  transform: translate3d(var(--scene-word-x, 0px), var(--scene-word-y, 0), 0)
     scale(var(--scene-word-scale, 1));
+  transform-origin: 50% 100%;
   transition: none;
   mix-blend-mode: multiply;
   will-change: transform;
@@ -127,6 +129,8 @@ button {
 
 .scene-word span {
   grid-area: 1 / 1;
+  justify-self: center;
+  white-space: nowrap;
   color: var(--word-current-color, #10110f);
   opacity: var(--word-current-opacity, 0.075);
   transform: translate3d(0, 0, 0);
@@ -925,6 +929,22 @@ main {
   font-size: 13px;
 }
 
+@media (pointer: fine) and (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+  html,
+  body {
+    scroll-snap-type: y mandatory;
+  }
+
+  .resume-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .site-footer {
+    scroll-snap-align: end;
+  }
+}
+
 .reveal {
   opacity: 1;
   transform: none;
@@ -1024,7 +1044,6 @@ main {
   }
 
   .scene-word {
-    right: -0.18em;
     bottom: -0.14em;
     font-size: clamp(130px, 39vw, 240px);
   }
