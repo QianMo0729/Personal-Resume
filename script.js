@@ -557,53 +557,6 @@ const initPortfolioOrbit = () => {
   requestOrbitFrame();
 };
 
-const initSectionSettle = () => {
-  if (
-    prefersReducedMotion.matches ||
-    !window.matchMedia("(pointer: fine) and (min-width: 760px)").matches ||
-    scenes.length < 2
-  ) {
-    return;
-  }
-
-  let gestureStartIndex = null;
-  let gestureDirection = 0;
-  let settleTimer = null;
-  let isSettling = false;
-
-  const settleToScene = () => {
-    if (gestureStartIndex === null || gestureDirection === 0) return;
-
-    const targetIndex = clamp(gestureStartIndex + gestureDirection, 0, scenes.length - 1);
-    const target = scenes[targetIndex];
-    gestureStartIndex = null;
-    gestureDirection = 0;
-
-    if (!target) return;
-    isSettling = true;
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-    window.setTimeout(() => {
-      isSettling = false;
-    }, 760);
-  };
-
-  window.addEventListener(
-    "wheel",
-    (event) => {
-      if (event.ctrlKey || event.metaKey || Math.abs(event.deltaY) < 22) return;
-      if (Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-      if (isSettling) return;
-
-      if (gestureStartIndex === null) gestureStartIndex = nearestSceneIndex(0.5);
-      gestureDirection = event.deltaY > 0 ? 1 : -1;
-
-      clearTimeout(settleTimer);
-      settleTimer = window.setTimeout(settleToScene, 130);
-    },
-    { passive: true }
-  );
-};
-
 const initGsapMotion = ({ isDesktop }) => {
   const { gsap, ScrollTrigger } = window;
   document.documentElement.classList.add("gsap-ready");
@@ -796,7 +749,6 @@ const initGsapMotion = ({ isDesktop }) => {
 setLanguage(readStoredLanguage() || "zh");
 setPortfolioDetail(activeWork);
 initPortfolioOrbit();
-initSectionSettle();
 
 langToggle?.addEventListener("click", () => {
   const nextLanguage = document.documentElement.lang === "zh-CN" ? "en" : "zh";
