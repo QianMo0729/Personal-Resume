@@ -929,7 +929,7 @@ main {
   font-size: 13px;
 }
 
-@media (pointer: fine) and (min-width: 760px) and (prefers-reduced-motion: no-preference) {
+@media (prefers-reduced-motion: no-preference) {
   html,
   body {
     scroll-snap-type: y mandatory;
