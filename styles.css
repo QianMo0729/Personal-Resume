@@ -762,6 +762,10 @@ main {
   background-image: url("assets/campus-proposal-card.png");
 }
 
+.portfolio-section .media-proposal {
+  background-image: url("assets/product-capability-card.png");
+}
+
 .media-product {
   background-image: url("assets/product-capability-card.png");
 }
