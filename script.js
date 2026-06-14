@@ -557,6 +557,257 @@ const initPortfolioOrbit = () => {
   requestOrbitFrame();
 };
 
+const initScrollSettle = () => {
+  if (!scenes.length || prefersReducedMotion.matches) return;
+
+  let settleTimer = null;
+  let settleFrame = null;
+  let isSettling = false;
+  let settleReady = false;
+  let settleAnimationId = 0;
+  let lastUserInputAt = 0;
+  let lastScrollY = window.scrollY;
+  let observedScrollY = window.scrollY;
+  let stableFrames = 0;
+  let stablePolls = 0;
+
+  const scrollPaddingTop = () => {
+    const value = window.getComputedStyle(document.documentElement).scrollPaddingTop;
+    return Number.parseFloat(value) || 0;
+  };
+
+  const snapTargets = () => {
+    const pageHeight = Math.max(
+      document.documentElement.scrollHeight,
+      document.body?.scrollHeight || 0,
+      document.documentElement.offsetHeight,
+      document.body?.offsetHeight || 0
+    );
+    const maxScroll = Math.max(0, pageHeight - window.innerHeight);
+    const paddingTop = scrollPaddingTop();
+    const targets = scenes.map((scene) => {
+      const rawTop = scene.getBoundingClientRect().top + window.scrollY - paddingTop;
+      return clamp(rawTop, 0, maxScroll);
+    });
+
+    const lastSceneTarget = targets[targets.length - 1] || 0;
+    if (maxScroll > lastSceneTarget + window.innerHeight * 0.18) targets.push(maxScroll);
+    return Array.from(new Set(targets.map((target) => Math.round(target)))).sort((a, b) => a - b);
+  };
+
+  const nearestSnapTarget = () => {
+    const current = window.scrollY;
+    return snapTargets().reduce(
+      (closest, target) => {
+        const distance = Math.abs(target - current);
+        return distance < closest.distance ? { target, distance } : closest;
+      },
+      { target: window.scrollY, distance: Number.POSITIVE_INFINITY }
+    );
+  };
+
+  const clearSettleTimer = () => {
+    window.clearTimeout(settleTimer);
+    settleTimer = null;
+  };
+
+  const stopTracking = () => {
+    if (settleFrame) {
+      window.cancelAnimationFrame(settleFrame);
+      settleFrame = null;
+    }
+    stableFrames = 0;
+  };
+
+  const setScrollY = (value) => {
+    window.scrollTo(0, value);
+    document.documentElement.scrollTop = value;
+    document.body.scrollTop = value;
+  };
+
+  const animateScrollTo = (target) => {
+    const start = window.scrollY;
+    const delta = target - start;
+    const duration = 420;
+    const startedAt = performance.now();
+    const animationId = ++settleAnimationId;
+    let expectedScrollY = start;
+
+    isSettling = true;
+
+    const finish = () => {
+      setScrollY(target);
+      observedScrollY = window.scrollY;
+      lastScrollY = window.scrollY;
+      stableFrames = 0;
+      stablePolls = 0;
+      isSettling = false;
+    };
+
+    if (document.hidden) {
+      finish();
+      return;
+    }
+
+    const tick = () => {
+      if (animationId !== settleAnimationId || !isSettling) return;
+      if (Math.abs(window.scrollY - expectedScrollY) > 12) {
+        isSettling = false;
+        return;
+      }
+
+      const elapsed = performance.now() - startedAt;
+      const progress = clamp(elapsed / duration, 0, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      expectedScrollY = start + delta * eased;
+      setScrollY(expectedScrollY);
+
+      if (progress < 1) {
+        window.setTimeout(tick, 16);
+        return;
+      }
+
+      finish();
+    };
+
+    tick();
+  };
+
+  const enableSettle = () => {
+    window.setTimeout(() => {
+      settleReady = true;
+      observedScrollY = window.scrollY;
+    }, 120);
+  };
+
+  const settleToNearestSection = () => {
+    settleTimer = null;
+    settleFrame = null;
+    if (!settleReady || isSettling) return;
+    if (performance.now() - lastUserInputAt < 90) {
+      scheduleSettle(120);
+      return;
+    }
+
+    const { target, distance } = nearestSnapTarget();
+    if (distance < 3) return;
+
+    stopTracking();
+    animateScrollTo(target);
+  };
+
+  const trackScrollRest = () => {
+    if (!settleReady) {
+      settleFrame = null;
+      return;
+    }
+
+    if (isSettling) {
+      settleFrame = null;
+      return;
+    }
+
+    const currentScrollY = window.scrollY;
+    if (Math.abs(currentScrollY - lastScrollY) < 0.5) {
+      stableFrames += 1;
+    } else {
+      stableFrames = 0;
+      lastScrollY = currentScrollY;
+    }
+
+    if (stableFrames >= 5) {
+      settleToNearestSection();
+      return;
+    }
+
+    settleFrame = window.requestAnimationFrame(trackScrollRest);
+  };
+
+  const startTracking = () => {
+    if (!settleReady || isSettling || settleFrame) return;
+    lastScrollY = window.scrollY;
+    stableFrames = 0;
+    settleFrame = window.requestAnimationFrame(trackScrollRest);
+  };
+
+  const scheduleSettle = (delay = 180) => {
+    if (!settleReady || isSettling) return;
+    clearSettleTimer();
+    settleTimer = window.setTimeout(() => {
+      window.requestAnimationFrame(settleToNearestSection);
+    }, delay);
+  };
+
+  const noteUserInput = () => {
+    lastUserInputAt = performance.now();
+    settleAnimationId += 1;
+    if (isSettling) isSettling = false;
+    clearSettleTimer();
+    stopTracking();
+  };
+
+  const scheduleAfterScrollInput = () => {
+    startTracking();
+    scheduleSettle(240);
+  };
+
+  window.setInterval(() => {
+    if (!settleReady || isSettling) return;
+
+    const currentScrollY = window.scrollY;
+    if (Math.abs(currentScrollY - observedScrollY) > 0.5) {
+      observedScrollY = currentScrollY;
+      stablePolls = 0;
+      return;
+    }
+
+    const { distance } = nearestSnapTarget();
+    if (distance < 3) {
+      stablePolls = 0;
+      return;
+    }
+
+    stablePolls += 1;
+    if (stablePolls >= 2) {
+      stablePolls = 0;
+      settleToNearestSection();
+    }
+  }, 220);
+
+  const scrollKeys = new Set([" ", "ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End"]);
+
+  window.addEventListener("scroll", startTracking, { passive: true });
+  window.addEventListener("wheel", scheduleAfterScrollInput, { passive: true });
+  window.addEventListener("touchmove", scheduleAfterScrollInput, { passive: true });
+  window.addEventListener(
+    "keydown",
+    (event) => {
+      if (scrollKeys.has(event.key)) scheduleAfterScrollInput();
+    },
+    { passive: true }
+  );
+  window.addEventListener("resize", () => scheduleSettle(260));
+  window.addEventListener("pointerdown", noteUserInput, { passive: true });
+  window.addEventListener("touchstart", noteUserInput, { passive: true });
+
+  if ("onscrollend" in window) {
+    window.addEventListener(
+      "scrollend",
+      () => {
+        if (isSettling) return;
+        scheduleSettle(32);
+      },
+      { passive: true }
+    );
+  }
+
+  if (document.readyState === "complete") {
+    enableSettle();
+  } else {
+    window.addEventListener("load", enableSettle, { once: true });
+  }
+};
+
 const initGsapMotion = ({ isDesktop }) => {
   const { gsap, ScrollTrigger } = window;
   document.documentElement.classList.add("gsap-ready");
@@ -749,6 +1000,7 @@ const initGsapMotion = ({ isDesktop }) => {
 setLanguage(readStoredLanguage() || "zh");
 setPortfolioDetail(activeWork);
 initPortfolioOrbit();
+initScrollSettle();
 
 langToggle?.addEventListener("click", () => {
   const nextLanguage = document.documentElement.lang === "zh-CN" ? "en" : "zh";
