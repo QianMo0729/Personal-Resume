@@ -3,220 +3,216 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>宋和 | iOS Product Engineer</title>
+    <title>宋和 | AI 产品经理方向</title>
     <meta
       name="description"
-      content="宋和的个人简历网站：iOS 产品工程、SwiftUI、CloudKit、WidgetKit、算法与真实项目经历。"
+      content="宋和的 AI 产品经理作品集：从问题定义、体验设计到 AI 协作交付与公开上线。"
     />
-    <meta property="og:title" content="宋和 | iOS Product Engineer" />
+    <meta property="og:title" content="宋和 | AI 产品经理方向" />
     <meta
       property="og:description"
-      content="宋和的个人简历网站：iOS 产品工程、SwiftUI、CloudKit、WidgetKit、算法与真实项目经历。"
+      content="宋和的 AI 产品经理作品集：从问题定义、体验设计到 AI 协作交付与公开上线。"
     />
     <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2316150F'/%3E%3Ctext x='50' y='64' font-size='35' text-anchor='middle' fill='%23F7F6F2' font-family='sans-serif' font-weight='800'%3ESH%3C/text%3E%3C/svg%3E"
+    />
     <script>
       document.documentElement.classList.add("js");
     </script>
-    <link rel="stylesheet" href="styles.css?v=20260613-scroll-settle-10" />
+    <link rel="stylesheet" href="styles.css?v=20260816-stats-1" />
   </head>
-  <body>
+  <body data-page="home">
     <a class="skip-link" href="#top" data-i18n="skipLink">跳到主体内容</a>
-    <svg class="liquid-filter" width="0" height="0" aria-hidden="true" focusable="false">
-      <defs>
-        <filter id="liquid-glass-filter" x="-18%" y="-18%" width="136%" height="136%">
-          <feTurbulence
-            type="fractalNoise"
-            baseFrequency="0.006 0.012"
-            numOctaves="2"
-            seed="9"
-            result="liquidNoise"
-          />
-          <feGaussianBlur in="liquidNoise" stdDeviation="1.7" result="liquidMap" />
-          <feDisplacementMap
-            in="SourceGraphic"
-            in2="liquidMap"
-            scale="28"
-            xChannelSelector="R"
-            yChannelSelector="B"
-          />
-        </filter>
-      </defs>
-    </svg>
 
-    <div class="scene-word" aria-hidden="true" data-scene-word>
-      <span data-word-current>SONG HE</span>
-      <span data-word-next></span>
+    <a class="chip brand-chip" href="index.html">
+      <span class="brand-dot">SH</span>
+      <span>宋和 Song He</span>
+    </a>
+    <div class="chip status-chip" role="status">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span data-i18n="statusPill">在找 AI 产品实习</span>
     </div>
 
-    <header class="site-header" data-header>
-      <a class="brand" href="#top" aria-label="回到首页">
-        <span>SH</span>
-        <strong>Song He</strong>
+    <nav class="dock" data-dock aria-label="主导航">
+      <a class="dock-item" href="index.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.5 10.5 12 3.5l8.5 7" />
+          <path d="M5.5 9.5V20h13V9.5" />
+        </svg>
+        <span class="dock-label" data-i18n="dockHome">首页</span>
       </a>
-      <div class="header-actions">
-        <nav aria-label="主导航">
-          <a href="#top" data-i18n="navHome">首页</a>
-          <a href="#education" data-i18n="navEducation">教育</a>
-          <a href="#campus" data-i18n="navCampus">校园</a>
-          <a href="#portfolio" data-i18n="navPortfolio">作品</a>
-          <a href="#contact" data-i18n="navContact">联系</a>
-        </nav>
-        <button class="language-toggle" type="button" data-lang-toggle aria-label="Switch language">
-          <span data-lang-current>EN</span>
-        </button>
-      </div>
-    </header>
+      <a class="dock-item" href="education.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4 22 9l-10 5L2 9l10-5Z" />
+          <path d="M6 11.3V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.7" />
+          <path d="M22 9v5" />
+        </svg>
+        <span class="dock-label" data-i18n="dockEducation">教育</span>
+      </a>
+      <a class="dock-item" href="work.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.5" y="3.5" width="7" height="7" rx="2" />
+          <rect x="13.5" y="3.5" width="7" height="7" rx="2" />
+          <rect x="3.5" y="13.5" width="7" height="7" rx="2" />
+          <rect x="13.5" y="13.5" width="7" height="7" rx="2" />
+        </svg>
+        <span class="dock-label" data-i18n="dockWork">案例</span>
+      </a>
+      <span class="dock-sep" aria-hidden="true"></span>
+      <button class="dock-item dock-lang" type="button" data-lang-toggle aria-label="Switch language">
+        <span data-lang-current>EN</span>
+        <span class="dock-label" data-i18n="dockLang">语言</span>
+      </button>
+    </nav>
 
     <main id="top">
-      <section class="hero resume-section motion-scene" data-scene>
-        <div class="hero-copy reveal">
-          <h1 data-i18n="heroName">宋和</h1>
-          <p class="lead">
-            <span data-i18n="heroLeadOne">南方科技大学本科。</span>
-            <span data-i18n="heroLeadTwo">目标：iOS 开发 / 产品经理日常实习。</span>
+      <section class="hero hero-product">
+        <div class="hero-inner">
+          <p class="hero-eyebrow" data-i18n="heroEyebrow">宋和 · AI 产品经理实习方向</p>
+          <h1 class="hero-promise" data-i18n="heroTitle">做 AI 产品，也负责把它送上线。</h1>
+          <p class="hero-role" data-i18n="heroRole">
+            南方科技大学 2029 届
           </p>
-          <div class="hero-actions">
-            <a class="button button-dark" href="https://apps.apple.com/us/app/liquid-deadline/id6760516153" target="_blank" rel="noreferrer" data-i18n="ctaApp">查看上线应用</a>
-            <a class="button button-light" href="https://github.com/QianMo0729" target="_blank" rel="noreferrer">GitHub</a>
+          <div class="hero-cta">
+            <a class="btn btn-dark" href="https://www.moorn.online/work.html" data-i18n="ctaApp"
+              >查看 AI 产品案例 →</a
+            >
+            <a class="btn btn-ghost" href="education.html" data-i18n="ctaProfile">了解我的背景</a>
           </div>
+
+          <dl class="delivery-proof" aria-label="关键数据" data-i18n-aria-label="proofAria" data-rise>
+            <div class="proof-item">
+              <dt class="proof-value">02</dt>
+              <dd class="proof-label" data-i18n="proofApps">App Store 上线应用</dd>
+            </div>
+            <div class="proof-item">
+              <dt class="proof-value">35</dt>
+              <dd class="proof-label" data-i18n="proofUsers">App Store 真实用户</dd>
+            </div>
+            <div class="proof-item">
+              <dt class="proof-value">04</dt>
+              <dd class="proof-label" data-i18n="proofProjects">真实项目经历</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="hero-baseline">
+          <p>
+            <span data-i18n="heroLoc">深圳 · 中国</span>
+            <span class="baseline-sep" aria-hidden="true">✦</span>
+            <span><span data-clock>--:--:--</span> GMT+8</span>
+          </p>
+          <p class="baseline-hint"><span data-i18n="heroHint">往下看</span> ↓</p>
         </div>
       </section>
 
-      <section id="education" class="education education-section resume-section motion-scene" data-scene>
-        <div class="section-copy reveal">
-          <p class="section-index">01 / Education</p>
-          <h2 class="split-title education-title">
-            <span data-i18n="educationTitleDegree">本科</span>
-            <span data-i18n="educationTitleSchool">南方科技大学</span>
-          </h2>
-          <p class="section-note" data-i18n="educationBody">通识与学科基础部 · 本科在读 · 2025.09 - 2029.06</p>
-        </div>
-        <div class="education-panel reveal" aria-label="教育摘要">
-          <div class="education-metric">
-            <span data-i18n="metricGrad">预计毕业</span>
-            <strong>2029</strong>
+      <section class="section capability-section" data-capability-story data-capability-step="0">
+        <span class="sec-num" aria-hidden="true">01</span>
+        <div class="section-inner">
+          <div class="capability-head">
+            <p class="kicker" data-rise data-i18n="capKicker">AI 产品实践</p>
+            <h2 class="sec-title" data-rise data-delay="1" data-i18n="capTitle">从判断，到上线。</h2>
           </div>
-          <div class="education-metric">
-            <span data-i18n="metricSchool">南方科技大学</span>
-            <strong>SUSTech</strong>
-          </div>
-          <div class="education-stack">
-            <span data-i18n="educationStackLabel">技术栈</span>
-            <strong>
-              <span>Java</span>
-              <i>/</i>
-              <span>Python</span>
-              <i>/</i>
-              <span>Swift</span>
-            </strong>
-            <p>SwiftUI · CloudKit · WidgetKit · JavaFX</p>
-          </div>
-        </div>
-      </section>
 
-      <section id="campus" class="campus-section resume-section motion-scene" data-scene>
-        <div class="section-copy reveal">
-          <p class="section-index">02 / Campus</p>
-          <h2 class="split-title campus-title">
-            <span data-i18n="campusTitleCampus">校园</span>
-            <span data-i18n="campusTitleExperience">经历</span>
-          </h2>
-          <p class="section-note" data-i18n="campusBody">学生会、提案大赛、学生发展与指导中心，把真实问题推进成可协作的校园方案。</p>
-          <div class="campus-track" aria-label="校园经历关键词">
-            <span data-i18n="campusTagUnion">学生会</span>
-            <span data-i18n="campusTagProposal">提案大赛</span>
-            <span data-i18n="campusTagDevelopment">学生发展与指导中心</span>
-          </div>
-        </div>
-        <div class="campus-stage reveal">
-          <article class="image-card campus-card card-union" data-campus-card>
-            <div class="card-media media-product" aria-hidden="true"></div>
-            <div class="card-glass" aria-hidden="true"></div>
-            <div class="card-caption">
-              <h3 data-i18n="campusStudentUnionTitle">学生会</h3>
-            </div>
-          </article>
-          <article class="image-card campus-card card-proposal" data-campus-card>
-            <div class="card-media media-proposal" aria-hidden="true"></div>
-            <div class="card-glass" aria-hidden="true"></div>
-            <div class="card-caption">
-              <h3 data-i18n="campusProposalTitle">提案大赛</h3>
-            </div>
-          </article>
-          <article class="image-card campus-card card-development" data-campus-card>
-            <div class="card-media media-course" aria-hidden="true"></div>
-            <div class="card-glass" aria-hidden="true"></div>
-            <div class="card-caption">
-              <h3 data-i18n="campusDevelopmentTitle">学生发展与指导中心</h3>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section id="portfolio" class="portfolio-section resume-section motion-scene" data-scene>
-        <div class="portfolio-copy reveal">
-          <p class="section-index">03 / Portfolio</p>
-          <h2 data-i18n="portfolioTitle">作品集</h2>
-          <div class="portfolio-detail" data-portfolio-detail>
-            <h3 data-portfolio-title>Liquid Deadline</h3>
-            <div class="project-links">
-              <a href="https://apps.apple.com/us/app/liquid-deadline/id6760516153" target="_blank" rel="noreferrer" data-portfolio-primary>App Store</a>
-              <a href="https://github.com/QianMo0729/liquid-deadline" target="_blank" rel="noreferrer" data-portfolio-secondary>GitHub</a>
-            </div>
-          </div>
-        </div>
-        <div class="portfolio-stage reveal" data-portfolio-stage>
-          <div class="portfolio-orbit" data-portfolio-orbit aria-label="作品集转盘">
-            <button class="image-card work-card is-selected" type="button" data-work-card data-work="liquid" aria-label="Liquid Deadline">
-              <span class="work-card-inner">
-                <span class="card-media media-liquid" aria-hidden="true"></span>
-                <span class="card-glass" aria-hidden="true"></span>
-                <span class="card-caption">
-                  <strong>Liquid Deadline</strong>
+          <div class="capability-story-layout">
+            <div
+              class="capability-steps"
+              role="group"
+              aria-label="AI 产品实践的四个关键步骤"
+              data-i18n-aria-label="capStepsAria"
+            >
+              <button
+                class="capability-step is-active"
+                type="button"
+                data-capability-step-button="0"
+                aria-pressed="true"
+              >
+                <span class="capability-step-no">01</span>
+                <span class="capability-step-copy">
+                  <strong data-i18n="capFrameTitle">产品定义</strong>
+                  <small data-i18n-alt="capFrameTitle">Product Framing</small>
                 </span>
-              </span>
-            </button>
-            <button class="image-card work-card" type="button" data-work-card data-work="xiangqi" aria-label="SUSTech XiangQi">
-              <span class="work-card-inner">
-                <span class="card-media media-xiangqi" aria-hidden="true"></span>
-                <span class="card-glass" aria-hidden="true"></span>
-                <span class="card-caption">
-                  <strong>SUSTech XiangQi</strong>
+              </button>
+              <button
+                class="capability-step"
+                type="button"
+                data-capability-step-button="1"
+                aria-pressed="false"
+              >
+                <span class="capability-step-no">02</span>
+                <span class="capability-step-copy">
+                  <strong data-i18n="capAiTitle">AI 能力产品化</strong>
+                  <small data-i18n-alt="capAiTitle">AI Capability Productization</small>
                 </span>
-              </span>
-            </button>
-            <button class="image-card work-card" type="button" data-work-card data-work="campus" aria-label="Campus Proposal">
-              <span class="work-card-inner">
-                <span class="card-media media-proposal" aria-hidden="true"></span>
-                <span class="card-glass" aria-hidden="true"></span>
-                <span class="card-caption">
-                  <strong>Campus Proposal</strong>
+              </button>
+              <button
+                class="capability-step"
+                type="button"
+                data-capability-step-button="2"
+                aria-pressed="false"
+              >
+                <span class="capability-step-no">03</span>
+                <span class="capability-step-copy">
+                  <strong data-i18n="capDeliveryTitle">AI 协作与 0→1 交付</strong>
+                  <small data-i18n-alt="capDeliveryTitle">AI-assisted 0-to-1 Delivery</small>
                 </span>
-              </span>
-            </button>
+              </button>
+              <button
+                class="capability-step"
+                type="button"
+                data-capability-step-button="3"
+                aria-pressed="false"
+              >
+                <span class="capability-step-no">04</span>
+                <span class="capability-step-copy">
+                  <strong data-i18n="capValidateTitle">上线验证与迭代</strong>
+                  <small data-i18n-alt="capValidateTitle">Launch Validation &amp; Iteration</small>
+                </span>
+              </button>
+            </div>
+
+            <div class="capability-visual" aria-live="polite">
+              <div class="capability-visual-top">
+                <span data-i18n="capVisualLabel">四个阶段</span>
+              </div>
+              <div class="capability-route" aria-hidden="true">
+                <span class="capability-route-track"><i class="capability-route-fill"></i></span>
+                <span class="route-node is-reached"><i>01</i><b data-i18n="routeFrame">定义</b></span>
+                <span class="route-node"><i>02</i><b data-i18n="routeAi">转译</b></span>
+                <span class="route-node"><i>03</i><b data-i18n="routeDelivery">交付</b></span>
+                <span class="route-node"><i>04</i><b data-i18n="routeValidate">验证</b></span>
+              </div>
+              <div class="capability-signal" data-capability-stage-copy>
+                <span class="capability-signal-kicker" data-capability-stage-kicker>问题 → 范围 → 核心流程</span>
+                <strong data-capability-stage-title>EchoNote · Liquid Deadline · Hard Nest</strong>
+                <p data-capability-stage-proof>三个项目都从明确的使用场景开始，再决定第一版真正需要什么。</p>
+              </div>
+              <a class="capability-stage-link" href="work.html#cases" data-i18n="capCaseLink">查看对应案例 →</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="contact" class="contact contact-section resume-section motion-scene" data-scene>
-        <div class="contact-card reveal">
-          <p class="section-index">04 / Contact</p>
-          <h2 data-i18n="contactTitle">聊聊 iOS、产品实习或协作。</h2>
-          <address>
-            <a href="mailto:12512808@mail.sustech.edu.cn">12512808@mail.sustech.edu.cn</a>
-            <a href="tel:+8618674870667">+86 186 7487 0667</a>
-            <a href="https://github.com/QianMo0729" target="_blank" rel="noreferrer">github.com/QianMo0729</a>
-          </address>
-        </div>
+      <section class="kinetic" data-kinetic>
+        <p
+          class="kinetic-text"
+          data-kinetic-text
+          aria-label="想清楚，做出来，然后接着改。"
+        ></p>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>Song He</span>
+      <svg class="signature" data-signature viewBox="0 0 640 190" aria-hidden="true">
+        <text class="sig-text" x="50%" y="62%" text-anchor="middle">Song He</text>
+      </svg>
+      <div class="foot-meta">
+        <span>© <span data-year>2026</span> Song He</span>
+        <span data-i18n="footRights">保留所有权利。</span>
+      </div>
     </footer>
 
-    <script src="assets/vendor/gsap.min.js"></script>
-    <script src="assets/vendor/ScrollTrigger.min.js"></script>
-    <script src="script.js?v=20260613-scroll-settle-10"></script>
+    <script src="script.js?v=20260816-stats-1"></script>
   </body>
 </html>

@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>宋和 | 校园经历</title>
+    <meta
+      name="description"
+      content="宋和的个人简历网站：iOS 产品工程、SwiftUI、CloudKit、WidgetKit、算法与真实项目经历。"
+    />
+    <meta property="og:title" content="宋和 | 校园经历" />
+    <meta
+      property="og:description"
+      content="宋和的个人简历网站：iOS 产品工程、SwiftUI、CloudKit、WidgetKit、算法与真实项目经历。"
+    />
+    <meta property="og:type" content="website" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2316150F'/%3E%3Ctext x='50' y='68' font-size='50' text-anchor='middle' fill='%23F7F6F2' font-family='sans-serif' font-weight='700'%3E宋%3C/text%3E%3C/svg%3E"
+    />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20260814-pages-1" />
+  </head>
+  <body data-page="campus">
+    <a class="skip-link" href="#top" data-i18n="skipLink">跳到主体内容</a>
+
+    <a class="chip brand-chip" href="index.html">
+      <span class="brand-dot">SH</span>
+      <span>宋和 Song He</span>
+    </a>
+    <div class="chip status-chip" role="status">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span data-i18n="statusPill">开放实习机会</span>
+    </div>
+
+    <nav class="dock" data-dock aria-label="主导航">
+      <a class="dock-item" href="index.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3.5 10.5 12 3.5l8.5 7" />
+          <path d="M5.5 9.5V20h13V9.5" />
+        </svg>
+        <span class="dock-label" data-i18n="dockHome">首页</span>
+      </a>
+      <a class="dock-item" href="education.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 4 22 9l-10 5L2 9l10-5Z" />
+          <path d="M6 11.3V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.7" />
+          <path d="M22 9v5" />
+        </svg>
+        <span class="dock-label" data-i18n="dockEducation">教育</span>
+      </a>
+      <a class="dock-item" href="campus.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 21V3.5" />
+          <path d="M5 4.5h11.5L14 8l2.5 3.5H5" />
+        </svg>
+        <span class="dock-label" data-i18n="dockCampus">校园</span>
+      </a>
+      <a class="dock-item" href="work.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3.5" y="3.5" width="7" height="7" rx="2" />
+          <rect x="13.5" y="3.5" width="7" height="7" rx="2" />
+          <rect x="3.5" y="13.5" width="7" height="7" rx="2" />
+          <rect x="13.5" y="13.5" width="7" height="7" rx="2" />
+        </svg>
+        <span class="dock-label" data-i18n="dockWork">作品</span>
+      </a>
+      <a class="dock-item" href="contact.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 3 3.8 10.2l7 2.5 2.6 6.9L21 3Z" />
+          <path d="M10.8 12.7 21 3" />
+        </svg>
+        <span class="dock-label" data-i18n="dockContact">联系</span>
+      </a>
+      <span class="dock-sep" aria-hidden="true"></span>
+      <button class="dock-item dock-lang" type="button" data-lang-toggle aria-label="Switch language">
+        <span data-lang-current>EN</span>
+        <span class="dock-label" data-i18n="dockLang">语言</span>
+      </button>
+    </nav>
+
+    <main id="top">
+      <section class="section campus">
+        <span class="sec-num" aria-hidden="true">02</span>
+        <div class="section-inner">
+          <p class="kicker" data-rise data-i18n="campusKicker">校园</p>
+          <div class="sec-head">
+            <h2 class="sec-title" data-rise data-delay="1" data-i18n="campusTitle">把真实问题，推进成方案。</h2>
+            <p class="sec-note" data-rise data-delay="2" data-i18n="campusNote">
+              学生会、提案大赛、学生发展与指导中心——在校园里练习协作、表达与落地。
+            </p>
+          </div>
+          <div class="campus-grid">
+            <article class="card" data-rise style="--accent: #2fbf9b">
+              <div class="card-media" style="background-image: url('assets/product-capability-card.png')">
+                <span class="card-no">01</span>
+              </div>
+              <div class="card-body">
+                <h3 data-i18n="campusC1Title">学生会</h3>
+                <p data-i18n="campusC1Desc">跨部门协作，推动校园活动落地。</p>
+              </div>
+            </article>
+            <article class="card" data-rise data-delay="1" style="--accent: #e8890c">
+              <div class="card-media" style="background-image: url('assets/campus-proposal-card.png')">
+                <span class="card-no">02</span>
+              </div>
+              <div class="card-body">
+                <h3 data-i18n="campusC2Title">提案大赛</h3>
+                <p data-i18n="campusC2Desc">校园提案 · 一等奖。</p>
+              </div>
+            </article>
+            <article class="card" data-rise data-delay="2" style="--accent: #6e5bff">
+              <div class="card-media" style="background-image: url('assets/sustech-education-blur.png')">
+                <span class="card-no">03</span>
+              </div>
+              <div class="card-body">
+                <h3 data-i18n="campusC3Title">学生发展与指导中心</h3>
+                <p data-i18n="campusC3Desc">服务同学的成长与发展。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <svg class="signature" data-signature viewBox="0 0 640 190" aria-hidden="true">
+        <text class="sig-text" x="50%" y="62%" text-anchor="middle">Song He</text>
+      </svg>
+      <p class="foot-note" data-i18n="footNote">本站由 HTML / CSS / JS 手写完成，无框架。</p>
+      <div class="foot-meta">
+        <span>© <span data-year>2026</span> Song He</span>
+        <span data-i18n="footRights">保留所有权利。</span>
+      </div>
+    </footer>
+
+    <script src="script.js?v=20260814-pages-1"></script>
+  </body>
+</html>
