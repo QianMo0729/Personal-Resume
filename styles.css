@@ -1,3 +1,18 @@
+/* Latin display voice: Space Grotesk (variable, latin subset only, ~22KB).
+   CJK glyphs fall through to the system stack, so this shapes every Latin
+   word and numeral — headings, stats, the giant section numbers — without
+   touching Chinese text. Self-hosted so it loads fine in mainland China. */
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("assets/fonts/space-grotesk-latin-var.woff2") format("woff2");
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
 :root {
   color-scheme: light;
   --paper: #f7f6f2;
@@ -13,13 +28,20 @@
   --iris-deep: #5646e5;
   --amber: #f5a524;
   --amber-deep: #b26a05;
+  /* Ambient aurora washes — overridden per page for a shifting mood.
+     The paper grain sits on top at 45%, so these read ~half as strong. */
+  --aura-1: rgba(47, 191, 155, 0.34);
+  --aura-2: rgba(110, 91, 255, 0.26);
+  --aura-3: rgba(245, 165, 36, 0.3);
+  --aura-4: rgba(110, 91, 255, 0.15);
   --max: 1200px;
   --spring: cubic-bezier(0.22, 1, 0.36, 1);
   --motion-fast: 160ms;
   --motion-normal: 320ms;
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
-  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
-    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+  --sans: "Space Grotesk", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "SF Pro Text", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Segoe UI", sans-serif;
 }
 
 * {
@@ -37,7 +59,10 @@ body {
   margin: 0;
   min-width: 320px;
   overflow-x: clip;
-  background: var(--paper);
+  /* Transparent on purpose: html paints the paper color on the canvas, and
+     the fixed aurora/grain pseudo-layers (z-index -1) sit between the canvas
+     and the content. An opaque body background would hide them entirely. */
+  background: transparent;
   color: var(--ink);
   font-family: var(--sans);
   font-size: 16px;
@@ -46,15 +71,57 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Soft paper-grain wash sitting under all content. */
+/* Ambient aurora: huge, soft color fields drifting slowly behind the page.
+   Sits below the paper grain (::after) so the grain dithers the gradients —
+   no banding, and the color feels printed into the paper. */
 body::before {
+  content: "";
+  position: fixed;
+  inset: -24vmax;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(50% 42% at 14% 12%, var(--aura-1), transparent 64%),
+    radial-gradient(44% 38% at 87% 15%, var(--aura-2), transparent 66%),
+    radial-gradient(50% 44% at 83% 87%, var(--aura-3), transparent 64%),
+    radial-gradient(38% 34% at 10% 88%, var(--aura-4), transparent 68%);
+  animation: auraDrift 44s ease-in-out infinite alternate;
+}
+
+/* Fine paper grain over the aurora, so the color feels printed rather than
+   lit. Inline SVG noise — no asset request, tiles crisply at any size. */
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
-  background: url("assets/paper-field.jpg") center / cover no-repeat;
-  opacity: 0.45;
   pointer-events: none;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+    repeat;
+  background-size: 240px 240px;
+  opacity: 0.05;
+}
+
+/* Each page leans the ambient light toward its own accent. */
+body[data-page="education"] {
+  --aura-1: rgba(47, 191, 155, 0.4);
+  --aura-2: rgba(47, 191, 155, 0.18);
+  --aura-3: rgba(245, 165, 36, 0.26);
+  --aura-4: rgba(110, 91, 255, 0.14);
+}
+
+body[data-page="work"] {
+  --aura-1: rgba(110, 91, 255, 0.28);
+  --aura-2: rgba(47, 191, 155, 0.24);
+  --aura-3: rgba(245, 165, 36, 0.28);
+  --aura-4: rgba(110, 91, 255, 0.17);
+}
+
+body[data-page="contact"] {
+  --aura-1: rgba(245, 165, 36, 0.34);
+  --aura-2: rgba(47, 191, 155, 0.2);
+  --aura-3: rgba(110, 91, 255, 0.2);
+  --aura-4: rgba(245, 165, 36, 0.14);
 }
 
 h1,
@@ -103,6 +170,15 @@ button {
 }
 
 /* ── keyframes ─────────────────────────────────────────────────────── */
+
+@keyframes auraDrift {
+  from {
+    transform: translate3d(-1.6%, -1.2%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(1.8%, 1.6%, 0) scale(1.07);
+  }
+}
 
 @keyframes riseUp {
   from {
@@ -195,7 +271,10 @@ button {
   background: var(--panel);
   -webkit-backdrop-filter: blur(16px) saturate(150%);
   backdrop-filter: blur(16px) saturate(150%);
-  box-shadow: 0 10px 30px rgba(22, 21, 15, 0.07);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    0 1px 2px rgba(22, 21, 15, 0.05),
+    0 10px 30px rgba(22, 21, 15, 0.07);
   font-size: 13px;
   font-weight: 600;
 }
@@ -244,15 +323,21 @@ button {
 }
 
 .btn-dark {
-  background: var(--ink);
+  background: linear-gradient(180deg, #292820, var(--ink) 62%);
   color: var(--paper);
-  box-shadow: 0 14px 34px rgba(22, 21, 15, 0.2);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 1px 2px rgba(22, 21, 15, 0.24),
+    0 14px 34px rgba(22, 21, 15, 0.2);
 }
 
 .btn-dark:hover,
 .btn-dark:focus-visible {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 20px 44px rgba(22, 21, 15, 0.26);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(22, 21, 15, 0.24),
+    0 20px 44px rgba(22, 21, 15, 0.28);
   outline: none;
 }
 
@@ -272,12 +357,29 @@ button {
 }
 
 .kicker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   margin: 0 0 16px;
   font-size: 12.5px;
   font-weight: 750;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--sec-accent, var(--ink-muted));
+}
+
+.kicker::before {
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.85;
+}
+
+.contact .kicker {
+  justify-content: center;
 }
 
 /* CJK glyphs are full-width boxes: tight tracking collides them and sub-1.1
@@ -321,7 +423,7 @@ button {
   line-height: 0.8;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(22, 21, 15, 0.09);
+  -webkit-text-stroke: 1.5px rgba(22, 21, 15, 0.12);
   pointer-events: none;
   user-select: none;
 }
@@ -1985,17 +2087,31 @@ html[lang="en"] .hero-promise {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   margin-top: clamp(48px, 6vw, 74px);
-  border-top: 1px solid rgba(22, 21, 15, 0.13);
   border-bottom: 1px solid rgba(22, 21, 15, 0.13);
 }
 
+/* Each column carries its own accent rule up top — a quiet editorial nod
+   to the three-color system. */
 .proof-item {
   display: grid;
   align-content: center;
   gap: 10px;
   min-height: 118px;
   padding: 24px clamp(16px, 2.2vw, 28px);
+  border-top: 2px solid var(--proof-accent, rgba(22, 21, 15, 0.13));
   border-left: 1px solid rgba(22, 21, 15, 0.13);
+}
+
+.proof-item:nth-child(1) {
+  --proof-accent: var(--mint);
+}
+
+.proof-item:nth-child(2) {
+  --proof-accent: var(--iris);
+}
+
+.proof-item:nth-child(3) {
+  --proof-accent: var(--amber);
 }
 
 .proof-item:first-child {
@@ -2009,7 +2125,7 @@ html[lang="en"] .hero-promise {
   font-size: clamp(34px, 3.9vw, 52px);
   font-weight: 860;
   line-height: 1;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.02em;
   font-variant-numeric: tabular-nums;
 }
 
