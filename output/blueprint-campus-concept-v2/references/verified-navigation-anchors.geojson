@@ -1,0 +1,38 @@
+{
+  "type": "FeatureCollection",
+  "source": "https://bus.sustcra.com/geojson/sustech_bldg.json",
+  "retrieved": "2026-09-07",
+  "note": "Public community-maintained navigation POIs, not surveying-grade building geometry. No revision date specified by source. Coordinates longitude, latitude; extra zero altitude is source placeholder.",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "南科大中心 SUSTech Center",
+        "styleUrl": "#m_ylw-pushpin"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.9923345196037,
+          22.59998770717294,
+          0.0
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "宿舍 Dorm Block 15",
+        "styleUrl": "#m_ylw-pushpin"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.9952891995979,
+          22.60504180349547,
+          0.0
+        ]
+      }
+    }
+  ]
+}

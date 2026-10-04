@@ -1,0 +1,42 @@
+{
+  "date": "2026-09-14T04:49:43.414Z",
+  "errors": [],
+  "failedRequests": [],
+  "checks": [
+    "Custom card uses only name, UG status, year, official logo; flat plan fills screen before extrusion",
+    "Full 360 degree campus rotation has constant camera span",
+    "All three distinct interiors enter/return; headings and body align to 32px grid, correct focus, no overflow",
+    "390x844, 320x568, 844x390 responsive views and Escape return",
+    "Reduced motion, scene switching via campus, browser back"
+  ],
+  "timings": [
+    {
+      "key": "research",
+      "prepare": 24.19999998807907,
+      "total": 224.89999997615814
+    },
+    {
+      "key": "research",
+      "back": 199.7999999821186
+    },
+    {
+      "key": "college",
+      "prepare": 14,
+      "total": 205
+    },
+    {
+      "key": "college",
+      "back": 205.5
+    },
+    {
+      "key": "campus",
+      "prepare": 8.600000023841858,
+      "total": 206.40000000596046
+    },
+    {
+      "key": "campus",
+      "back": 204.40000000596046
+    }
+  ],
+  "orbitSpan": 147.3640164720777
+}

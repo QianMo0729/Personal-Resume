@@ -1,0 +1,30 @@
+{
+  "recorded_at_utc": "2026-09-14T06:03:59.514506+00:00",
+  "server": "43.162.92.40",
+  "public_url": "https://www.moorn.online/",
+  "release_id": "20260914T060021Z-blueprint-homepage",
+  "previous_release": "/var/www/personal-resume/releases/20260914T045343Z-blueprint-campus",
+  "active_release": "/var/www/personal-resume/releases/20260914T060021Z-blueprint-homepage",
+  "archive_sha256": "88fc67d827213ec752f6d03425914c70c00615a0014ec293fd99755869351e0e",
+  "changed_files": [
+    "demos/blueprint-campus/app.js",
+    "demos/blueprint-campus/index.html",
+    "index.html"
+  ],
+  "remote_activation_exit_code": 0,
+  "remote_changed_file_hashes_verified": 3,
+  "other_existing_site_files_sha256_preserved": 24,
+  "nginx_configuration_check": "passed",
+  "nginx_service": "active",
+  "x_ui_service": "active",
+  "nginx_configuration_changed": false,
+  "services_reloaded_or_restarted": false,
+  "remote_audit_directory": "/var/www/personal-resume/incoming/20260914T060021Z-blueprint-homepage",
+  "rollback": {
+    "script": "C:\\Users\\qianm\\OneDrive\\Desktop\\Personal-Resume\\demos\\blueprint-campus\\source-data\\deployment\\homepage\\20260914T060021Z-blueprint-homepage\\rollback-homepage-remote.sh",
+    "required_argument": "--rollback-homepage-release",
+    "expected_active_release": "/var/www/personal-resume/releases/20260914T060021Z-blueprint-homepage",
+    "restores_release": "/var/www/personal-resume/releases/20260914T045343Z-blueprint-campus",
+    "old_release_preserved": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-14T06:12:13.945Z",
+  "url": "https://www.moorn.online/",
+  "timings": [
+    {
+      "action": "orbit",
+      "ms": 502.30000001192093
+    },
+    {
+      "scene": "research",
+      "action": "enter",
+      "ms": 518,
+      "duration": 500
+    },
+    {
+      "scene": "research",
+      "action": "return",
+      "ms": 506.09999999403954
+    },
+    {
+      "scene": "college",
+      "action": "enter",
+      "ms": 508.40000000596046,
+      "duration": 500
+    },
+    {
+      "scene": "college",
+      "action": "return",
+      "ms": 502.90000000596046
+    },
+    {
+      "scene": "campus",
+      "action": "enter",
+      "ms": 511.7000000178814,
+      "duration": 500
+    },
+    {
+      "scene": "campus",
+      "action": "return",
+      "ms": 505.7999999821186
+    }
+  ],
+  "checks": [
+    "500ms enter/return/orbit",
+    "Updated college/campus content retained",
+    "Escape reverses from mid-flight",
+    "Reduced motion still skips camera flight"
+  ],
+  "errors": []
+}

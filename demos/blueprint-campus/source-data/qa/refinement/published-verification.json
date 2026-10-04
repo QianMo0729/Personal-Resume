@@ -1,0 +1,12 @@
+{
+  "url": "https://www.moorn.online/demos/blueprint-campus/",
+  "verifiedAt": "2026-09-14T04:57:15.209Z",
+  "status": 200,
+  "checks": [
+    "New card visible",
+    "Three 3D scenes entry/return",
+    "390x844 mobile scene with no overflow"
+  ],
+  "errors": [],
+  "failedRequests": []
+}

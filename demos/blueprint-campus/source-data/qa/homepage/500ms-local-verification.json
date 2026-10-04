@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "checkedAt": "2026-09-14T06:07:30.262Z",
+  "url": "http://127.0.0.1:8765/",
+  "timings": [
+    {
+      "action": "orbit",
+      "ms": 502.7999999821186
+    },
+    {
+      "scene": "research",
+      "action": "enter",
+      "ms": 517,
+      "duration": 500
+    },
+    {
+      "scene": "research",
+      "action": "return",
+      "ms": 502.5
+    },
+    {
+      "scene": "college",
+      "action": "enter",
+      "ms": 508.09999999403954,
+      "duration": 500
+    },
+    {
+      "scene": "college",
+      "action": "return",
+      "ms": 504.90000000596046
+    },
+    {
+      "scene": "campus",
+      "action": "enter",
+      "ms": 509.80000001192093,
+      "duration": 500
+    },
+    {
+      "scene": "campus",
+      "action": "return",
+      "ms": 502.19999998807907
+    }
+  ],
+  "checks": [
+    "500ms enter/return/orbit",
+    "Updated college/campus content retained",
+    "Escape reverses from mid-flight",
+    "Reduced motion still skips camera flight"
+  ],
+  "errors": []
+}

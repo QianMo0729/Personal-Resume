@@ -1,0 +1,34 @@
+{
+  "prepared_at_utc": "2026-09-14T06:00:21.876118+00:00",
+  "status": "prepared_locally_not_uploaded_or_deployed",
+  "release_id": "20260914T060021Z-blueprint-homepage",
+  "previous_release": "/var/www/personal-resume/releases/20260914T045343Z-blueprint-campus",
+  "previous_root_sha256": "afb711da51a7203cf126733a9e451cebae74b5b1ce731ef15948818769c0797b",
+  "new_release": "/var/www/personal-resume/releases/20260914T060021Z-blueprint-homepage",
+  "public_urls": [
+    "https://www.moorn.online/",
+    "https://moorn.online/"
+  ],
+  "archive": "20260914T060021Z-blueprint-homepage.tar.gz",
+  "archive_sha256": "88fc67d827213ec752f6d03425914c70c00615a0014ec293fd99755869351e0e",
+  "archive_bytes": 15446,
+  "files": [
+    {
+      "path": "demos/blueprint-campus/app.js",
+      "bytes": 32712,
+      "sha256": "6aeca49db0dc514553ac4aa123ccdcaa59fb55db1b398211b63fd9c763192985"
+    },
+    {
+      "path": "demos/blueprint-campus/index.html",
+      "bytes": 11667,
+      "sha256": "ffc64f79912ac94073c6618a6e116896fedc395ee35325f45d3ccd72606da4f0"
+    },
+    {
+      "path": "index.html",
+      "bytes": 11943,
+      "sha256": "77ec88a63f7f2001817d878a85fecf7eee5a94d736e083ef0e79349260a6238b"
+    }
+  ],
+  "unchanged_demo_files_verified_locally": 11,
+  "scope": "Copy the current complete site and overwrite only the explicit changed-file allowlist. Preserve all other files byte-for-byte."
+}

@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-09-14T06:03:50.903Z",
+  "status": "passed",
+  "url": "https://www.moorn.online/",
+  "checks": [
+    "Apex redirects to www homepage with actual blueprint, not demo redirect",
+    "College and campus content exact",
+    "Root scene hashes reload and return correctly",
+    "390px room no overflow",
+    "Old demo URL has matching updated content"
+  ],
+  "errors": [],
+  "failedRequests": []
+}

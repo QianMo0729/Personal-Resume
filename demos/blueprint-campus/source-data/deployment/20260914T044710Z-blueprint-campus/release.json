@@ -1,0 +1,107 @@
+{
+  "prepared_at_utc": "2026-09-14T04:47:10.340574+00:00",
+  "status": "prepared_locally_not_uploaded_or_deployed",
+  "release_id": "20260914T044710Z-blueprint-campus",
+  "public_url": "https://www.moorn.online/demos/blueprint-campus/",
+  "previous_release": "/var/www/personal-resume/releases/20260816T114515Z-stats-09",
+  "new_release": "/var/www/personal-resume/releases/20260914T044710Z-blueprint-campus",
+  "archive": "20260914T044710Z-blueprint-campus.tar.gz",
+  "archive_sha256": "dceeeab6fcd76ba09963941da6c21355aba2cc84d7a944c1a7073e3d5fa7c783",
+  "archive_bytes": 514171,
+  "files": [
+    {
+      "path": "app.js",
+      "bytes": 31668,
+      "sha256": "b396f915c0e470a4e61f874ea708f0c059f60c2a61f280784a38e865d484231f"
+    },
+    {
+      "path": "assets/campus-data.json",
+      "bytes": 114558,
+      "sha256": "bc9109dc25a5a220f6b3e0844920e7635c1ab2428cde781c9b561507a8aae2f6"
+    },
+    {
+      "path": "assets/campus-plan.svg",
+      "bytes": 61040,
+      "sha256": "4c202a8f73d9766da32bd48881f652560bb8e2a8dc0a20aca4c99860720be4d8"
+    },
+    {
+      "path": "assets/source-data/README.md",
+      "bytes": 4904,
+      "sha256": "40012856bb76148502e08b453b2555d5aadc23943168e7d04558c222e458f4aa"
+    },
+    {
+      "path": "assets/sustech-logo.png",
+      "bytes": 29867,
+      "sha256": "f39932e5426513bc51bcce0f1988697ce76d46333c9f3b256ce7112c5a39280b"
+    },
+    {
+      "path": "entrance-anchor.js",
+      "bytes": 5496,
+      "sha256": "c8075788ddfb4d0fca1e9e367a7b186c2bed60214e75f34b11a094c09ba500fb"
+    },
+    {
+      "path": "entrance-scene.js",
+      "bytes": 19322,
+      "sha256": "d125ae556053a7ff531547d680565d5d15ed0a96c620af4c5d1804535a9ffaa1"
+    },
+    {
+      "path": "index.html",
+      "bytes": 11587,
+      "sha256": "93a788f51105c4a5551babd6e555c0cd4a52d2874cb4fa6e7a3560d5c5486fef"
+    },
+    {
+      "path": "interior-scene.js",
+      "bytes": 29607,
+      "sha256": "fcb21b3821d4a735b7c08b92ce5216c08319f86f9a0c53ab8346169ef8b88645"
+    },
+    {
+      "path": "styles.css",
+      "bytes": 28485,
+      "sha256": "8944b58d234bd9710674d50ef623896546adfd4d963e9b4b8ec60976d1b04dbd"
+    },
+    {
+      "path": "vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601"
+    },
+    {
+      "path": "vendor/three.core.js",
+      "bytes": 1403455,
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20"
+    },
+    {
+      "path": "vendor/three.module.js",
+      "bytes": 603113,
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a"
+    }
+  ],
+  "reference_check": {
+    "local_runtime_references": [
+      "app.js",
+      "assets/campus-data.json",
+      "assets/campus-plan.svg",
+      "assets/sustech-logo.png",
+      "entrance-anchor.js",
+      "entrance-scene.js",
+      "interior-scene.js",
+      "styles.css",
+      "vendor/three.core.js",
+      "vendor/three.module.js"
+    ],
+    "existing_site_pages": [
+      "../../education.html",
+      "../../index.html",
+      "../../work.html"
+    ]
+  },
+  "excluded": [
+    "portrait assets",
+    "original photographs",
+    "raw OSM",
+    "QA",
+    "runtime logs",
+    "server scripts",
+    "deployment helpers",
+    "credentials"
+  ]
+}

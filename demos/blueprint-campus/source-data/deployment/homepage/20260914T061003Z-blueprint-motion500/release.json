@@ -1,0 +1,36 @@
+{
+  "prepared_at_utc": "2026-09-14T06:10:03.456302+00:00",
+  "status": "prepared_locally_not_uploaded_or_deployed",
+  "release_id": "20260914T061003Z-blueprint-motion500",
+  "previous_release": "/var/www/personal-resume/releases/20260914T060021Z-blueprint-homepage",
+  "previous_root_sha256": "77ec88a63f7f2001817d878a85fecf7eee5a94d736e083ef0e79349260a6238b",
+  "baseline_state": "C:\\Users\\qianm\\OneDrive\\Desktop\\Personal-Resume\\demos\\blueprint-campus\\source-data\\deployment\\homepage\\current-server-state.json",
+  "baseline_checked_at_utc": "2026-09-14T06:08:52.691971+00:00",
+  "new_release": "/var/www/personal-resume/releases/20260914T061003Z-blueprint-motion500",
+  "public_urls": [
+    "https://www.moorn.online/",
+    "https://moorn.online/"
+  ],
+  "archive": "20260914T061003Z-blueprint-motion500.tar.gz",
+  "archive_sha256": "eba457e04bc9a47941f1d5419e2975acc0bb43ef1aa005b495f60afdf35ab9e2",
+  "archive_bytes": 15452,
+  "files": [
+    {
+      "path": "demos/blueprint-campus/app.js",
+      "bytes": 32757,
+      "sha256": "3480b103f3c8e46772b5a6f3d03143cc223e246e4647b5f96959e6cebca0c4ea"
+    },
+    {
+      "path": "demos/blueprint-campus/index.html",
+      "bytes": 11672,
+      "sha256": "eea52bc527ae378fa5a683928bf44a2f3234b7f60b2746fcee3fa58a669de3b9"
+    },
+    {
+      "path": "index.html",
+      "bytes": 11947,
+      "sha256": "80ff39054d5a0a12396cd087d3fcd52ba59022939ea7bd1f0725cf692f50e39b"
+    }
+  ],
+  "unchanged_demo_files_verified_locally": 11,
+  "scope": "Copy the current complete site and overwrite only the explicit changed-file allowlist. Preserve all other files byte-for-byte."
+}

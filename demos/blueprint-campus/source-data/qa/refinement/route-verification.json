@@ -1,0 +1,1259 @@
+{
+  "status": "passed",
+  "verifiedAt": "2026-09-14T04:53:36.607900+00:00",
+  "scope": {
+    "defaultYaw": -0.38,
+    "defaultViewports": [
+      [
+        320,
+        800
+      ],
+      [
+        390,
+        844
+      ],
+      [
+        760,
+        1024
+      ],
+      [
+        761,
+        1024
+      ],
+      [
+        1365,
+        900
+      ],
+      [
+        2560,
+        1440
+      ],
+      [
+        320,
+        1400
+      ]
+    ],
+    "defaultCases": 21,
+    "additionalYawViewports": [
+      [
+        1365,
+        900
+      ],
+      [
+        390,
+        844
+      ]
+    ],
+    "additionalYawsRadians": [
+      0,
+      1.5707963267948966,
+      3.141592653589793,
+      -1.5707963267948966
+    ],
+    "additionalCases": 24,
+    "scenes": [
+      "research",
+      "college",
+      "campus"
+    ],
+    "totalCases": 45,
+    "sampledSegmentsPerCase": 1200,
+    "totalSampledSegments": 54000,
+    "campusBuildingMasses": 111
+  },
+  "method": "Current app.js flightPose function was extracted and executed against the real Three.js entrance/interior geometries. Motion segments were raycast at each segment midpoint door pose. Additional building-mass intersections were filtered using the current alpha schedules and selected-building clipping aperture. No application source was modified by this check.",
+  "visibility": {
+    "nonSelectedCampusFade": [
+      0.08,
+      0.18
+    ],
+    "selectedBuildingFade": [
+      0.41,
+      0.57
+    ],
+    "onlyPositiveAlphaIncluded": true,
+    "selectedBuildingClipBoxLocal": {
+      "x": [
+        5,
+        15
+      ],
+      "y": [
+        -0.1,
+        9
+      ],
+      "z": [
+        -14,
+        49
+      ]
+    }
+  },
+  "summary": {
+    "span": [
+      147.3640164720777,
+      341.70031319463016
+    ],
+    "slope": [
+      1.1398300621352335,
+      1.3578080611463237
+    ],
+    "crossing": [
+      0.7236838930126213,
+      0.7429295343988371
+    ],
+    "minOpenMarginMs": 12.736778602524247,
+    "maxC1NumericalError": 9.966873628771977e-05,
+    "maxAngularGap": 2.9802322387695312e-08,
+    "maxEndPositionError": 0,
+    "maxEndAngleError": 4.2146848510894035e-08,
+    "entranceAndInteriorCollisions": 0,
+    "visibleCampusMassCollisions": 0,
+    "alignmentTime": 0.24700000000000003,
+    "minimumLocalZAtAlignment": 124.76743167255296,
+    "outerEntranceZ": 48,
+    "fullyOpenTime": 0.66,
+    "nominalFlightDurationMs": 200,
+    "walkMonotonicInAllCases": true,
+    "C0Join": "Both branches meet at local camera (10, 4.5, 60), identity local direction and 52 degree FOV.",
+    "C1Monotonicity": "Cubic Hermite walk derivative is (1-u)*(slope+(6-3*slope)*u); all tested slopes are inside [0,3].",
+    "numericalDerivativeStep": 1e-06
+  },
+  "fileHashes": {
+    "app.js": "b57d958aab993f162de6a005f35d6855329f0650d37df0c560c953f69fdb9c28",
+    "entrance-scene.js": "d125ae556053a7ff531547d680565d5d15ed0a96c620af4c5d1804535a9ffaa1",
+    "interior-scene.js": "fcb21b3821d4a735b7c08b92ce5216c08319f86f9a0c53ab8346169ef8b88645",
+    "entrance-anchor.js": "c8075788ddfb4d0fca1e9e367a7b186c2bed60214e75f34b11a094c09ba500fb",
+    "assets/campus-data.json": "bc9109dc25a5a220f6b3e0844920e7635c1ab2428cde781c9b561507a8aae2f6"
+  },
+  "anomalies": [],
+  "cases": [
+    {
+      "viewport": [
+        320,
+        800
+      ],
+      "yaw": -0.38,
+      "kind": "research",
+      "span": 195.25732182550294,
+      "slope": 1.2024409681824855,
+      "crossing": 0.7312867453289793,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.257349065795854,
+      "c1error": 8.501863956707686e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014280088365126176,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000028,
+        4.500000000000002,
+        132.84918425045848
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        800
+      ],
+      "yaw": -0.38,
+      "kind": "college",
+      "span": 195.25732182550294,
+      "slope": 1.2024409681824855,
+      "crossing": 0.7312867453289793,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.257349065795854,
+      "c1error": 8.501589295402362e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014280088367968347,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.00000000000001,
+        4.5,
+        132.8491842504585
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        800
+      ],
+      "yaw": -0.38,
+      "kind": "campus",
+      "span": 195.25732182550294,
+      "slope": 1.2304047116285897,
+      "crossing": 0.739212319666358,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 15.842463933271599,
+      "c1error": 8.559914326102932e-05,
+      "angularGap": 2.9802322387695312e-08,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00013738603831825458,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999961,
+        4.5,
+        132.8491842504585
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": -0.38,
+      "kind": "research",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.147199750738567e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014534918315689538,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000028,
+        4.500000000000002,
+        128.60454319202503
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": -0.38,
+      "kind": "college",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.146805699500916e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014534918312847367,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000018,
+        4.5,
+        128.60454319202503
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": -0.38,
+      "kind": "campus",
+      "span": 169.0227483289482,
+      "slope": 1.1975564795468865,
+      "crossing": 0.741131212352678,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.22624247053559,
+      "c1error": 8.205311335051128e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00013993433776704478,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999932,
+        4.5,
+        128.604543192025
+      ]
+    },
+    {
+      "viewport": [
+        760,
+        1024
+      ],
+      "yaw": -0.38,
+      "kind": "research",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812340015207654e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107000440992,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000002,
+        124.76743167255304
+      ]
+    },
+    {
+      "viewport": [
+        760,
+        1024
+      ],
+      "yaw": -0.38,
+      "kind": "college",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812477399148507e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107003283163,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000004,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        760,
+        1024
+      ],
+      "yaw": -0.38,
+      "kind": "campus",
+      "span": 147.3640164720777,
+      "slope": 1.1663377379988435,
+      "crossing": 0.7429295343988371,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.58590687976742,
+      "c1error": 7.870980003870344e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014235622467140274,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999961,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        761,
+        1024
+      ],
+      "yaw": -0.38,
+      "kind": "research",
+      "span": 188.37807519584388,
+      "slope": 1.194460921612674,
+      "crossing": 0.731760905393954,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.352181078790792,
+      "c1error": 8.41350898818749e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.0001434343566586449,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000002,
+        131.7735918845332
+      ]
+    },
+    {
+      "viewport": [
+        761,
+        1024
+      ],
+      "yaw": -0.38,
+      "kind": "college",
+      "span": 188.37807519584388,
+      "slope": 1.194460921612674,
+      "crossing": 0.731760905393954,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.352181078790792,
+      "c1error": 8.413046270266527e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.0001434343566870666,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.00000000000001,
+        4.5,
+        131.77359188453323
+      ]
+    },
+    {
+      "viewport": [
+        761,
+        1024
+      ],
+      "yaw": -0.38,
+      "kind": "campus",
+      "span": 188.37807519584388,
+      "slope": 1.2222390825804106,
+      "crossing": 0.7396918994302728,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 15.938379886054555,
+      "c1error": 8.471305467643375e-05,
+      "angularGap": 2.9802322387695312e-08,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00013801951132563772,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999932,
+        4.5,
+        131.77359188453323
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": -0.38,
+      "kind": "research",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812340015207654e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107000440992,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000002,
+        124.76743167255304
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": -0.38,
+      "kind": "college",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812477399148507e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107003283163,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000004,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": -0.38,
+      "kind": "campus",
+      "span": 147.3640164720777,
+      "slope": 1.1663377379988435,
+      "crossing": 0.7429295343988371,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.58590687976742,
+      "c1error": 7.870980003870344e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014235622467140274,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999961,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        2560,
+        1440
+      ],
+      "yaw": -0.38,
+      "kind": "research",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812340015207654e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107000440992,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000002,
+        124.76743167255304
+      ]
+    },
+    {
+      "viewport": [
+        2560,
+        1440
+      ],
+      "yaw": -0.38,
+      "kind": "college",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812477399148507e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107003283163,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000004,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        2560,
+        1440
+      ],
+      "yaw": -0.38,
+      "kind": "campus",
+      "span": 147.3640164720777,
+      "slope": 1.1663377379988435,
+      "crossing": 0.7429295343988371,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.58590687976742,
+      "c1error": 7.870980003870344e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014235622467140274,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999961,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        1400
+      ],
+      "yaw": -0.38,
+      "kind": "research",
+      "span": 341.70031319463016,
+      "slope": 1.3269487870293617,
+      "crossing": 0.7236838930126213,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 12.736778602524247,
+      "c1error": 9.909009624013662e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00013291718923369444,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000002,
+        151.53644933386354
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        1400
+      ],
+      "yaw": -0.38,
+      "kind": "college",
+      "span": 341.70031319463016,
+      "slope": 1.3269487870293617,
+      "crossing": 0.7236838930126213,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 12.736778602524247,
+      "c1error": 9.908407939972707e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00013291718926211615,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.00000000000001,
+        4.5,
+        151.53644933386357
+      ]
+    },
+    {
+      "viewport": [
+        320,
+        1400
+      ],
+      "yaw": -0.38,
+      "kind": "campus",
+      "span": 341.70031319463016,
+      "slope": 1.3578080611463237,
+      "crossing": 0.7315073170755382,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.30146341510763,
+      "c1error": 9.966873628771977e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00012750234390068726,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999961,
+        4.5,
+        151.53644933386352
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 0,
+      "kind": "research",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812340015207654e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107000440992,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000002,
+        124.76743167255304
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 0,
+      "kind": "college",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812477399148507e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107003283163,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000004,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 0,
+      "kind": "campus",
+      "span": 147.3640164720777,
+      "slope": 1.1663377379988435,
+      "crossing": 0.7429295343988371,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.58590687976742,
+      "c1error": 7.871342784251096e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 2.9802322387695312e-08,
+      "minDz": 0.00014235622461455932,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000014,
+        4.5,
+        124.76743167255307
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 1.5707963267948966,
+      "kind": "research",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812175152930388e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 4.2146848510894035e-08,
+      "minDz": 0.00014777106996177736,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999972,
+        4.500000000000001,
+        124.76743167255306
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 1.5707963267948966,
+      "kind": "college",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812880537468375e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777107000440992,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000057,
+        4.5,
+        124.76743167255299
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 1.5707963267948966,
+      "kind": "campus",
+      "span": 147.3640164720777,
+      "slope": 1.1663377379988435,
+      "crossing": 0.7429295343988371,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.58590687976742,
+      "c1error": 7.871148123784417e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 4.2146848510894035e-08,
+      "minDz": 0.0001423562246571919,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999972,
+        4.5,
+        124.76743167255299
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 3.141592653589793,
+      "kind": "research",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812441936827843e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777106999019907,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000028,
+        4.5,
+        124.76743167255299
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 3.141592653589793,
+      "kind": "college",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812694838623974e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.0001477710699759882,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999986,
+        4.5,
+        124.76743167255296
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": 3.141592653589793,
+      "kind": "campus",
+      "span": 147.3640164720777,
+      "slope": 1.1663377379988435,
+      "crossing": 0.7429295343988371,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.58590687976742,
+      "c1error": 7.871380019662579e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014235622467140274,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000036,
+        4.5,
+        124.767431672553
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": -1.5707963267948966,
+      "kind": "research",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.813080276379248e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 2.9802322387695312e-08,
+      "minDz": 0.0001477710699759882,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000001,
+        124.76743167255302
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": -1.5707963267948966,
+      "kind": "college",
+      "span": 147.3640164720777,
+      "slope": 1.1398300621352335,
+      "crossing": 0.7349648497777346,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.992969955546908,
+      "c1error": 7.812563640982678e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014777106999019907,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000057,
+        4.500000000000001,
+        124.76743167255304
+      ]
+    },
+    {
+      "viewport": [
+        1365,
+        900
+      ],
+      "yaw": -1.5707963267948966,
+      "kind": "campus",
+      "span": 147.3640164720777,
+      "slope": 1.1663377379988435,
+      "crossing": 0.7429295343988371,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.58590687976742,
+      "c1error": 7.87112387607641e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014235622464298103,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000028,
+        4.5,
+        124.76743167255303
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 0,
+      "kind": "research",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.147199750738567e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014534918315689538,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000028,
+        4.500000000000002,
+        128.60454319202503
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 0,
+      "kind": "college",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.146805699500916e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014534918312847367,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000018,
+        4.5,
+        128.60454319202503
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 0,
+      "kind": "campus",
+      "span": 169.0227483289482,
+      "slope": 1.1975564795468865,
+      "crossing": 0.741131212352678,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.22624247053559,
+      "c1error": 8.20566899216064e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 2.9802322387695312e-08,
+      "minDz": 0.00013993433776704478,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.5,
+        128.60454319202495
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 1.5707963267948966,
+      "kind": "research",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.146468567241513e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 4.2146848510894035e-08,
+      "minDz": 0.0001453491830858411,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999972,
+        4.500000000000001,
+        128.604543192025
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 1.5707963267948966,
+      "kind": "college",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.146814755103023e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.0001453491830858411,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.5,
+        128.60454319202498
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 1.5707963267948966,
+      "kind": "campus",
+      "span": 169.0227483289482,
+      "slope": 1.1975564795468865,
+      "crossing": 0.741131212352678,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.22624247053559,
+      "c1error": 8.205323339117343e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 4.2146848510894035e-08,
+      "minDz": 0.00013993433778125564,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        9.999999999999972,
+        4.5,
+        128.60454319202495
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 3.141592653589793,
+      "kind": "research",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.146794864622445e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014534918310005196,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000057,
+        4.5,
+        128.60454319202495
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 3.141592653589793,
+      "kind": "college",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.146746824285473e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014534918310005196,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000014,
+        4.5,
+        128.604543192025
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": 3.141592653589793,
+      "kind": "campus",
+      "span": 169.0227483289482,
+      "slope": 1.1975564795468865,
+      "crossing": 0.741131212352678,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.22624247053559,
+      "c1error": 8.205363156419635e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.0001399343378238882,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000028,
+        4.5,
+        128.60454319202495
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": -1.5707963267948966,
+      "kind": "research",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.147129531845015e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 2.9802322387695312e-08,
+      "minDz": 0.00014534918307163025,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000001,
+        128.604543192025
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": -1.5707963267948966,
+      "kind": "college",
+      "span": 169.0227483289482,
+      "slope": 1.1703392868299118,
+      "crossing": 0.7331846171532888,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 14.636923430657745,
+      "c1error": 8.146665400290445e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00014534918310005196,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10,
+        4.500000000000001,
+        128.604543192025
+      ]
+    },
+    {
+      "viewport": [
+        390,
+        844
+      ],
+      "yaw": -1.5707963267948966,
+      "kind": "campus",
+      "span": 169.0227483289482,
+      "slope": 1.1975564795468865,
+      "crossing": 0.741131212352678,
+      "doorAngle": 1.7453292519943295,
+      "openMarginMs": 16.22624247053559,
+      "c1error": 8.20543889105648e-05,
+      "angularGap": 0,
+      "endPositionError": 0,
+      "endAngleError": 0,
+      "minDz": 0.00013993433776704478,
+      "collisions": [],
+      "massCollisions": [],
+      "alignmentLocal": [
+        10.000000000000028,
+        4.5,
+        128.60454319202495
+      ]
+    }
+  ],
+  "limits": [
+    "Numerical path sampling with ray intersections is not a formal continuous collision proof.",
+    "Timing values are normalized route timings evaluated at nominal 200 ms, not browser frame-duration measurements."
+  ]
+}

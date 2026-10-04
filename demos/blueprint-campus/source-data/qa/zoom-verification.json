@@ -1,0 +1,55 @@
+{
+  "date": "2026-09-07T09:27:03.496Z",
+  "checkpoints": [
+    {
+      "p": 0,
+      "phase": "card-zoom",
+      "heightScale": 0.001,
+      "mapWidth": 382.19793701171875,
+      "mapHeight": 117.14583587646484
+    },
+    {
+      "p": 0.14,
+      "phase": "card-zoom",
+      "heightScale": 0.001,
+      "mapWidth": 1047.3792724609375,
+      "mapHeight": 321.0276794433594
+    },
+    {
+      "p": 0.43,
+      "phase": "card-zoom",
+      "heightScale": 0.001,
+      "mapWidth": 3053.77685546875,
+      "mapHeight": 936
+    },
+    {
+      "p": 0.53,
+      "phase": "plan-handoff",
+      "heightScale": 0.001,
+      "mapWidth": 3053.77685546875,
+      "mapHeight": 936
+    },
+    {
+      "p": 0.74,
+      "phase": "campus-unfold",
+      "heightScale": 0.45062399999999997,
+      "mapWidth": 3053.77685546875,
+      "mapHeight": 936
+    },
+    {
+      "p": 1,
+      "phase": "campus-unfold",
+      "heightScale": 1,
+      "mapWidth": 3053.77685546875,
+      "mapHeight": 936
+    }
+  ],
+  "passed": [
+    "zoom original diagram to fill viewport before extrusion",
+    "flat SVG to WebGL handoff",
+    "reverse to original identity card",
+    "mobile fullscreen diagram / no overflow",
+    "room entry and return"
+  ],
+  "errors": []
+}

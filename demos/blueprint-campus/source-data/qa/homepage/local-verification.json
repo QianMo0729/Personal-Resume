@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-09-14T05:57:34.779Z",
+  "status": "passed",
+  "paths": [
+    "/",
+    "/index.html",
+    "/demos/blueprint-campus/"
+  ],
+  "checks": [
+    "3 entry paths render WebGL",
+    "User provided college/campus content exact and nonduplicated",
+    "Root hash navigation, reload, return and skip-link remain on root",
+    "Existing education link correct",
+    "320px quick panel and room no overflow"
+  ],
+  "errors": [],
+  "failed": []
+}

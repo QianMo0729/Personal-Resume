@@ -1,0 +1,12 @@
+Generation mode: Built-in image_gen
+Input: User-supplied original portrait; original file left unchanged.
+Generated asset: ../assets/portrait-blue.png
+
+Use case: identity-preserve.
+Asset type: portrait photo asset for a university ID card on a cobalt-blue blueprint personal portfolio.
+Input image 1 is the exact edit target and the exact identity to preserve.
+Edit only color grading and background: convert this original portrait into a subtle, natural blue monochrome photograph. Preserve the SAME PERSON with exact face shape, facial proportions, eye shape and position, nose, mouth, neutral expression, hairstyle and black blazer / black T-shirt. Do not beautify, reshape, redraw or stylize facial features. Preserve natural photographic continuous soft shading and fine hair texture.
+Portrait head-and-shoulders composition, straight on, same framing and original facial geometry. Keep complete hair with a little headroom.
+Replace white background with uniform cobalt blue close to #0839ad. Tonal mapping: deep cobalt shadow near #0738a5, gentle medium-blue midtones, restrained pale blue highlights. Natural soft contrast, photorealistic duotone, recognisable and understated. Subject separated enough to read at card size, clothing dark blue subtly merges into the cobalt backdrop near the very bottom, no abrupt rectangle around the head.
+No white dots, point cloud, mesh, wireframe, facial outlines, contour drawing, illustration, stippling, scan effect, grids, edge detection, face reconstruction, strong glow, text, graphic frames, logos, watermarks. The result should look like the ORIGINAL PHOTO with a quiet blue photographic treatment, not like a newly generated person's portrait.
+Output a single vertical portrait image only.

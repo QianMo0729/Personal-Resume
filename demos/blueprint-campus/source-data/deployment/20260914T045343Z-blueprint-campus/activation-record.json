@@ -1,0 +1,26 @@
+{
+  "recorded_at_utc": "2026-09-14T04:57:20.294020+00:00",
+  "server": "43.162.92.40",
+  "public_url": "https://www.moorn.online/demos/blueprint-campus/",
+  "release_id": "20260914T045343Z-blueprint-campus",
+  "previous_release": "/var/www/personal-resume/releases/20260816T114515Z-stats-09",
+  "active_release": "/var/www/personal-resume/releases/20260914T045343Z-blueprint-campus",
+  "archive_sha256": "41114f6c1e823405986b92a9aff5c3140b3d0031076030aaf47cb422e71c66c8",
+  "remote_activation_exit_code": 0,
+  "remote_new_files_sha256_verified": 13,
+  "existing_site_files_sha256_preserved": 14,
+  "nginx_configuration_check": "passed",
+  "nginx_service": "active",
+  "x_ui_service": "active",
+  "nginx_configuration_changed": false,
+  "services_reloaded_or_restarted": false,
+  "remote_audit_directory": "/var/www/personal-resume/incoming/20260914T045343Z-blueprint-campus",
+  "rollback": {
+    "script": "C:\\Users\\qianm\\OneDrive\\Desktop\\Personal-Resume\\demos\\blueprint-campus\\source-data\\deployment\\20260914T045343Z-blueprint-campus\\rollback-remote.sh",
+    "required_argument": "--rollback-blueprint-release",
+    "expected_active_release": "/var/www/personal-resume/releases/20260914T045343Z-blueprint-campus",
+    "restores_release": "/var/www/personal-resume/releases/20260816T114515Z-stats-09",
+    "old_release_preserved": true,
+    "instructions": "Upload the generated rollback script to /var/tmp/ and execute using interactive SSH authentication. It aborts if current points to an unexpected newer release."
+  }
+}

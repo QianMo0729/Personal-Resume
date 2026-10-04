@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-07T09:20:42.295Z",
+  "browser": "Chrome via Playwright",
+  "viewports": [
+    "1440x900",
+    "390x844",
+    "844x390",
+    "320x568"
+  ],
+  "passed": [
+    "research entry / return",
+    "college entry / return",
+    "campus entry / return",
+    "quick view / history back",
+    "mobile labels / room orientation / Escape",
+    "reduced motion early map drag",
+    "context loss inside room / return / fallback entry"
+  ],
+  "pageErrors": [],
+  "failedRequests": []
+}

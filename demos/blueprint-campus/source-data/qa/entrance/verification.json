@@ -1,0 +1,23 @@
+{
+  "date": "2026-09-07T09:51:53.757Z",
+  "browser": "Chrome via Playwright",
+  "viewports": [
+    "1440x900",
+    "390x844",
+    "844x390"
+  ],
+  "passed": [
+    "research continuous entrance / reverse return",
+    "college continuous entrance / reverse return",
+    "campus continuous entrance / reverse return",
+    "Escape reverses from current camera position",
+    "skip entrance / switch rooms through campus",
+    "browser back during room route",
+    "mobile entry / rotate during flight / reverse return",
+    "reduce motion mid-flight / instant return",
+    "WebGL loss preserves return intent",
+    "WebGL loss preserves queued destination"
+  ],
+  "pageErrors": [],
+  "failedRequests": []
+}

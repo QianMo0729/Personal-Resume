@@ -1,0 +1,21 @@
+{
+  "buildings": 111,
+  "roads": 285,
+  "waters": 9,
+  "bounds": {
+    "minX": -454,
+    "maxX": 1068,
+    "minZ": -1057,
+    "maxZ": 857
+  },
+  "heightSources": {
+    "estimated:building-type": 28,
+    "estimated:osm-building-levels": 83
+  },
+  "skippedRelations": [
+    {
+      "id": 19871797,
+      "reason": "No closed outer ring; retain independently tagged component ways instead."
+    }
+  ]
+}

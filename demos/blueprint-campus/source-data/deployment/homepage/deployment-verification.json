@@ -1,0 +1,212 @@
+{
+  "checked_at_utc": "2026-09-14T06:12:19.439825+00:00",
+  "status": "passed",
+  "release_id": "20260914T061003Z-blueprint-motion500",
+  "previous_release": "/var/www/personal-resume/releases/20260914T060021Z-blueprint-homepage",
+  "active_release": "/var/www/personal-resume/releases/20260914T061003Z-blueprint-motion500",
+  "public_url": "https://www.moorn.online/",
+  "archive_sha256": "eba457e04bc9a47941f1d5419e2975acc0bb43ef1aa005b495f60afdf35ab9e2",
+  "root": {
+    "url": "https://www.moorn.online/",
+    "status": 200,
+    "bytes": 11947,
+    "sha256": "80ff39054d5a0a12396cd087d3fcd52ba59022939ea7bd1f0725cf692f50e39b",
+    "final_url": "https://www.moorn.online/",
+    "matches_local": true
+  },
+  "apex": {
+    "url": "https://moorn.online/",
+    "status": 200,
+    "bytes": 11947,
+    "sha256": "80ff39054d5a0a12396cd087d3fcd52ba59022939ea7bd1f0725cf692f50e39b",
+    "final_url": "https://www.moorn.online/",
+    "matches_local": true
+  },
+  "apex_redirect": {
+    "url": "https://moorn.online/",
+    "status": 301,
+    "bytes": 178,
+    "sha256": "7cb59ce037656d9a4e8ee9194bc31dfc540cbc8fd5b19c64439a89631cde3715",
+    "final_url": "https://moorn.online/"
+  },
+  "resources": [
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/app.js",
+      "status": 200,
+      "bytes": 32757,
+      "sha256": "3480b103f3c8e46772b5a6f3d03143cc223e246e4647b5f96959e6cebca0c4ea",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/app.js",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/assets/campus-data.json",
+      "status": 200,
+      "bytes": 114558,
+      "sha256": "bc9109dc25a5a220f6b3e0844920e7635c1ab2428cde781c9b561507a8aae2f6",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/assets/campus-data.json",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/assets/campus-plan.svg",
+      "status": 200,
+      "bytes": 61040,
+      "sha256": "4c202a8f73d9766da32bd48881f652560bb8e2a8dc0a20aca4c99860720be4d8",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/assets/campus-plan.svg",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/assets/source-data/README.md",
+      "status": 200,
+      "bytes": 4904,
+      "sha256": "40012856bb76148502e08b453b2555d5aadc23943168e7d04558c222e458f4aa",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/assets/source-data/README.md",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/assets/sustech-logo.png",
+      "status": 200,
+      "bytes": 29867,
+      "sha256": "f39932e5426513bc51bcce0f1988697ce76d46333c9f3b256ce7112c5a39280b",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/assets/sustech-logo.png",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/entrance-anchor.js",
+      "status": 200,
+      "bytes": 5496,
+      "sha256": "c8075788ddfb4d0fca1e9e367a7b186c2bed60214e75f34b11a094c09ba500fb",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/entrance-anchor.js",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/entrance-scene.js",
+      "status": 200,
+      "bytes": 19322,
+      "sha256": "d125ae556053a7ff531547d680565d5d15ed0a96c620af4c5d1804535a9ffaa1",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/entrance-scene.js",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/index.html",
+      "status": 200,
+      "bytes": 11672,
+      "sha256": "eea52bc527ae378fa5a683928bf44a2f3234b7f60b2746fcee3fa58a669de3b9",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/index.html",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/interior-scene.js",
+      "status": 200,
+      "bytes": 29607,
+      "sha256": "fcb21b3821d4a735b7c08b92ce5216c08319f86f9a0c53ab8346169ef8b88645",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/interior-scene.js",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/styles.css",
+      "status": 200,
+      "bytes": 28485,
+      "sha256": "8944b58d234bd9710674d50ef623896546adfd4d963e9b4b8ec60976d1b04dbd",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/styles.css",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/vendor/THREE-LICENSE.txt",
+      "status": 200,
+      "bytes": 1081,
+      "sha256": "bfe119ea4fd413f5f7ca3fcd63adb0c4a073ed39daa2fe7d3e6b769e21272601",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/vendor/THREE-LICENSE.txt",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/vendor/three.core.js",
+      "status": 200,
+      "bytes": 1403455,
+      "sha256": "eb077d2417f61d3e6d9264c317cabc4ea35769ed6b0ab533067292a550784c20",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/vendor/three.core.js",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/vendor/three.module.js",
+      "status": 200,
+      "bytes": 603113,
+      "sha256": "c8211c69345d2e9949dc7a8ac969380497aa0600a5a8ac6a459c8cd02dd9cb8a",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/vendor/three.module.js",
+      "matches_local": true
+    },
+    {
+      "url": "https://www.moorn.online/index.html",
+      "status": 200,
+      "bytes": 11947,
+      "sha256": "80ff39054d5a0a12396cd087d3fcd52ba59022939ea7bd1f0725cf692f50e39b",
+      "final_url": "https://www.moorn.online/index.html",
+      "matches_local": true
+    }
+  ],
+  "preserved_routes": [
+    {
+      "url": "https://www.moorn.online/work.html",
+      "status": 200,
+      "bytes": 5061,
+      "sha256": "d336048d314f6df7e1efd1c4904017adf52e13a9573e80428d2b6f346ee87b01",
+      "final_url": "https://www.moorn.online/work.html",
+      "matches_previous": true
+    },
+    {
+      "url": "https://www.moorn.online/education.html",
+      "status": 200,
+      "bytes": 9073,
+      "sha256": "ae055ee7bd7b077c8cca5494c349d8fd9c521cf338eab0c56b07cef13cf8dbe4",
+      "final_url": "https://www.moorn.online/education.html",
+      "matches_previous": true
+    },
+    {
+      "url": "https://www.moorn.online/script.js",
+      "status": 200,
+      "bytes": 47388,
+      "sha256": "eecfe55ec2759cb128b35281cdf0ce0088cb37418cc6b8ed0f2b6613ea9c418f",
+      "final_url": "https://www.moorn.online/script.js",
+      "matches_previous": true
+    },
+    {
+      "url": "https://www.moorn.online/styles.css",
+      "status": 200,
+      "bytes": 60623,
+      "sha256": "8d00239f765bd652757c3145de883b5a8b3898614971dc8c56a7ff42054d6d86",
+      "final_url": "https://www.moorn.online/styles.css",
+      "matches_previous": true
+    },
+    {
+      "url": "https://www.moorn.online/demos/hardnest/",
+      "status": 200,
+      "bytes": 42442,
+      "sha256": "28527dffc9124ddfa168b50c9209cb995a7dca081cc4ecb7accbb01bfd42b896",
+      "final_url": "https://www.moorn.online/demos/hardnest/",
+      "matches_previous": true
+    }
+  ],
+  "excluded_paths": [
+    {
+      "url": "https://www.moorn.online/.git/config",
+      "status": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "final_url": "https://www.moorn.online/.git/config"
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/assets/portrait-blue.png",
+      "status": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/assets/portrait-blue.png"
+    },
+    {
+      "url": "https://www.moorn.online/demos/blueprint-campus/source-data/deployment/homepage/prepare_homepage.py",
+      "status": 404,
+      "bytes": 146,
+      "sha256": "55f7d9e99b8e2d4e0e193b2f0275501e6d9c1ebd29cadbea6a0da48a8587e3e0",
+      "final_url": "https://www.moorn.online/demos/blueprint-campus/source-data/deployment/homepage/prepare_homepage.py"
+    }
+  ],
+  "scope": "Public HTTPS file hashes and routing. Browser interactions are checked independently by the root agent."
+}
