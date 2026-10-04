@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>宋和 | 教育与产品实践</title>
+    <title>宋和 | 经历</title>
     <meta
       name="description"
-      content="宋和的教育与校园实践：南方科技大学本科在读，关注产品定义、AI 能力产品化与 0→1 交付。"
+      content="宋和的经历：众白科技实习、南方科技大学的科研与校园实践，目标岗位为 AI 产品经理。"
     />
-    <meta property="og:title" content="宋和 | 教育与产品实践" />
+    <meta property="og:title" content="宋和 | 经历" />
     <meta
       property="og:description"
-      content="宋和的教育与校园实践：南方科技大学本科在读，关注产品定义、AI 能力产品化与 0→1 交付。"
+      content="宋和的经历：众白科技实习、南方科技大学的科研与校园实践，目标岗位为 AI 产品经理。"
     />
     <meta property="og:type" content="website" />
     <link
@@ -28,7 +28,7 @@
       type="font/woff2"
       crossorigin
     />
-    <link rel="stylesheet" href="styles.css?v=20261003-cleanup" />
+    <link rel="stylesheet" href="styles.css?v=20261004-experience" />
   </head>
   <body data-page="education">
     <a class="skip-link" href="#top" data-i18n="skipLink">跳到主体内容</a>
@@ -39,10 +39,10 @@
     </a>
     <div class="chip status-chip" role="status">
       <span class="status-dot" aria-hidden="true"></span>
-      <span data-i18n="statusPill">在找 AI 产品实习</span>
+      <span data-i18n="statusPill">在找 AI 产品经理实习</span>
     </div>
 
-    <nav class="dock" data-dock aria-label="主导航">
+    <nav class="dock" data-dock aria-label="主导航" data-i18n-aria-label="navMain">
       <a class="dock-item" href="index.html">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M3.5 10.5 12 3.5l8.5 7" />
@@ -56,7 +56,7 @@
           <path d="M6 11.3V16c0 1.6 2.7 3 6 3s6-1.4 6-3v-4.7" />
           <path d="M22 9v5" />
         </svg>
-        <span class="dock-label" data-i18n="dockEducation">教育</span>
+        <span class="dock-label" data-i18n="dockEducation">经历</span>
       </a>
       <a class="dock-item" href="work.html">
         <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -67,6 +67,13 @@
         </svg>
         <span class="dock-label" data-i18n="dockWork">案例</span>
       </a>
+      <a class="dock-item" href="contact.html">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 3 3.8 10.2l7 2.5 2.6 6.9L21 3Z" />
+          <path d="M10.8 12.7 21 3" />
+        </svg>
+        <span class="dock-label" data-i18n="dockContact">联系</span>
+      </a>
       <span class="dock-sep" aria-hidden="true"></span>
       <button class="dock-item dock-lang" type="button" data-lang-toggle aria-label="Switch language">
         <span data-lang-current>EN</span>
@@ -75,15 +82,103 @@
     </nav>
 
     <main id="top">
-      <section class="section education">
+      <header class="section page-lead">
+        <div class="section-inner">
+          <p class="kicker" data-rise data-i18n="xpKicker">经历</p>
+          <h1 class="sec-title" data-rise data-delay="1" data-i18n="xpTitle">实习、科研与校园。</h1>
+          <nav class="jump-row" data-rise data-delay="2" aria-label="页内导航" data-i18n-aria-label="xpNavAria">
+            <a href="#internship" data-i18n="xpNavIntern">实习</a>
+            <a href="#research" data-i18n="xpNavResearch">科研</a>
+            <a href="#education" data-i18n="xpNavEdu">教育</a>
+            <a href="#campus" data-i18n="xpNavCampus">校园与书院</a>
+          </nav>
+        </div>
+      </header>
+
+      <section class="section xp xp-intern" id="internship">
         <span class="sec-num" aria-hidden="true">01</span>
+        <div class="section-inner">
+          <p class="kicker" data-rise data-i18n="internKicker">实习</p>
+          <h2 class="sec-title" data-rise data-delay="1" data-i18n="internTitle">众白科技</h2>
+          <p class="sec-note" data-rise data-delay="2" data-i18n="internNote">
+            校外实习。参与深圳进化酒馆黑客松的筹备，担任技术与产品团队负责人。
+          </p>
+          <div class="xp-list">
+            <article class="xp-item" data-rise>
+              <div class="xp-when">
+                <span class="xp-period" data-i18n="internWhen">2026.09.21 – 24</span>
+                <span class="xp-tag" data-i18n="internWhenLabel">活动时间</span>
+              </div>
+              <div class="xp-main">
+                <h3 data-i18n="internOrg">深圳进化酒馆黑客松</h3>
+                <p data-i18n="internRole">技术与产品团队负责人</p>
+              </div>
+              <div class="xp-body">
+                <p data-i18n="internDesc">参与进化酒馆 Agent 黑客松深圳收官场的筹备工作。活动连续四天，设四个赛道。</p>
+                <div class="case-links">
+                  <a href="https://hackathon.evomap.ai/shenzhen" target="_blank" rel="noreferrer"><span data-i18n="internLinkEvent">黑客松官网</span> ↗</a>
+                  <a href="http://www.zhonbai.top" target="_blank" rel="noreferrer"><span data-i18n="internLinkCompany">众白科技</span> ↗</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section xp xp-research" id="research">
+        <span class="sec-num" aria-hidden="true">02</span>
+        <div class="section-inner">
+          <p class="kicker" data-rise data-i18n="researchKicker">科研</p>
+          <h2 class="sec-title" data-rise data-delay="1" data-i18n="researchTitle">从脑机接口，到数据可视化。</h2>
+          <p class="sec-note" data-rise data-delay="2" data-i18n="researchNote">
+            先后进入两个实验室：先做脑机接口解码，现在转向可视化方向。
+          </p>
+          <div class="xp-list">
+            <article class="xp-item" data-rise>
+              <div class="xp-when">
+                <span class="xp-period" data-i18n="lab1When">2026.09 加入</span>
+                <span class="xp-tag" data-i18n="lab1Tag">当前</span>
+              </div>
+              <div class="xp-main">
+                <h3 data-i18n="lab1Org">马昱欣实验室</h3>
+                <p data-i18n="lab1Role">可视化方向</p>
+              </div>
+              <div class="xp-body">
+                <p data-i18n="lab1Desc">围绕数据可视化与可视分析，探索信息如何被理解、表达与使用。刚加入，课题确定中。</p>
+                <div class="case-links">
+                  <a href="https://www.sustech.edu.cn/zh/faculties/mayuxin.html" target="_blank" rel="noreferrer"><span data-i18n="lab1Link">实验室研究方向</span> ↗</a>
+                </div>
+              </div>
+            </article>
+            <article class="xp-item" data-rise data-delay="1">
+              <div class="xp-when">
+                <span class="xp-period" data-i18n="lab2When">2026.04 加入</span>
+                <span class="xp-tag" data-i18n="lab2Tag">此前</span>
+              </div>
+              <div class="xp-main">
+                <h3 data-i18n="lab2Org">脑-机器人实验室</h3>
+                <p data-i18n="lab2Role">张明明老师课题组 · 脑机接口相对距离解码</p>
+              </div>
+              <div class="xp-body">
+                <ul>
+                  <li data-i18n="lab2Point1">尝试用新的神经网络模型做代码适配与调参，对比 MAE 与 CC 能否进一步提升。</li>
+                  <li data-i18n="lab2Point2">负责代码的修改与维护。</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section education" id="education">
+        <span class="sec-num" aria-hidden="true">03</span>
         <div class="section-inner">
           <div class="edu-grid">
             <div class="edu-copy">
               <p class="kicker" data-rise data-i18n="eduKicker">教育</p>
               <h2 class="sec-title" data-rise data-delay="1" data-i18n="eduTitle">南方科技大学</h2>
               <p class="sec-note" data-rise data-delay="2" data-i18n="eduNote">
-                通识与学科基础部，本科在读。平时关注产品怎么定义、AI 怎么变成真能用的功能，也会把课上和生活里遇到的问题做成实际的东西。
+                计算机科学与技术专业，2025 级本科在读，预计 2029 年毕业。平时关注产品怎么定义、AI 怎么变成真能用的功能，也会把课上和生活里遇到的问题做成实际的东西。
               </p>
               <p class="focus-label" data-rise data-delay="3" data-i18n="eduFocusLabel">关注方向</p>
               <div class="chip-row" data-rise data-delay="3">
@@ -111,8 +206,8 @@
                     <dd data-i18n="idRole">本科在读</dd>
                   </div>
                   <div>
-                    <dt data-i18n="idField2">院系</dt>
-                    <dd data-i18n="idDept">通识与学科基础部</dd>
+                    <dt data-i18n="idField2">专业</dt>
+                    <dd data-i18n="idDept">计算机科学与技术</dd>
                   </div>
                   <div>
                     <dt data-i18n="idField3">年份</dt>
@@ -132,50 +227,44 @@
       </section>
 
       <section class="section campus" id="campus">
-        <span class="sec-num" aria-hidden="true">02</span>
+        <span class="sec-num" aria-hidden="true">04</span>
         <div class="section-inner">
-          <p class="kicker" data-rise data-i18n="campusKicker">校园</p>
+          <p class="kicker" data-rise data-i18n="campusKicker">校园与书院</p>
           <div class="sec-head">
             <h2 class="sec-title" data-rise data-delay="1" data-i18n="campusTitle">校园里的问题，也当成题目来做。</h2>
             <p class="sec-note" data-rise data-delay="2" data-i18n="campusNote">
-              学生会、提案大赛、学生发展与指导中心，以及 SSVEP 脑机接口竞赛项目——在校园里练习协作、表达与落地。
+              校园提案大赛、学生互助工作组和树仁书院学生会——在校园里练习发现问题、协作与落地。
             </p>
           </div>
           <div class="campus-grid">
-            <article class="card" data-rise style="--accent: #2fbf9b">
-              <div class="card-media" style="background-image: url('assets/product-capability-card.webp')">
+            <article class="card" data-rise style="--accent: #e8890c">
+              <div class="card-media" style="background-image: url('assets/campus-proposal-card.webp')">
                 <span class="card-no">01</span>
               </div>
               <div class="card-body">
-                <h3 data-i18n="campusC1Title">学生会</h3>
-                <p data-i18n="campusC1Desc">跨部门协作，推动校园活动落地。</p>
+                <h3 data-i18n="campusC1Title">校园提案大赛 · 一等奖</h3>
+                <p data-i18n="campusC1Desc">“权系你我·智汇南科”校园提案大赛，四人团队，全场唯一的一等奖。提案主题是校园电动车整治：我提出电动车道“两侧低、中间高，弯多易打滑”的问题，是所有提案中唯一引发热烈讨论的议题。</p>
               </div>
             </article>
-            <article class="card" data-rise data-delay="1" style="--accent: #e8890c">
-              <div class="card-media" style="background-image: url('assets/campus-proposal-card.webp')">
+            <article class="card" data-rise data-delay="1" style="--accent: #6e5bff">
+              <div class="card-media" style="background-image: url('assets/sustech-education-blur.webp')">
                 <span class="card-no">02</span>
               </div>
               <div class="card-body">
-                <h3 data-i18n="campusC2Title">提案大赛</h3>
-                <p data-i18n="campusC2Desc">校园提案 · 一等奖。</p>
+                <h3 data-i18n="campusC2Title">学生互助工作组</h3>
+                <p data-i18n="campusC2Desc">隶属学生发展与指导中心。负责“树仁卷心菜”群聊的管理与维护，参与搭子匹配的方案讨论，并负责系统开发。</p>
+                <div class="case-links">
+                  <a href="work.html#case-shuren-buddy"><span data-i18n="campusC2Link">查看树仁搭子案例</span> →</a>
+                </div>
               </div>
             </article>
-            <article class="card" data-rise data-delay="2" style="--accent: #6e5bff">
-              <div class="card-media" style="background-image: url('assets/sustech-education-blur.webp')">
+            <article class="card" data-rise data-delay="2" style="--accent: #2fbf9b">
+              <div class="card-media" style="background-image: url('assets/product-capability-card.webp')">
                 <span class="card-no">03</span>
               </div>
               <div class="card-body">
-                <h3 data-i18n="campusC3Title">学生发展与指导中心</h3>
-                <p data-i18n="campusC3Desc">服务同学的成长与发展。</p>
-              </div>
-            </article>
-            <article class="card" data-rise data-delay="3" style="--accent: #0a84ff">
-              <div class="card-media card-media--signal">
-                <span class="card-no">04</span>
-              </div>
-              <div class="card-body">
-                <h3 data-i18n="campusC4Title">SSVEP 脑机接口机器人控制系统</h3>
-                <p data-i18n="campusC4Desc">中国国际大学生创新大赛项目。</p>
+                <h3 data-i18n="campusC3Title">树仁书院学生会 · 秘书处</h3>
+                <p data-i18n="campusC3Desc">负责会议纪要的撰写与整理，以及物资采购。</p>
               </div>
             </article>
           </div>
@@ -193,6 +282,6 @@
       </div>
     </footer>
 
-    <script src="script.js?v=20261003-cleanup"></script>
+    <script src="script.js?v=20261004-experience"></script>
   </body>
 </html>

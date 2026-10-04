@@ -1,17 +1,17 @@
 # Song He Portfolio Site
 
-纯静态个人作品网站，多页面结构（首页 / 教育 / 案例）。首页是「校园蓝图」3D 场景：从一张校园卡展开成可旋转的南科大校园，点击建筑进入对应经历。教育与案例页是「Paper / Ink」视觉：瓷白纸面纹理底色，薄荷 / 鸢尾紫 / 琥珀强调色，毛玻璃面板，macOS 风格底部 Dock 导航，手机陀螺仪校牌，页脚签名动画。教育与案例页支持中 / 英双语（Dock 内切换，localStorage 记忆）。
+纯静态个人作品网站，多页面结构（首页 / 经历 / 案例 / 联系）。首页是「校园蓝图」3D 场景：从一张校园卡展开成可旋转的南科大校园，点击标记进入科研、校园与书院、实习三类经历。经历、案例与联系页是「Paper / Ink」视觉：瓷白纸面纹理底色，薄荷 / 鸢尾紫 / 琥珀强调色，毛玻璃面板，macOS 风格底部 Dock 导航，手机陀螺仪校牌，页脚签名动画。这三页支持中 / 英双语（Dock 内切换，localStorage 记忆）。
 
 ## 文件结构
 
 - `index.html`：首页。内容与 `demos/blueprint-campus/index.html` 相同，只多了 `<base href="/demos/blueprint-campus/">` 和 canonical，两份需要同步修改
 - `demos/blueprint-campus/`：首页的样式、场景脚本、校园数据与 Three.js（`vendor/` 下为官方 0.180.0 压缩版），详见该目录的 README
-- `education.html` / `work.html`：Dock 对应的独立分页
-  - `education.html` 含两个板块：`01 教育`（陀螺仪学生卡 + 关注方向）与 `02 校园经历`（四张卡片）
-  - `work.html` 含已上线案例与「其他实践」卡片，均由 `script.js` 渲染
-- `contact.html`：联系页，目前未接入导航，也未随站点发布
-- `styles.css`：教育 / 案例 / 联系页共用的视觉样式、动效关键帧与响应式布局
-- `script.js`：教育 / 案例 / 联系页共用的 i18n、作品数据、Dock 放大与指针交互（按 `body[data-page]` 识别当前页）。首页不加载这两个文件
+- `education.html` / `work.html` / `contact.html`：Dock 对应的独立分页
+  - `education.html` 是「经历」页，文件名保留以免旧链接失效。四个板块依次为 `01 实习`、`02 科研`、`03 教育`（陀螺仪学生卡 + 关注方向）与 `04 校园与书院`（三张卡片），文案在 `script.js` 的 `translations` 里
+  - `work.html` 含主案例与「其他实践」卡片，均由 `script.js` 渲染
+  - `contact.html` 是联系页：邮箱、电话与 GitHub
+- `styles.css`：经历 / 案例 / 联系页共用的视觉样式、动效关键帧与响应式布局
+- `script.js`：经历 / 案例 / 联系页共用的 i18n、作品数据、Dock 放大与指针交互（按 `body[data-page]` 识别当前页）。首页不加载这两个文件
 - `assets/`：卡片图片（WebP）与字体
 - `.github/workflows/deploy-pages.yml`：GitHub Pages 静态部署工作流
 
@@ -35,7 +35,7 @@
 },
 ```
 
-这样会出现在「其他实践」的小卡片里。想让它成为整行展示的主案例，再加上 `primary: true`，并补全 `role`、`decision`（必填）和 `metrics`（可选），写法参考数组里已有的三个案例。
+这样会出现在「其他实践」的小卡片里。没有图片时可以用 `media: "signal"` 换成信号波形底图。想让它成为整行展示的主案例，再加上 `primary: true`，并补上 `role`、`decision` 和 `metrics`（都可选，建议写全），写法参考数组里已有的案例。主案例数量变化后，记得同步修改 `casesTitle` 里的数字。
 
 ## GitHub Pages
 

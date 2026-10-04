@@ -18,20 +18,59 @@ const translations = {
     pageTitle: "宋和 | AI 产品经理方向",
     pageDescription:
       "宋和的 AI 产品经理作品集：从问题定义、体验设计到 AI 协作交付与公开上线。",
+    pageTitle_education: "宋和 | 经历",
     pageDescription_education:
-      "宋和的教育与校园实践：南方科技大学本科在读，关注产品定义、AI 能力产品化与 0→1 交付。",
+      "宋和的经历：众白科技实习、南方科技大学的科研与校园实践，目标岗位为 AI 产品经理。",
+    pageTitle_work: "宋和 | AI 产品案例",
     pageDescription_work:
       "宋和的 AI 产品案例：用真实上线结果呈现产品定义、AI 能力产品化、体验设计与 0→1 交付。",
+    pageTitle_contact: "宋和 | 联系",
+    pageDescription_contact: "联系宋和：邮箱、电话与 GitHub。目标岗位为 AI 产品经理。",
     skipLink: "跳到主体内容",
-    statusPill: "在找 AI 产品实习",
+    statusPill: "在找 AI 产品经理实习",
+    navMain: "主导航",
     dockHome: "首页",
-    dockEducation: "教育",
+    dockEducation: "经历",
     dockWork: "案例",
+    dockContact: "联系",
     dockLang: "语言",
     langAria: "Switch to English",
+    xpKicker: "经历",
+    xpTitle: "实习、科研与校园。",
+    xpNavAria: "页内导航",
+    xpNavIntern: "实习",
+    xpNavResearch: "科研",
+    xpNavEdu: "教育",
+    xpNavCampus: "校园与书院",
+    internKicker: "实习",
+    internTitle: "众白科技",
+    internNote: "校外实习。参与深圳进化酒馆黑客松的筹备，担任技术与产品团队负责人。",
+    internWhen: "2026.09.21 – 24",
+    internWhenLabel: "活动时间",
+    internOrg: "深圳进化酒馆黑客松",
+    internRole: "技术与产品团队负责人",
+    internDesc: "参与进化酒馆 Agent 黑客松深圳收官场的筹备工作。活动连续四天，设四个赛道。",
+    internLinkEvent: "黑客松官网",
+    internLinkCompany: "众白科技",
+    researchKicker: "科研",
+    researchTitle: "从脑机接口，到数据可视化。",
+    researchNote: "先后进入两个实验室：先做脑机接口解码，现在转向可视化方向。",
+    lab1When: "2026.09 加入",
+    lab1Tag: "当前",
+    lab1Org: "马昱欣实验室",
+    lab1Role: "可视化方向",
+    lab1Desc: "围绕数据可视化与可视分析，探索信息如何被理解、表达与使用。刚加入，课题确定中。",
+    lab1Link: "实验室研究方向",
+    lab2When: "2026.04 加入",
+    lab2Tag: "此前",
+    lab2Org: "脑-机器人实验室",
+    lab2Role: "张明明老师课题组 · 脑机接口相对距离解码",
+    lab2Point1: "尝试用新的神经网络模型做代码适配与调参，对比 MAE 与 CC 能否进一步提升。",
+    lab2Point2: "负责代码的修改与维护。",
     eduKicker: "教育",
     eduTitle: "南方科技大学",
-    eduNote: "通识与学科基础部，本科在读。平时关注产品怎么定义、AI 怎么变成真能用的功能，也会把课上和生活里遇到的问题做成实际的东西。",
+    eduNote:
+      "计算机科学与技术专业，2025 级本科在读，预计 2029 年毕业。平时关注产品怎么定义、AI 怎么变成真能用的功能，也会把课上和生活里遇到的问题做成实际的东西。",
     eduFocusLabel: "关注方向",
     focusProduct: "产品定义",
     focusInteraction: "体验设计",
@@ -44,50 +83,99 @@ const translations = {
     gyroDenied: "未获得动作权限，校牌保持静态。",
     idField1: "身份",
     idRole: "本科在读",
-    idField2: "院系",
-    idDept: "通识与学科基础部",
+    idField2: "专业",
+    idDept: "计算机科学与技术",
     idField3: "年份",
-    campusKicker: "校园",
+    campusKicker: "校园与书院",
     campusTitle: "校园里的问题，也当成题目来做。",
     campusNote:
-      "学生会、提案大赛、学生发展与指导中心，以及 SSVEP 脑机接口竞赛项目——在校园里练习协作、表达与落地。",
-    campusC1Title: "学生会",
-    campusC1Desc: "跨部门协作，推动校园活动落地。",
-    campusC2Title: "提案大赛",
-    campusC2Desc: "校园提案 · 一等奖。",
-    campusC3Title: "学生发展与指导中心",
-    campusC3Desc: "服务同学的成长与发展。",
-    campusC4Title: "SSVEP 脑机接口机器人控制系统",
-    campusC4Desc: "中国国际大学生创新大赛项目。",
+      "校园提案大赛、学生互助工作组和树仁书院学生会——在校园里练习发现问题、协作与落地。",
+    campusC1Title: "校园提案大赛 · 一等奖",
+    campusC1Desc:
+      "“权系你我·智汇南科”校园提案大赛，四人团队，全场唯一的一等奖。提案主题是校园电动车整治：我提出电动车道“两侧低、中间高，弯多易打滑”的问题，是所有提案中唯一引发热烈讨论的议题。",
+    campusC2Title: "学生互助工作组",
+    campusC2Desc:
+      "隶属学生发展与指导中心。负责“树仁卷心菜”群聊的管理与维护，参与搭子匹配的方案讨论，并负责系统开发。",
+    campusC2Link: "查看树仁搭子案例",
+    campusC3Title: "树仁书院学生会 · 秘书处",
+    campusC3Desc: "负责会议纪要的撰写与整理，以及物资采购。",
     casesKicker: "案例",
-    casesTitle: "三个项目，从开发到部署上线。",
+    casesTitle: "五个项目，从开发到上线。",
     roleLabel: "我的职责",
     decisionLabel: "关键取舍",
     otherKicker: "其他实践",
-    otherTitle: "课程与校园里的产品练习",
-    pageTitle_education: "宋和 | 教育与产品实践",
-    pageTitle_work: "宋和 | AI 产品案例",
+    otherTitle: "课程与竞赛里的产品练习",
+    contactKicker: "联系",
+    contactTitle: "来聊聊。",
+    contactNote: "日常实习、项目协作，或只是聊聊设计与产品——都欢迎。",
+    contactMail: "发邮件 ↗",
+    contactCopy: "复制邮箱",
+    contactCopied: "已复制",
     footRights: "保留所有权利。",
   },
   en: {
     pageTitle: "Song He | AI Product Management",
     pageDescription:
       "Song He's AI product management portfolio: problem framing, experience design, AI-assisted delivery, and public launches.",
+    pageTitle_education: "Song He | Experience",
     pageDescription_education:
-      "Song He's education and campus practice at SUSTech, focused on product framing, AI capability productization, and 0-to-1 delivery.",
+      "Song He's experience: an internship at Zhonbai, research and campus practice at SUSTech, aiming for AI product management.",
+    pageTitle_work: "Song He | AI Product Cases",
     pageDescription_work:
       "Song He's AI product cases, with shipped evidence across product framing, AI capability productization, experience design, and 0-to-1 delivery.",
+    pageTitle_contact: "Song He | Contact",
+    pageDescription_contact:
+      "Contact Song He by email, phone, or GitHub. Aiming for AI product management.",
     skipLink: "Skip to main content",
-    statusPill: "Looking for an AI product internship",
+    statusPill: "Seeking an AI product manager internship",
+    navMain: "Main navigation",
     dockHome: "Home",
-    dockEducation: "Education",
+    dockEducation: "Experience",
     dockWork: "Cases",
+    dockContact: "Contact",
     dockLang: "Lang",
     langAria: "切换到中文",
+    xpKicker: "Experience",
+    xpTitle: "Internship, research, and campus.",
+    xpNavAria: "On this page",
+    xpNavIntern: "Internship",
+    xpNavResearch: "Research",
+    xpNavEdu: "Education",
+    xpNavCampus: "Campus & College",
+    internKicker: "Internship",
+    internTitle: "Zhonbai Technology",
+    internNote:
+      "Off-campus internship. Helped organize the EvoTavern hackathon in Shenzhen as lead of the technology and product team.",
+    internWhen: "Sep 21 – 24, 2026",
+    internWhenLabel: "Event dates",
+    internOrg: "EvoTavern Hackathon · Shenzhen",
+    internRole: "Technology & Product Team Lead",
+    internDesc:
+      "Helped prepare the Shenzhen final round of the EvoTavern Agent Hackathon, a four-day event with four tracks.",
+    internLinkEvent: "Hackathon site",
+    internLinkCompany: "Zhonbai",
+    researchKicker: "Research",
+    researchTitle: "From brain-computer interfaces to data visualization.",
+    researchNote:
+      "Two labs so far: first brain-computer interface decoding, now visualization.",
+    lab1When: "Joined 2026.09",
+    lab1Tag: "Current",
+    lab1Org: "Yuxin Ma's Lab",
+    lab1Role: "Visualization",
+    lab1Desc:
+      "Data visualization and visual analytics: how information is understood, expressed, and used. Newly joined; the research topic is being defined.",
+    lab1Link: "Lab research areas",
+    lab2When: "Joined 2026.04",
+    lab2Tag: "Previous",
+    lab2Org: "Brain–Robot Lab",
+    lab2Role: "Prof. Mingming Zhang's group · Relative-distance decoding for brain-computer interfaces",
+    lab2Point1:
+      "Adapted new neural-network models to the existing code and tuned them to test whether MAE and CC could improve further.",
+    lab2Point2: "Modified and maintained the code.",
     eduKicker: "Education",
     eduTitle: "SUSTech",
     eduNote:
-      "Undergraduate in General & Foundational Studies. I spend my time on how products get defined and how AI turns into features people can actually use, and I build things out of problems I run into in class and daily life.",
+      "Undergraduate in Computer Science and Technology, enrolled 2025, expected to graduate in 2029. I spend my time on how products get defined and how AI turns into features people can actually use, and I build things out of problems I run into in class and daily life.",
     eduFocusLabel: "Focus",
     focusProduct: "Product Framing",
     focusInteraction: "Experience Design",
@@ -100,29 +188,35 @@ const translations = {
     gyroDenied: "Motion permission was not granted. The card stays static.",
     idField1: "Status",
     idRole: "Undergraduate",
-    idField2: "Department",
-    idDept: "General & Foundational Studies",
+    idField2: "Major",
+    idDept: "Computer Science & Technology",
     idField3: "Years",
-    campusKicker: "Campus",
+    campusKicker: "Campus & College",
     campusTitle: "Campus problems, treated as things to actually solve.",
     campusNote:
-      "Student Union, the proposal competition, the Student Development Center, and an SSVEP brain-computer interface competition project — practicing collaboration, communication, and delivery.",
-    campusC1Title: "Student Union",
-    campusC1Desc: "Cross-team collaboration to deliver campus events.",
-    campusC2Title: "Proposal Competition",
-    campusC2Desc: "Campus proposal · First prize.",
-    campusC3Title: "Student Development Center",
-    campusC3Desc: "Supporting students' growth and development.",
-    campusC4Title: "SSVEP Brain-Computer Interface Robot Control",
-    campusC4Desc: "Entry in the China International College Students' Innovation Competition.",
+      "A proposal competition, the Peer Support Working Group, and the Shuren College Student Union — practicing problem finding, collaboration, and delivery on campus.",
+    campusC1Title: "Campus Proposal Competition · First Prize",
+    campusC1Desc:
+      "SUSTech's campus proposal competition “权系你我·智汇南科”. Team of four; the only first prize awarded. Our proposal addressed e-bike management on campus: I raised that the e-bike lane is low at the edges, high in the middle, and winding, which makes it easy to skid. It was the only issue among all proposals that sparked heated discussion.",
+    campusC2Title: "Peer Support Working Group",
+    campusC2Desc:
+      "Part of the Student Development Center. I manage and maintain the “Shuren Cabbage” group chat, take part in designing the study-buddy matching scheme, and build the system.",
+    campusC2Link: "See the Shuren Study Buddy case",
+    campusC3Title: "Shuren College Student Union · Secretariat",
+    campusC3Desc: "Write and organize meeting minutes, and handle supply purchasing.",
     casesKicker: "Cases",
-    casesTitle: "Three projects, from build to launch.",
+    casesTitle: "Five projects, from build to launch.",
     roleLabel: "My role",
     decisionLabel: "Key trade-off",
     otherKicker: "Other Practice",
-    otherTitle: "Product practice in coursework and campus life",
-    pageTitle_education: "Song He | Education & Product Practice",
-    pageTitle_work: "Song He | AI Product Cases",
+    otherTitle: "Product practice in coursework and competitions",
+    contactKicker: "Contact",
+    contactTitle: "Let's talk.",
+    contactNote:
+      "Internships, project collaboration, or just a chat about design and product — all welcome.",
+    contactMail: "Send email ↗",
+    contactCopy: "Copy email",
+    contactCopied: "Copied",
     footRights: "All rights reserved.",
   },
 };
@@ -161,6 +255,10 @@ const projects = [
       {
         label: { zh: "查看 Live Demo", en: "View Live Demo" },
         href: "/demos/hardnest/",
+      },
+      {
+        label: { zh: "GitHub", en: "GitHub" },
+        href: "https://github.com/QianMo0729/HardNest",
       },
     ],
   },
@@ -254,6 +352,80 @@ const projects = [
     ],
   },
   {
+    id: "shuren-buddy",
+    primary: true,
+    accent: "#0d7a6f",
+    image: "assets/shuren-buddy-card.webp",
+    status: { zh: "LIVE · 已部署", en: "LIVE · DEPLOYED" },
+    tags: {
+      zh: ["校园场景", "匹配推荐", "隐私边界"],
+      en: ["Campus use case", "Matching", "Privacy boundary"],
+    },
+    title: { zh: "树仁搭子", en: "Shuren Study Buddy" },
+    metrics: [
+      { k: { zh: "校园邮箱", en: "Campus email" }, v: { zh: "验证后激活", en: "Verified sign-up" } },
+      { k: { zh: "学习问卷", en: "Study survey" }, v: { zh: "生成推荐", en: "Drives matching" } },
+      { k: { zh: "联系申请", en: "Contact request" }, v: { zh: "双方同意", en: "Mutual consent" } },
+    ],
+    desc: {
+      zh: "面向南科大树仁书院同学的学习搭子匹配平台。校园邮箱激活后填写学习问卷，系统按时间、目标和学习偏好推荐合拍的同学，也可以主动检索。",
+      en: "A study-buddy matching platform for students of SUSTech's Shuren College. After campus-email activation and a study survey, it recommends compatible peers by schedule, goals, and study preferences, and also supports direct search.",
+    },
+    role: {
+      zh: "在学生互助工作组参与搭子匹配的方案讨论，并负责系统开发。",
+      en: "Took part in designing the matching scheme within the Peer Support Working Group, and built the system.",
+    },
+    decision: {
+      zh: "联系方式只在联系申请被对方接受后才向双方开放；账号必须通过校园邮箱验证。",
+      en: "Contact details open to both sides only after a request is accepted; every account must verify a campus email.",
+    },
+    links: [
+      {
+        label: { zh: "在线访问", en: "Visit site" },
+        href: "https://pair.moorn.online/",
+      },
+      {
+        label: { zh: "GitHub", en: "GitHub" },
+        href: "https://github.com/QianMo0729/shuren-study-buddy",
+      },
+    ],
+  },
+  {
+    id: "markpdf",
+    primary: true,
+    accent: "#3f5bd8",
+    image: "assets/markpdf-card.webp",
+    status: { zh: "桌面应用 · 已发布", en: "DESKTOP APP · RELEASED" },
+    tags: {
+      zh: ["AI 能力产品化", "学习工具", "桌面应用"],
+      en: ["AI productization", "Study tool", "Desktop app"],
+    },
+    title: { zh: "MarkPDF", en: "MarkPDF" },
+    metrics: [
+      { k: { zh: "双平台", en: "Two platforms" }, v: { zh: "Windows 与 macOS", en: "Windows & macOS" } },
+      { k: { zh: "实时转写", en: "Live transcript" }, v: { zh: "逐句翻译", en: "Sentence translation" } },
+      { k: { zh: "AI 纠错", en: "AI correction" }, v: { zh: "默认关闭", en: "Off by default" } },
+    ],
+    desc: {
+      zh: "把 PDF、Markdown 笔记和课堂录音放在一起：围绕同一份课件阅读、标注、记录和回听，笔记、转写与翻译面板可以自由分栏。",
+      en: "Brings PDFs, Markdown notes, and lecture recordings together: read, annotate, record, and replay around the same slides, with notes, transcript, and translation panels in flexible splits.",
+    },
+    decision: {
+      zh: "上下文纠错默认关闭，使用用户自己配置的 AI 服务；修正后仍可展开核对原始转写。",
+      en: "Context-aware correction is off by default and runs on the user's own AI service; the original transcript stays one click away after a fix.",
+    },
+    links: [
+      {
+        label: { zh: "下载", en: "Download" },
+        href: "https://github.com/QianMo0729/MarkPDF/releases/latest",
+      },
+      {
+        label: { zh: "GitHub", en: "GitHub" },
+        href: "https://github.com/QianMo0729/MarkPDF",
+      },
+    ],
+  },
+  {
     id: "xiangqi",
     accent: "#c0453a",
     image: "assets/xiangqi-card.webp",
@@ -272,22 +444,16 @@ const projects = [
     ],
   },
   {
-    id: "campus",
-    accent: "#e8890c",
-    image: "assets/campus-proposal-card.webp",
-    status: { zh: "校园实践", en: "CAMPUS PRACTICE" },
-    tags: { zh: ["问题调研", "方案表达"], en: ["Problem research", "Proposal"] },
-    title: { zh: "校园提案 · 一等奖", en: "Campus Proposal · First Prize" },
+    id: "ssvep",
+    accent: "#0a84ff",
+    media: "signal",
+    status: { zh: "竞赛项目", en: "COMPETITION PROJECT" },
+    tags: { zh: ["脑机接口", "康复辅助"], en: ["Brain-computer interface", "Rehab assistance"] },
+    title: { zh: "智行无碍", en: "Zhixing Wu'ai" },
     desc: {
-      zh: "从校园真实问题出发形成提案并获得一等奖；当前作为履历自述展示。",
-      en: "Turned a real campus problem into a first-prize proposal, presented here as a resume claim.",
+      zh: "基于 SSVEP 脑机接口的新时代交互系统：通过脑机接口控制康复机器人，辅助残障人士恢复。获“日新·创未来”南科大校园创新大赛红旅赛道三等奖，并获得推荐省赛的资格。",
+      en: "An interaction system built on an SSVEP brain-computer interface: controlling a rehabilitation robot to assist the recovery of people with disabilities. Third prize in the Red Tour track of SUSTech's “日新·创未来” campus innovation competition, and recommended for the provincial round.",
     },
-    links: [
-      {
-        label: { zh: "校园经历", en: "Campus context" },
-        href: "education.html#campus",
-      },
-    ],
   },
 ];
 
@@ -633,6 +799,10 @@ const buildProjectMedia = (project, language, index, className, badges = true) =
     media.appendChild(screenshots);
   } else if (project.image) {
     media.style.backgroundImage = "url('" + project.image + "')";
+  } else if (project.media === "signal") {
+    /* No photograph exists for the BCI project: a frequency-tagged signal
+       motif stands in instead of an unrelated stock image. */
+    media.classList.add("is-signal");
   }
 
   if (!badges) return media;
@@ -655,6 +825,7 @@ const buildProjectMedia = (project, language, index, className, badges = true) =
 const buildCaseCard = (project, language, index, instant) => {
   const stage = document.createElement("article");
   stage.className = "stage";
+  stage.id = "case-" + project.id;
   stage.dataset.case = project.id;
   stage.setAttribute("data-rise", "");
   stage.style.setProperty("--accent", project.accent);
@@ -702,9 +873,10 @@ const buildCaseCard = (project, language, index, instant) => {
   const notes = document.createElement("div");
   notes.className = "stage-notes";
   [
-    [translations[language].roleLabel, project.role[language]],
-    [translations[language].decisionLabel, project.decision[language]],
+    [translations[language].roleLabel, project.role?.[language]],
+    [translations[language].decisionLabel, project.decision?.[language]],
   ].forEach(([label, value]) => {
+    if (!value) return;
     const note = document.createElement("div");
     note.className = "stage-note";
     const heading = document.createElement("h3");
@@ -714,7 +886,7 @@ const buildCaseCard = (project, language, index, instant) => {
     note.append(heading, body);
     notes.appendChild(note);
   });
-  copy.appendChild(notes);
+  if (notes.childElementCount) copy.appendChild(notes);
 
   const tags = document.createElement("div");
   tags.className = "stage-tags";
@@ -812,6 +984,11 @@ const setLanguage = (language) => {
     if (value !== undefined) element.textContent = value;
   });
 
+  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
+    const value = dictionary[element.dataset.i18nAriaLabel];
+    if (value !== undefined) element.setAttribute("aria-label", value);
+  });
+
   renderProjects(nextLanguage);
 
   if (langCurrent) langCurrent.textContent = nextLanguage === "zh" ? "EN" : "中";
@@ -853,6 +1030,30 @@ dockItems.forEach((item) => {
     item.setAttribute("aria-current", "page");
   }
 });
+
+/* ── contact: copy the email address ─────────────────────────────────── */
+
+const copyButton = document.querySelector("[data-copy-email]");
+if (copyButton) {
+  let resetTimer = 0;
+  copyButton.addEventListener("click", async () => {
+    const email = copyButton.dataset.copyEmail;
+    let copied = false;
+    try {
+      await navigator.clipboard.writeText(email);
+      copied = true;
+    } catch {
+      copied = false;
+    }
+    /* Clipboard access can be refused; showing the address still lets the
+       visitor select it by hand. */
+    copyButton.textContent = copied ? translations[currentLanguage()].contactCopied : email;
+    window.clearTimeout(resetTimer);
+    resetTimer = window.setTimeout(() => {
+      copyButton.textContent = translations[currentLanguage()].contactCopy;
+    }, 1800);
+  });
+}
 
 /* ── signature draw-on ───────────────────────────────────────────────── */
 

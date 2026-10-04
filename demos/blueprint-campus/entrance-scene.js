@@ -4,12 +4,12 @@
  * SUSTech corridor. There is deliberately no independent animation loop.
  */
 export function createEntrance(THREE, kind = 'research') {
-  kind = ['research', 'college', 'campus'].includes(kind) ? kind : 'research';
+  kind = ['research', 'college'].includes(kind) ? kind : 'research';
   const group = new THREE.Group();
   group.name = `blueprint-entrance-${kind}`;
   group.userData.illustrative = true;
   group.userData.description = 'Illustrative entrance; not a surveyed SUSTech doorway.';
-  group.userData.entranceType = { research: 'sliding-glass', college: 'arched-lattice', campus: 'double-door-gallery' }[kind];
+  group.userData.entranceType = { research: 'sliding-glass', college: 'arched-lattice' }[kind];
 
   const geometrySet = new Set();
   const materialSet = new Set();
@@ -106,21 +106,6 @@ export function createEntrance(THREE, kind = 'research') {
     for (const x of [10 - radius - thickness / 2, 10 + radius + thickness / 2]) box(x, 2, z, thickness, 4, depth, 'normal', colors.raised);
   }
 
-  function cylinder(x, z, radius, h) {
-    const bottom = [], top = [];
-    for (let i = 0; i < 12; i++) {
-      const angle = i * Math.PI / 6;
-      bottom.push([x + radius * Math.cos(angle), 0, z + radius * Math.sin(angle)]);
-      top.push([x + radius * Math.cos(angle), h, z + radius * Math.sin(angle)]);
-    }
-    for (let i = 0; i < 12; i++) {
-      const next = (i + 1) % 12;
-      quad(bottom[i], bottom[next], top[next], top[i], colors.raised);
-      if (i % 3 === 0) segment(bottom[i], top[i], 'normal');
-    }
-    path(bottom, 'soft', true); path(top, 'normal', true);
-  }
-
   function glass(parent, x, y, z, w, h, alpha = 0.07) {
     const geometry = new THREE.PlaneGeometry(w, h);
     const material = new THREE.MeshBasicMaterial({ color: 0x99bdff, transparent: true, opacity: alpha, side: THREE.DoubleSide, depthWrite: false });
@@ -133,8 +118,8 @@ export function createEntrance(THREE, kind = 'research') {
   // The foyer floor reaches z=9, meeting the existing room floor. Walls and
   // ceiling stop at z=19, behind the final camera at (10,6,16), so the corridor
   // cannot obscure the established final room composition.
-  const halfWidth = kind === 'campus' ? 7.5 : 5;
-  const ceiling = kind === 'campus' ? 11 : 9;
+  const halfWidth = 5;
+  const ceiling = 9;
   const left = 10 - halfWidth, right = 10 + halfWidth;
   box(10, -0.09, 28.5, halfWidth * 2 + 0.2, 0.18, 39, 'soft', colors.wall);
   box(left - 0.1, ceiling / 2, 33.5, 0.2, ceiling, 29, 'normal', colors.wall);
@@ -210,34 +195,6 @@ export function createEntrance(THREE, kind = 'research') {
     for (const start of [-8.5, 18]) for (let x = start; x < start + 10.8; x += 0.72) {
       if (x < 4.8 || x > 15.2) box(x, 5.1, 48.3, 0.10, 8.6, 0.12, 'soft', colors.raised);
     }
-  } else {
-    // The campus entrance opens into a substantially wider, taller gallery.
-    // Columns, ceiling coffers and display plinths form a public exhibition
-    // sequence rather than another narrow corridor.
-    for (const z of [44.6, 35.6]) for (const x of [4.05, 15.95]) cylinder(x, z, 0.24, 10.9);
-    for (const z of [31, 37.5, 44]) {
-      box(10, 10.84, z, 14.6, 0.18, 0.2, 'normal', colors.raised);
-      path([[5.4, 10.74, z - 1.8], [14.6, 10.74, z - 1.8], [14.6, 10.74, z + 1.8], [5.4, 10.74, z + 1.8]], 'soft', true);
-    }
-    for (const x of [6, 14]) segment([x, 10.72, 28.4], [x, 10.72, 47.8], 'strong');
-    for (const [x, z] of [[3.8, 39.8], [16.2, 42.5]]) {
-      box(x, 1.15, z, 1.65, 2.3, 2.2, 'normal', colors.raised);
-      box(x, 2.68, z, 0.9, 0.75, 0.9, 'strong', null);
-      segment([x - 0.38, 2.32, z - 0.38], [x + 0.38, 3.04, z + 0.38], 'soft');
-    }
-    for (const x of [2.53, 17.47]) for (const z of [33.7, 43.8]) {
-      path([[x, 2.4, z - 1.9], [x, 8.0, z - 1.9], [x, 8.0, z + 1.9], [x, 2.4, z + 1.9]], 'strong', true);
-      segment([x, 3.1, z - 1.45], [x, 3.1, z + 1.45], 'normal');
-      for (let i = 0; i < 4; i++) {
-        const zz = z - 1.25 + i * 0.8;
-        path([[x, 3.7, zz], [x, 5.0 + (i % 3) * 0.7, zz], [x, 5.0 + (i % 3) * 0.7, zz + 0.4], [x, 3.7, zz + 0.4]], 'soft', true);
-      }
-    }
-    for (let z = 9.5; z <= 48; z += 4.5) segment([2.6, 0.016, z], [17.4, 0.016, z], 'soft');
-    for (const x of [5.5, 10, 14.5]) segment([x, 0.016, 9.1], [x, 0.016, 47.9], 'faint');
-    // Broad layered lintel differentiates this facade from the lab and arch.
-    for (const [y, w] of [[9.7, 18], [10.3, 23], [10.9, 28]]) box(10, y, 48.32, w, 0.11, 0.35, 'normal', colors.raised);
-    for (const x of [-6.5, 0, 20, 26.5]) path([[x, 1.9, 48.25], [x, 8.5, 48.25], [x + 2.4, 8.5, 48.25], [x + 2.4, 1.9, 48.25]], 'soft', true);
   }
 
   // z=28 partition: only its side piers and lintel are opaque. The clear door
@@ -280,27 +237,11 @@ export function createEntrance(THREE, kind = 'research') {
     door.box(6.18, 4.0, 0.24, 0.1, 1.3, 0.13, 'strong', colors.raised);
     for (const y of [1.2, 4.0, 6.8]) door.box(0.025, y, 0, 0.11, 0.38, 0.26, 'normal', colors.inset);
     door.finish(); moveDoors = p => { hinge.rotation.y = OPEN_ANGLE * p; };
-  } else {
-    const hinges = [];
-    for (const side of [-1, 1]) {
-      const hinge = new THREE.Group(); hinge.name = side < 0 ? 'gallery-door-left' : 'gallery-door-right';
-      hinge.position.set(side < 0 ? 6.5 : 13.5, 0, 28); group.add(hinge); hinges.push(hinge);
-      const door = builder(hinge), middle = side < 0 ? 1.75 : -1.75;
-      for (const x of [middle - 1.69, middle + 1.69]) door.box(x, 4, 0, 0.12, 8, 0.19, 'strong', colors.raised);
-      for (const y of [0.1, 7.9]) door.box(middle, y, 0, 3.5, 0.2, 0.19, 'strong', colors.raised);
-      door.box(middle, 1.25, 0, 3.28, 2.3, 0.15, 'normal', colors.raised);
-      door.path([[middle - 1.38, 0.34, 0.09], [middle + 1.38, 0.34, 0.09], [middle + 1.38, 2.16, 0.09], [middle - 1.38, 2.16, 0.09]], 'soft', true);
-      door.box(middle, 5.15, 0, 0.075, 5.35, 0.14, 'normal', colors.raised);
-      door.box(side < 0 ? 3.04 : -3.04, 3.96, 0.2, 0.12, 1.55, 0.14, 'strong', colors.raised);
-      door.finish(); glass(hinge, middle, 5.16, 0.005, 3.24, 5.25, 0.05);
-    }
-    moveDoors = p => { hinges[0].rotation.y = OPEN_ANGLE * p; hinges[1].rotation.y = -OPEN_ANGLE * p; };
   }
 
   const labels = {
     research: '马昱欣实验室',
     college: '书院公共空间',
-    campus: '校园活动空间',
   };
   const label = labels[kind] || labels.research;
   group.userData.label = label;

@@ -230,12 +230,15 @@ landmarks = {}
 for key, lon, lat, name, building_id, anchor_source in [
     ('research', 113.99110, 22.60328, '工学院南楼', 'way/695571961', 'OSM south building northern wing; cross-checked with 2025 campus map'),
     ('college', 113.9952891995979, 22.60504180349547, '学生宿舍15栋', 'way/695571951', 'Public campus navigation POI; lies within OSM footprint'),
-    ('campus', 113.9923345196037, 22.59998770717294, '南科大中心', 'relation/12480428', 'Public campus navigation POI; student affairs office at center 208'),
+    # Off-campus experience has no building: it is anchored at a gate and
+    # carries no buildingId, so the renderer never opens an interior for it.
+    ('internship', 113.9944801104224, 22.59560217717079, '一号门', None, 'Public campus navigation gate POI (Gate 1); a point on the campus edge, not a building'),
 ]:
     x, z = project({'lon': lon, 'lat': lat})
     landmarks[key] = {'x': round(x, 2), 'z': round(z, 2), 'name': name,
-                      'buildingId': building_id, 'source': anchor_source,
-                      'lon': lon, 'lat': lat}
+                      'source': anchor_source, 'lon': lon, 'lat': lat}
+    if building_id:
+        landmarks[key]['buildingId'] = building_id
 
 all_points = [p for b in buildings for p in b['outline']]
 all_points += [p for r in roads for p in r['points']]
@@ -248,11 +251,9 @@ sources = [
     {'title': 'OpenStreetMap contributors', 'url': 'https://www.openstreetmap.org/copyright',
      'note': 'Building footprints, road centerlines, water polygons and level tags. Open Database License (ODbL). Retrieved 2026-09-07; data timestamp ' + RAW['osm3s']['timestamp_osm_base']},
     {'title': 'SUSTech public campus navigation POIs', 'url': 'https://bus.sustcra.com/geojson/sustech_bldg.json',
-     'note': 'Community-maintained coordinates for Dorm Block 15 and SUSTech Center; points are not substituted for building polygons.'},
+     'note': 'Community-maintained coordinates for Dorm Block 15 and Gate 1; points are not substituted for building polygons.'},
     {'title': '南科手册 / SUSTransit 校园公交地图 v5.0', 'url': 'https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/SUSTech-Campus-Map-v5-0.pdf',
      'note': 'November 2025 map used for positional cross-checking, including College of Engineering South/North, Dorm 15 and Research Building 3. No PDF geometry copied.'},
-    {'title': 'SUSTech student affairs contact', 'url': 'https://osa.sustech.edu.cn/about/contact/',
-     'note': 'Student affairs center is in SUSTech Center room 208.'},
 ]
 data = {'origin': ORIGIN, 'bounds': bounds, 'buildings': buildings, 'roads': roads,
         'waters': waters, 'landmarks': landmarks, 'sources': sources,

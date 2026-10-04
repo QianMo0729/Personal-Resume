@@ -1,0 +1,5 @@
+# Local deployment archives, server configuration snapshots, and verification logs.
+/output/deployment-*/
+/output/server-compression-*/
+.DS_Store
+__pycache__/

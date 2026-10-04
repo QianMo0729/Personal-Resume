@@ -1,8 +1,8 @@
 # 校园蓝图 · 交互 Demo
 
-网站首页：**https://www.moorn.online/**
+网站首页：**https://moorn.online/**
 
-保留的 Demo 入口：**https://www.moorn.online/demos/blueprint-campus/**
+保留的 Demo 入口：**https://moorn.online/demos/blueprint-campus/**
 
 本地入口：**http://127.0.0.1:8765/demos/blueprint-campus/**
 
@@ -25,14 +25,15 @@ node .\demos\blueprint-campus\server.mjs
 ## 交互
 
 1. **校园卡 → 图案特写 → 3D 校园**：向下滚动，先以卡面俯视图为中心放大整张卡，让这块平面图铺满视野；此时建筑仍是平的。随后同一图案切入空间渲染，建筑逐渐升起、镜头倾斜并展开完整校园。两段按 `object-fit:contain` 的实际图像区域对齐；向上滚动会依次压平建筑、缩回校园卡。
-2. **校园 → 走廊 → 推门进入**：选择工学院南楼、学生宿舍15栋或南科大中心，同一个镜头从鸟瞰降到入口，沿走廊向前，再穿门进入对应空间。科研使用滑动玻璃门，书院使用格栅单扇门，校园论坛使用展厅双开门。门上的观察窗可提前看到同一室内。返回时从当前镜头位置沿原路退回；途中可取消或跳过，切换经历会经过校园后进入新目标。
-3. **快速阅读**：通过“快速浏览”直接阅读内容；“减少动态”可降低运镜与连续动态效果，页面也尊重系统的减少动态设置。
+2. **校园 → 走廊 → 推门进入**：选择工学院南楼或学生宿舍15栋，同一个镜头从鸟瞰降到入口，沿走廊向前，再穿门进入对应空间。科研使用滑动玻璃门，校园与书院使用格栅单扇门。门上的观察窗可提前看到同一室内。返回时从当前镜头位置沿原路退回；途中可取消或跳过，切换经历会经过校园后进入新目标。
+3. **走出校园**：实习经历发生在校外，标记放在一号门而不是某栋建筑。点击后没有运镜和室内，正文直接叠在校园图上打开；返回、Escape、浏览器后退与其他入口一致。
+4. **快速阅读**：通过“快速浏览”直接阅读内容；“减少动态”可降低运镜与连续动态效果，页面也尊重系统的减少动态设置。
 
 ## 资料与范围
 
-- 校园使用真实 OpenStreetMap 建筑轮廓、路网与水体，三个入口经过公开校图及导航点位核对。`assets/campus-data.json` 与校园卡底图 `assets/campus-plan.svg` 同源。
+- 校园使用真实 OpenStreetMap 建筑轮廓、路网与水体，两处建筑入口与一号门经过公开校图及导航点位核对。`assets/campus-data.json` 与校园卡底图 `assets/campus-plan.svg` 同源。
 - 当前包含 **111 栋建筑、285 段道路、9 个水体**。所有楼高都是渲染估计：83 栋按照 OSM 层数和假定层高计算，28 栋根据建筑类型估计。真实轮廓不代表已有精确建筑高度、立面或地形模型。
-- 实验室、书院及校园经历的室内场景为交互示意。个人负责的具体工作、可公开研究结果、活动日期、照片与作品证据仍需逐项补齐；不要把示意内容当作已经核实的个人成果。
+- 实验室与书院的室内场景为交互示意。经历正文来自本人提供的信息；实习起止时间、此前实验室的结束时间、可公开的研究结果、照片与作品证据仍需补齐，不要把示意内容当作已经核实的个人成果。
 - 本 Demo 独立放在 `demos/blueprint-campus/`；发布记录及回滚信息见 `source-data/deployment/`。
 - 地图数据署名 **© OpenStreetMap contributors**；来源、许可与处理说明见 [assets/source-data/README.md](assets/source-data/README.md)。
 
@@ -42,8 +43,8 @@ node .\demos\blueprint-campus\server.mjs
 
 - `index.html`：重新设计的校园蓝图卡，卡面仅使用官方校徽校名、宋和、本科生和2029届，以及真实校园俯视图；不再展示照片。
 - `styles.css`：蓝图色彩、字体、卡片与响应式布局。
-- `app.js`：顶部 `locations` 是三类经历的标题与正文；滚动展开、建筑投影、运镜、返回和降级也在此文件。
-- `interior-scene.js`：三处示意室内空间。
+- `app.js`：顶部 `locations` 是三类经历的标题与正文，其中带 `outdoor: true` 的校外经历不进入室内；滚动展开、建筑投影、运镜、返回和降级也在此文件。
+- `interior-scene.js`：两处示意室内空间（实验室、书院阅读中庭）。
 - `entrance-scene.js`：连通室内的走廊、门牌、观察窗与可开合门叶。
 - `entrance-anchor.js`：在真实建筑外轮廓上选取朝向镜头、无凹角遮挡的运镜锚点；它不代表测绘或核实过的真实门位。
 - `assets/portrait-blue.png`：先前版本的人像，现已停用，不随当前网站发布。
@@ -51,10 +52,10 @@ node .\demos\blueprint-campus\server.mjs
 
 ## 学校信息来源
 
-各榜单保留各自年份，不混写成同一年度排名；U.S. News 为标明的历史版本。
+各榜单保留各自年份，不混写成同一年度排名。2026-10-03 核实：QS、THE、ARWU 采用各机构已发布的最新版本；U.S. News 官网暂无法直接访问，学校官网仍列 2025/26 版，因此保留有官方来源支持的历史版本，未将未经一手来源核实的 2026/27 版写入页面。
 
 - [QS 2027：317](https://www.topuniversities.com/universities/southern-university-science-technology-sustech)
-- [THE 2026：=160](https://www.timeshighereducation.com/world-university-rankings/southern-university-science-and-technology-sustech)
+- [THE 2027：=163](https://www.timeshighereducation.com/world-university-rankings/southern-university-science-and-technology-sustech)（[官方发布报道](https://www.timeshighereducation.com/news/world-university-rankings-2027-results-announced)，2026-09-30 发布、2026-10-01 更新）
 - [ARWU 2026：101–150](https://www.shanghairanking.com/universities/southern-university-of-science-and-technology)
 - [U.S. News 2025/26：123，学校全球交流办公室](https://global.sustech.edu.cn/about/world_no)
 - [校徽与校名组合：南科大官网原始资源](https://www.sustech.edu.cn/static/images/sustech-logo-cn.png)
@@ -64,7 +65,7 @@ node .\demos\blueprint-campus\server.mjs
 
 Chrome / Playwright：1440×900、390×844、844×390、320×568。
 
-- 三处建筑点击进入、返回校园、Escape 返回与浏览器后退。
+- 两处建筑与一号门标记的点击进入、返回校园、Escape 返回与浏览器后退。
 - 快速浏览入口、移动端文字边界、室内横竖屏切换。
 - 系统减少动态、提前进入地图后的拖动旋转。
 - 主动模拟室内 WebGL 上下文丢失，验证平面图降级、返回和再次进入。
@@ -104,10 +105,14 @@ Chrome / Playwright：1440×900、390×844、844×390、320×568。
 
 根 `index.html` 已替换为校园蓝图，使用 `/demos/blueprint-campus/` 作为资源基址；根地址的场景链接、刷新、返回与跳过正文均在首页路径内工作。独立Demo入口继续保留。当前首页发布与回滚记录见 `source-data/deployment/homepage/activation-record.json`。
 
-用户确认的经历分类：
+用户确认的经历分类（2026-10-04 更新，书院与校园合并，新增校外实习）：
 
-- 书院：树仁书院学生会秘书处、学生发展与指导中心。
-- 校园：校园提案一等奖、国创比赛。
+- 实习（一号门 · 走出校园）：众白科技，深圳进化酒馆黑客松筹备，技术与产品团队负责人。
+- 科研（工学院南楼）：马昱欣实验室，2026.09 加入；此前为张明明老师的脑-机器人实验室，2026.04 加入。
+- 校园与书院（学生宿舍15栋）：树仁书院学生会秘书处、学生互助工作组、校园提案大赛一等奖。
+- 竞赛项目“智行无碍”（SSVEP 脑机接口）改放在案例页的「其他实践」。
+
+原南科大中心入口及其阶梯论坛室内、展厅双开门入口已随合并移除。
 
 进入/退出建筑、按钮旋转与俯视切换统一为500ms。鼠标拖动保持直接跟随，滚动展开仍由滚动进度控制。`source-data/qa/homepage/500ms-local-verification.json` 记录进入508–517ms、返回502–505ms、旋转503ms的实测，以及中途反向和减少动态检查。
 

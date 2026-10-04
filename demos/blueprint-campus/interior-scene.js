@@ -319,7 +319,7 @@ export function createInterior(THREE, kind = 'research') {
     for (const y of [2.5, 5.7]) segment([11.995, y, -11.8], [11.995, y, 0], 'soft');
     wireBox(11.85, 4, -11.8, 0.2, 8, 0.2, 'normal');
     // Exposed rectangular steelwork distinguishes this industrial lab from the
-    // curved college atrium and the tall, pitched-roof campus forum.
+    // curved college atrium.
     for (const z of [-9.9, -3.8, 2.2]) {
       wireBox(4.4, 7.98, z, 15.1, 0.15, 0.14, 'normal', palette.raised);
       segment([-3.15, 7.35, z], [11.95, 7.35, z], 'soft');
@@ -434,96 +434,7 @@ export function createInterior(THREE, kind = 'research') {
     engineeringLabel('READING ATRIUM', 6.1, 7.43, -11.49, 4.7, 0.32);
   }
 
-  function campus() {
-    // A double-height gabled forum. Its roof section, long structural bays and
-    // stepped audience area are intentionally unlike either other interior.
-    quad([-9, -0.02, -15], [17, -0.02, -15], [17, -0.02, 9], [-9, -0.02, 9]);
-    quad([-4, 0, -15.06], [16, 0, -15.06], [16, 10, -15.06], [-4, 10, -15.06]);
-    surface([-4, 10, -15.06, 16, 10, -15.06, 6, 14, -15.06], palette.paper);
-    for (let x = -9; x <= 17; x += 2) segment([x, 0.008, -15], [x, 0.008, 9], 'faint');
-    for (let z = -15; z <= 9; z += 2) segment([-9, 0.008, z], [17, 0.008, z], 'faint');
-    for (const z of [-14.8, -8.2, -1.6, 5]) {
-      const section = [[-4, 0, z], [-4, 10, z], [6, 14, z], [16, 10, z], [16, 0, z]];
-      path(section, 'normal');
-      path([[-3.83, 9.8, z], [6, 13.75, z], [15.83, 9.8, z]], 'soft');
-      segment([-3.83, 9.8, z], [15.83, 9.8, z], 'soft');
-      for (const x of [1, 6, 11]) {
-        const roofY = 14 - Math.abs(x - 6) * 0.4;
-        segment([x, 9.8, z], [x, roofY - 0.16, z], 'soft');
-        segment([x - 2.5, 9.8, z], [x, roofY - 0.16, z], 'faint');
-      }
-      wireBox(15.92, 5, z, 0.16, 10, 0.16, 'normal', palette.raised);
-    }
-    for (const [x, y] of [[-4, 10], [1, 12], [6, 14], [11, 12], [16, 10]]) segment([x, y, -15], [x, y, 6], 'soft');
-    for (const y of [0.18, 3.25, 7.4]) segment([16, y, -15], [16, y, 5], 'soft');
-
-    // A broad proposal wall rises above a raised presentation platform.
-    wireBox(6.55, 0.34, -11.35, 12.1, 0.68, 5.2, 'strong', palette.raised);
-    wireBox(6.55, 0.18, -8.32, 8.6, 0.36, 0.8, 'normal', palette.raised);
-    wireBox(7, 6.35, -14.93, 13.2, 8.2, 0.12, 'strong', palette.screen);
-    rect(7, 6.35, -14.862, 12.87, 7.88, 'soft');
-    [2.8, 7, 11.2].forEach((x, i) => {
-      rect(x, 6.42, -14.845, 3.72, 6.92, 'normal');
-      engineeringLabel(['观察', '共议', '行动'][i], x, 9.15, -14.818, 1.4, 0.44);
-      if (i === 0) {
-        // A small abstract floor-plan diagram, without invented outcome data.
-        const z = -14.814;
-        rect(x, 6.65, z, 2.6, 2.95, 'normal');
-        path([[x - 1.3, 6.9, z], [x - 0.4, 6.9, z], [x - 0.4, 8.1, z]], 'soft');
-        path([[x - 0.4, 6.9, z], [x + 0.55, 6.9, z], [x + 0.55, 5.18, z]], 'soft');
-        path([[x + 0.55, 7.45, z], [x + 1.3, 7.45, z]], 'soft');
-        rect(x - 0.84, 7.52, z, 0.46, 0.52, 'faint');
-        rect(x + 0.88, 6.04, z, 0.42, 0.9, 'faint');
-      } else if (i === 1) {
-        for (let j = 0; j < 3; j++) {
-          const yy = 7.7 - j * 1.08;
-          rect(x + (j % 2 ? 0.24 : -0.24), yy, -14.814, 1.95, 0.65, 'normal');
-          if (j < 2) segment([x, yy - 0.325, -14.81], [x, yy - 0.755, -14.81], 'soft');
-        }
-      } else {
-        for (let j = 0; j < 4; j++) {
-          const yy = 7.9 - j * 0.76;
-          rect(x - 1.05, yy, -14.814, 0.3, 0.3, 'normal');
-          segment([x - 0.68, yy + 0.08, -14.814], [x + 1.12, yy + 0.08, -14.814], 'soft');
-          segment([x - 0.68, yy - 0.13, -14.814], [x + 0.63, yy - 0.13, -14.814], 'faint');
-        }
-      }
-      for (let line = 0; line < 3; line++) segment([x - 1.3, 4.55 - line * 0.3, -14.814], [x + (line === 2 ? 0.7 : 1.3), 4.55 - line * 0.3, -14.814], 'soft');
-    });
-
-    // Six deep bleacher rows, with a separate half-rise stair aisle. The high
-    // end is nearest the viewer; the lower rows face the presentation platform.
-    for (let row = 0; row < 6; row++) {
-      const z = -5.15 + row * 1.55, rise = 0.45 * (row + 1);
-      wireBox(10.65, rise / 2, z, 7.5, rise, 1.55, 'normal', palette.raised);
-      segment([6.99, rise + 0.015, z + 0.67], [14.30, rise + 0.015, z + 0.67], 'strong');
-      for (const x of [7.4, 9.15, 10.9, 12.65]) {
-        wireBox(x + 0.54, rise + 0.07, z - 0.05, 1.14, 0.10, 0.64, 'soft', palette.raised);
-      }
-    }
-    for (let step = 0; step < 12; step++) {
-      const rise = 0.225 * (step + 1), z = -5.54 + step * 0.775;
-      wireBox(15.03, rise / 2, z, 0.98, rise, 0.775, 'soft', palette.paper);
-    }
-    path([[15.67, 1.2, -5.9], [15.67, 3.96, 3.25]], 'normal');
-    for (let i = 0; i < 4; i++) {
-      const t = i / 3;
-      segment([15.67, 0.2 + 2.7 * t, -5.9 + 9.15 * t], [15.67, 1.2 + 2.76 * t, -5.9 + 9.15 * t], 'soft');
-    }
-    // A folded lectern marks the platform without repeating a desk-and-monitor.
-    quad([2.7, 0.68, -10.9], [3.8, 0.68, -10.9], [3.57, 2.98, -11.22], [2.93, 2.98, -11.22], palette.raised);
-    path([[2.7, 0.68, -10.9], [2.93, 2.98, -11.22], [3.57, 2.98, -11.22], [3.8, 0.68, -10.9]], 'normal');
-    quad([2.56, 2.97, -11.65], [3.94, 2.97, -11.65], [3.94, 3.15, -10.92], [2.56, 3.15, -10.92], palette.raised);
-    path([[2.56, 2.97, -11.65], [3.94, 2.97, -11.65], [3.94, 3.15, -10.92], [2.56, 3.15, -10.92]], 'strong', true);
-    horizontalDimension(-4, 16, 14.54, -14.95, '20.00 M');
-    segment([16.7, 0, -14.92], [16.7, 14, -14.92], 'soft');
-    for (const y of [0, 14]) segment([16.55, y, -14.92], [16.86, y, -14.92], 'normal');
-    engineeringLabel('H 14.00 M', 15.25, 11.62, -14.88, 2.6, 0.28);
-    engineeringLabel('CAMPUS FORUM', 6.65, 0.33, -8.725, 4.3, 0.3);
-  }
-
   if (kind === 'college') college();
-  else if (kind === 'campus') campus();
   else research();
 
   for (const [color, vertices] of surfaceBatches) {
@@ -556,7 +467,6 @@ export function createInterior(THREE, kind = 'research') {
   const framing = {
     research: { camera: [10, 6, 16], target: [0, 3, -3], silhouette: 'rectangular steel-frame visualization lab' },
     college: { camera: [12, 7.6, 16], target: [1.5, 3.1, -4], silhouette: 'curved book wall, circular reading atrium and open oculus' },
-    campus: { camera: [12.5, 8.7, 17], target: [1, 4, -5], silhouette: 'double-height gabled forum with tiered audience seating' },
   };
   const view = framing[kind] || framing.research;
   group.userData.silhouette = view.silhouette;

@@ -18,8 +18,8 @@ Generated on 2026-09-07 for the local blueprint portfolio demo.
 | Experience | Geometry | Anchor | Validation |
 |---|---|---|---|
 | 科研经历 · 工学院南楼 | [OSM way 695571961](https://www.openstreetmap.org/way/695571961) | 113.99110, 22.60328 | Anchor is on the northern wing of the south building and lies within its footprint. The 2025 bus map labels this group COE South Tower. |
-| 书院经历 · 学生宿舍15栋 | [OSM way 695571951](https://www.openstreetmap.org/way/695571951) | 113.9952891995979, 22.60504180349547 | Public campus-navigation POI lies inside this named OSM footprint. |
-| 校园经历 · 南科大中心 | [OSM relation 12480428](https://www.openstreetmap.org/relation/12480428) | 113.9923345196037, 22.59998770717294 | Public navigation POI lies in the footprint and outside courtyard holes. Student-affairs contact page lists center room 208. |
+| 校园与书院 · 学生宿舍15栋 | [OSM way 695571951](https://www.openstreetmap.org/way/695571951) | 113.9952891995979, 22.60504180349547 | Public campus-navigation POI lies inside this named OSM footprint. |
+| 实习经历 · 一号门 | 无建筑轮廓，仅为点位 | 113.9944801104224, 22.59560217717079 | Public campus-navigation gate POI (Gate 1) on the campus edge. Off-campus experience is anchored here; the landmark carries no `buildingId`, so no building is entered. |
 
 The public navigation source is [bus.sustcra.com/geojson/sustech_bldg.json](https://bus.sustcra.com/geojson/sustech_bldg.json). Its point coordinates are used only for anchors; building footprints come from OSM ways and multipolygons.
 
@@ -36,7 +36,6 @@ The public navigation source is [bus.sustcra.com/geojson/sustech_bldg.json](http
 
 - [November 2025 SUSTech campus bus map, v5.0](https://mirrors.sustech.edu.cn/site/sustech-online/documents/campus-map/SUSTech-Campus-Map-v5-0.pdf): used to cross-check the relative location and labels of the engineering buildings, 15th dormitory and the campus center. No PDF geometry was traced or copied into the dataset.
 - [Official campus map page](https://www.sustech.edu.cn/zh/contact_us.html).
-- [SUSTech Student Affairs contact](https://osa.sustech.edu.cn/about/contact/).
 
 ## Attribution and data license
 

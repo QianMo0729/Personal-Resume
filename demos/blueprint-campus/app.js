@@ -17,19 +17,22 @@ const locations = {
     drawing: '01 / LABORATORY', sceneTitle: '可视化实验室', sceneCaption: 'LABORATORY / RESEARCH',
     venue: '校园 / 工学院南楼 / 科研经历', kicker: 'RESEARCH LOG / 01',
     title: '马昱欣<br>实验室', subtitle: '可视化方向',
-    body: `<section><h3>让数据，变得可见。</h3><p>围绕数据可视化与可视分析，探索信息如何被理解、表达与使用。</p></section><section><h3>研究记录</h3><p>具体项目、参与时间与个人贡献将在这里补充。</p><p class="detail-meta">RESEARCH NOTES — TO BE CONTINUED</p></section><a href="https://www.sustech.edu.cn/zh/faculties/mayuxin.html" target="_blank" rel="noopener noreferrer">了解实验室研究方向 ↗</a>`,
+    body: `<section><h3>让数据，变得可见。</h3><p>围绕数据可视化与可视分析，探索信息如何被理解、表达与使用。</p><p class="detail-meta">2026.09 加入 · 课题确定中</p></section><section><h3><span>此前</span>脑-机器人实验室</h3><p>张明明老师课题组，方向是脑机接口的相对距离解码。</p><p>尝试用新的神经网络模型做代码适配与调参，对比 MAE 与 CC 能否进一步提升；同时负责代码的修改与维护。</p><p class="detail-meta">2026.04 加入 · BRAIN–ROBOT LAB</p></section><a href="https://www.sustech.edu.cn/zh/faculties/mayuxin.html" target="_blank" rel="noopener noreferrer">了解实验室研究方向 ↗</a>`,
   },
   college: {
     drawing: '02 / READING ATRIUM', sceneTitle: '树仁书院', sceneCaption: 'READING ATRIUM / COLLEGE',
-    venue: '校园 / 学生宿舍 15 栋 / 树仁书院', kicker: 'COLLEGE LOG / 02',
-    title: '树仁书院<br>成长记录', subtitle: '学生宿舍 15 栋',
-    body: `<section><h3><span>01</span>树仁书院学生会秘书处</h3><p class="detail-meta">STUDENT UNION / SECRETARIAT</p></section><section><h3><span>02</span>学生发展与指导中心</h3><p>服务同学的成长与发展。</p></section>`,
+    venue: '校园 / 学生宿舍 15 栋 / 校园与书院', kicker: 'CAMPUS LOG / 02',
+    title: '校园<br>与书院', subtitle: '树仁书院',
+    body: `<section><h3><span>01</span>树仁书院学生会 · 秘书处</h3><p>负责会议纪要的撰写与整理，以及物资采购。</p></section><section><h3><span>02</span>学生互助工作组</h3><p>隶属学生发展与指导中心。负责“树仁卷心菜”群聊的管理与维护，参与搭子匹配的方案讨论，并负责系统开发。</p><a href="https://pair.moorn.online/" target="_blank" rel="noopener noreferrer">树仁搭子 · 在线访问 ↗</a></section><section><h3><span>03</span>校园提案大赛 · 一等奖</h3><p>“权系你我·智汇南科”校园提案大赛，四人团队，全场唯一的一等奖。</p><p>提案主题是校园电动车整治。我提出电动车道“两侧低、中间高，弯多易打滑”的问题，是所有提案中唯一引发热烈讨论的议题。</p></section><a href="../../education.html#campus">查看全部经历 ↗</a>`,
   },
-  campus: {
-    drawing: '03 / OPEN FORUM', sceneTitle: '校园提案与竞赛', sceneCaption: 'OPEN FORUM / CAMPUS',
-    venue: '校园 / 南科大中心 / 校园经历', kicker: 'CAMPUS LOG / 03',
-    title: '把想法<br>带进校园', subtitle: '协作 · 表达 · 落地',
-    body: `<section><h3><span>01</span>校园提案一等奖</h3><p>从校园里的问题出发，把观察变成可以讨论的提案。</p></section><section><h3><span>02</span>国创比赛</h3><p class="detail-meta">INNOVATION / COMPETITION</p></section><a href="../../education.html">查看教育经历 ↗</a>`,
+  // Off campus: anchored at a gate instead of a building, so it has neither a
+  // camera flight nor an interior. The detail copy opens over the campus atlas.
+  internship: {
+    outdoor: true, note: '校园轮廓依据地图绘制',
+    drawing: '03 / OFF CAMPUS', sceneTitle: '走出校园', sceneCaption: 'OFF CAMPUS / INTERNSHIP',
+    venue: '校园 / 一号门 / 实习经历', kicker: 'INTERNSHIP LOG / 03',
+    title: '众白<br>科技', subtitle: '技术与产品团队负责人',
+    body: `<section><h3>深圳进化酒馆黑客松</h3><p>参与进化酒馆 Agent 黑客松深圳收官场的筹备工作，担任技术与产品团队负责人。</p><p class="detail-meta">EVOTAVERN · SHENZHEN · 2026.09.21–24</p></section><nav class="detail-links" aria-label="相关链接"><a href="https://hackathon.evomap.ai/shenzhen" target="_blank" rel="noopener noreferrer">黑客松官网 ↗</a><a href="http://www.zhonbai.top" target="_blank" rel="noopener noreferrer">众白科技 ↗</a><a href="../../education.html#internship">查看全部经历 ↗</a></nav>`,
   },
 };
 
@@ -124,7 +127,7 @@ function createCampus() {
     campusGroup.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(points),new THREE.LineBasicMaterial({color:0xb1d4ff,transparent:true,opacity:.28})));
   }
   for (const [key,l] of Object.entries(data.landmarks)) {
-    const h = buildingMeshes.get(l.buildingId)?.height ?? 1;
+    const h = l.buildingId ? buildingMeshes.get(l.buildingId)?.height ?? 1 : 0;
     landmarkPoints.set(key,new THREE.Vector3(l.x*scale,h+.45,l.z*scale));
     const ring = new THREE.Mesh(new THREE.RingGeometry(1,1.12,48),new THREE.MeshBasicMaterial({color:0xffffff,side:THREE.DoubleSide}));
     ring.rotation.x=-Math.PI/2; ring.position.set(l.x*scale,h+.1,l.z*scale); campusGroup.add(ring);
@@ -190,7 +193,7 @@ function render(now) {
   if (fallback) {
     layer.style.opacity=String(smooth(.43,.53,visualProgress));
     const bounds=data?.bounds || {minX:-454,maxX:1068,minZ:-1057,maxZ:857};
-    const marks=data?.landmarks || {research:{x:-298.03,z:-86.83},college:{x:132.49,z:-282.95},campus:{x:-171.16,z:279.67}};
+    const marks=data?.landmarks || {research:{x:-298.03,z:-86.83},college:{x:132.49,z:-282.95},internship:{x:49.34,z:767.87}};
     const factor=Math.min(width*.84/(bounds.maxX-bounds.minX),height*.64/(bounds.maxZ-bounds.minZ));
     for (const [key,pos] of Object.entries(marks)) {
       $(`pin-${key}`).style.left=`${width*.5+(pos.x-(bounds.minX+bounds.maxX)/2)*factor}px`;
@@ -201,7 +204,7 @@ function render(now) {
   if (!renderer || !data) return;
   renderer.setScissorTest(false); renderer.setViewport(0,0,width,height); renderer.clear();
   layer.style.opacity=mode==='campus'?String(smooth(.43,.53,visualProgress)):'1';
-  if(mode==='interior') {
+  if(mode==='interior' && roomScene) {
     renderer.render(roomScene,roomCamera); return;
   }
   if(flight && (mode==='entering'||mode==='leaving')) {
@@ -230,6 +233,7 @@ function roomContent(key) {
   $('scene-register-caption').textContent=content.sceneCaption;
   $('detail-venue').textContent=content.venue; $('detail-kicker').textContent=content.kicker;
   $('detail-title').innerHTML=content.title; $('detail-subtitle').textContent=content.subtitle; $('detail-body').innerHTML=content.body;
+  details.querySelector('.detail-scene-note').textContent=content.note||'空间为蓝图示意';
   details.querySelectorAll('[data-location]').forEach(el=>el.setAttribute('aria-current',String(el.dataset.location===key)));
   details.hidden=false; details.inert=false; details.style.opacity='1'; details.scrollTop=0; document.body.style.overflow='hidden';
   details.classList.remove('room-arrived'); void details.offsetWidth; details.classList.add('room-arrived');
@@ -382,7 +386,7 @@ function finishCampus() {
 }
 function showRoom(key) {
   selected=key;
-  if(!fallback) {
+  if(!fallback && !locations[key].outdoor) {
     const hasRoute=prepareRoom(key);
     if(hasRoute){flight.t=1;flightPose(1);}
   }
@@ -398,7 +402,7 @@ function enterLocation(key,fromHistory=false) {
   }
   if(mode!=='campus') {queuedLocation=key;returnCampus(true,true);return;}
   selected=key;scrollCampus();document.body.style.overflow='hidden';$('journey').inert=true;resize();
-  if(reduced || fallback){showRoom(key);return;}
+  if(reduced || fallback || locations[key].outdoor){showRoom(key);return;}
   if(!prepareRoom(key)){finishInside();return;}
   mode='entering';orbitTween=null;flightControls.hidden=false;setUIVisible(false);
   $('skip-flight').textContent='跳过运镜 ↗';

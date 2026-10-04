@@ -28,6 +28,7 @@
   --iris-deep: #5646e5;
   --amber: #f5a524;
   --amber-deep: #b26a05;
+  --azure-deep: #0b63c5;
   /* Ambient aurora washes — overridden per page for a shifting mood.
      The paper grain sits on top at 45%, so these read ~half as strong. */
   --aura-1: rgba(47, 191, 155, 0.34);
@@ -404,17 +405,16 @@ button {
   --sec-accent: var(--ink-muted);
 }
 
-/* Each of these sections fills a full screen. */
-.education,
-.campus,
+/* The contact section fills a full screen. */
 .contact {
   min-height: 100svh;
   display: flex;
   align-items: center;
 }
 
-/* Education page stacks 教育 + 校园; a hairline keeps them reading as one page. */
-.education + .campus::before {
+/* The experience page stacks four sections; a hairline keeps them reading as
+   one page. */
+.section:not(.page-lead) + .section:not(.contact)::before {
   content: "";
   position: absolute;
   top: 0;
@@ -918,9 +918,9 @@ button {
   background-size: cover;
 }
 
-/* No photograph exists for the BCI project, so the card carries a
+/* No photograph exists for the BCI project, so its practice card carries a
    frequency-tagged signal motif instead of an unrelated stock image. */
-.card-media--signal {
+.practice-media.is-signal {
   overflow: hidden;
   background-color: #101018;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 205' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231b2340'/%3E%3Cstop offset='1' stop-color='%230d0d14'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='320' height='205' fill='url(%23g)'/%3E%3Cg fill='none' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M0 56q10-26 20 0t20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0 20 0' stroke='%230a84ff' opacity='.9'/%3E%3Cpath d='M0 103q15-32 30 0t30 0 30 0 30 0 30 0 30 0 30 0 30 0 30 0 30 0 30 0' stroke='%235ac8fa' opacity='.72'/%3E%3Cpath d='M0 150q22-38 44 0t44 0 44 0 44 0 44 0 44 0 44 0 44 0' stroke='%23bf5af2' opacity='.6'/%3E%3C/g%3E%3Cg fill='%23ffffff' opacity='.5'%3E%3Ccircle cx='268' cy='42' r='3'/%3E%3Ccircle cx='284' cy='42' r='3'/%3E%3Ccircle cx='300' cy='42' r='3'/%3E%3C/g%3E%3C/svg%3E");
@@ -1732,5 +1732,162 @@ html[lang="en"] .cases-title {
 .practice-card,
 .case-links a {
     transform: none !important;
+  }
+}
+
+/* ── experience page: lead, jump links, entry list ──────────────────── */
+
+.page-lead {
+  padding-top: clamp(150px, 16vw, 210px);
+  padding-bottom: 0;
+}
+
+.jump-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 30px;
+}
+
+.jump-row a {
+  padding: 8px 15px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: rgba(22, 21, 15, 0.72);
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: background var(--motion-fast) ease, color var(--motion-fast) ease;
+}
+
+.jump-row a:hover,
+.jump-row a:focus-visible {
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--ink);
+}
+
+.xp {
+  --accent: var(--sec-accent);
+}
+
+.xp-intern {
+  --sec-accent: var(--iris-deep);
+}
+
+.xp-research {
+  --sec-accent: var(--azure-deep);
+}
+
+/* In-page anchors and case deep links stop below the fixed chips. */
+.section[id],
+.stage[id] {
+  scroll-margin-top: 40px;
+}
+
+.xp-list {
+  margin-top: clamp(40px, 5vw, 64px);
+  border-top: 1px solid var(--line);
+}
+
+/* When, who, what: three columns that collapse into one on narrow screens. */
+.xp-item {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(0, 1.3fr) minmax(0, 2fr);
+  gap: clamp(20px, 3vw, 48px);
+  padding: clamp(26px, 3vw, 38px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.xp-when {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.xp-period {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.xp-tag {
+  padding: 3px 10px;
+  border: 1px solid color-mix(in srgb, var(--accent) 34%, transparent);
+  border-radius: 999px;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 750;
+  letter-spacing: 0.06em;
+}
+
+.xp-main h3 {
+  margin: 0;
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 780;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.xp-main p {
+  margin: 8px 0 0;
+  color: var(--ink-muted);
+  font-size: 14.5px;
+  line-height: 1.7;
+}
+
+.xp-body > p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: 15px;
+  line-height: 1.85;
+}
+
+.xp-body ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.xp-body li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--ink-muted);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.xp-body li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.82em;
+  width: 7px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
+.xp-body .case-links,
+.card-body .case-links {
+  margin-top: 0;
+  padding-top: 16px;
+}
+
+@media (max-width: 820px) {
+  .xp-item {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .xp-when {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
   }
 }
