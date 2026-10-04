@@ -22,7 +22,7 @@ FILES = [
     "index.html", "styles.css", "app.js", "interior-scene.js",
     "entrance-scene.js", "entrance-anchor.js", "assets/campus-data.json",
     "assets/campus-plan.svg", "assets/sustech-logo.png",
-    "vendor/three.module.js", "vendor/three.core.js", "vendor/THREE-LICENSE.txt",
+    "vendor/three.module.min.js", "vendor/three.core.min.js", "vendor/THREE-LICENSE.txt",
     "assets/source-data/README.md",
 ]
 

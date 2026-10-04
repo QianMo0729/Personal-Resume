@@ -1,4 +1,4 @@
-import * as THREE from './vendor/three.module.js';
+import * as THREE from './vendor/three.module.min.js';
 import { createInterior } from './interior-scene.js';
 import { createEntrance } from './entrance-scene.js';
 import { findEntrance } from './entrance-anchor.js';

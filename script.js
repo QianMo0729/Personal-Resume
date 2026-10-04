@@ -1,10 +1,12 @@
 /* Song He — AI product portfolio (paper edition)
-   Vanilla JS: i18n, evidence-led case rendering, kinetic text,
-   capability-to-case motion, dock magnification, and ID-card motion.
+   Vanilla JS shared by work.html, education.html and contact.html:
+   i18n, evidence-led case rendering, dock magnification, and ID-card motion.
+   The homepage (index.html) is the blueprint campus scene and does not load
+   this file.
 
    To add a project, append one entry to the `projects` array below and drop
    its image into assets/. Numbering, layout, both languages and animations
-   are handled automatically — the grid wraps to any number of projects. */
+   are handled automatically. */
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -27,33 +29,6 @@ const translations = {
     dockWork: "案例",
     dockLang: "语言",
     langAria: "Switch to English",
-    heroHello: "你好，我是",
-    heroEyebrow: "宋和 · AI 产品经理实习方向",
-    heroTitle: "做 AI 产品，也负责把它送上线。",
-    heroRole:
-      "南方科技大学 2029 届",
-    ctaApp: "查看 AI 产品案例 →",
-    ctaProfile: "了解我的背景",
-    heroLoc: "深圳 · 中国",
-    heroHint: "往下看",
-    proofApps: "App Store 上线应用",
-    proofUsers: "App Store 真实用户",
-    proofProjects: "项目经历",
-    proofAria: "关键数据",
-    capKicker: "AI 产品实践",
-    capTitle: "从判断，到上线。",
-    capFrameTitle: "产品定义",
-    capAiTitle: "AI 能力产品化",
-    capDeliveryTitle: "AI 协作与 0→1 交付",
-    capValidateTitle: "上线验证与迭代",
-    capVisualLabel: "四个阶段",
-    routeFrame: "定义",
-    routeAi: "转译",
-    routeDelivery: "交付",
-    routeValidate: "验证",
-    capCaseLink: "查看对应案例 →",
-    capStepsAria: "AI 产品实践的四个关键步骤",
-    kineticText: "想清楚，做出来，然后接着改。",
     eduKicker: "教育",
     eduTitle: "南方科技大学",
     eduNote: "通识与学科基础部，本科在读。平时关注产品怎么定义、AI 怎么变成真能用的功能，也会把课上和生活里遇到的问题做成实际的东西。",
@@ -84,10 +59,6 @@ const translations = {
     campusC3Desc: "服务同学的成长与发展。",
     campusC4Title: "SSVEP 脑机接口机器人控制系统",
     campusC4Desc: "中国国际大学生创新大赛项目。",
-    workKicker: "作品",
-    workTitle: "作品集",
-    workCount: "共 {n} 个项目",
-    workAll: "GitHub 全部仓库 ↗",
     casesKicker: "案例",
     casesTitle: "三个项目，从开发到部署上线。",
     roleLabel: "我的职责",
@@ -113,33 +84,6 @@ const translations = {
     dockWork: "Cases",
     dockLang: "Lang",
     langAria: "切换到中文",
-    heroHello: "Hi, I'm",
-    heroEyebrow: "Song He · AI Product Management Intern Candidate",
-    heroTitle: "I build AI products, and I ship them.",
-    heroRole:
-      "SUSTech, Class of 2029",
-    ctaApp: "View AI product cases →",
-    ctaProfile: "About my background",
-    heroLoc: "Shenzhen, China",
-    heroHint: "Scroll down",
-    proofApps: "Apps shipped on the App Store",
-    proofUsers: "Real users on the App Store",
-    proofProjects: "Projects",
-    proofAria: "Key numbers",
-    capKicker: "AI Product Practice",
-    capTitle: "From judgment to launch.",
-    capFrameTitle: "Product Framing",
-    capAiTitle: "AI Capability Productization",
-    capDeliveryTitle: "AI-assisted 0-to-1 Delivery",
-    capValidateTitle: "Launch Validation & Iteration",
-    capVisualLabel: "FOUR STAGES",
-    routeFrame: "Frame",
-    routeAi: "Translate",
-    routeDelivery: "Deliver",
-    routeValidate: "Validate",
-    capCaseLink: "See the matching cases →",
-    capStepsAria: "Four key steps in AI product practice",
-    kineticText: "Think it through, build it, then keep fixing it.",
     eduKicker: "Education",
     eduTitle: "SUSTech",
     eduNote:
@@ -171,10 +115,6 @@ const translations = {
     campusC3Desc: "Supporting students' growth and development.",
     campusC4Title: "SSVEP Brain-Computer Interface Robot Control",
     campusC4Desc: "Entry in the China International College Students' Innovation Competition.",
-    workKicker: "Work",
-    workTitle: "Portfolio",
-    workCount: "{n} projects",
-    workAll: "All repositories on GitHub ↗",
     casesKicker: "Cases",
     casesTitle: "Three projects, from build to launch.",
     roleLabel: "My role",
@@ -187,12 +127,6 @@ const translations = {
   },
 };
 
-/* Kinetic statement: substrings that get accent colors (in order). */
-const kineticHighlights = {
-  zh: ["做出来", "接着改"],
-  en: ["build it", "keep fixing it"],
-};
-
 /* Public cases first; supporting practice stays visually secondary. */
 const projects = [
   {
@@ -200,7 +134,6 @@ const projects = [
     primary: true,
     accent: "#ff6714",
     image: "assets/hardnest-card.webp",
-    capabilities: ["framing", "experience", "delivery"],
     status: { zh: "LIVE DEMO · 已部署", en: "LIVE DEMO · DEPLOYED" },
     tags: {
       zh: ["品牌命题", "响应式体验", "静态部署"],
@@ -236,7 +169,6 @@ const projects = [
     primary: true,
     accent: "#6e5bff",
     image: "assets/echonote-lecture-card.webp",
-    capabilities: ["framing", "experience", "intelligence", "delivery"],
     status: { zh: "APP STORE · 已上线", en: "APP STORE · SHIPPED" },
     tags: {
       zh: ["AI 能力产品化", "端侧隐私", "学习体验"],
@@ -273,21 +205,20 @@ const projects = [
     accent: "#2fbf9b",
     images: [
       {
-        src: "assets/liquid-deadline-at-a-glance.png",
+        src: "assets/liquid-deadline-at-a-glance.webp",
         alt: {
           zh: "Liquid Deadline 应用内任务时间线界面",
           en: "Liquid Deadline in-app task timeline",
         },
       },
       {
-        src: "assets/liquid-deadline-home-screen.png",
+        src: "assets/liquid-deadline-home-screen.webp",
         alt: {
           zh: "Liquid Deadline 真实桌面小组件界面",
           en: "Liquid Deadline real home-screen widgets",
         },
       },
     ],
-    capabilities: ["framing", "experience", "delivery"],
     status: { zh: "APP STORE · 已上线", en: "APP STORE · SHIPPED" },
     tags: {
       zh: ["0→1 产品", "时间可视化", "发布验收"],
@@ -325,7 +256,7 @@ const projects = [
   {
     id: "xiangqi",
     accent: "#c0453a",
-    image: "assets/xiangqi-card.png",
+    image: "assets/xiangqi-card.webp",
     status: { zh: "课程项目", en: "COURSE PROJECT" },
     tags: { zh: ["规则实现", "可玩原型"], en: ["Rules", "Playable prototype"] },
     title: { zh: "SUSTech XiangQi", en: "SUSTech XiangQi" },
@@ -343,7 +274,7 @@ const projects = [
   {
     id: "campus",
     accent: "#e8890c",
-    image: "assets/campus-proposal-card.png",
+    image: "assets/campus-proposal-card.webp",
     status: { zh: "校园实践", en: "CAMPUS PRACTICE" },
     tags: { zh: ["问题调研", "方案表达"], en: ["Problem research", "Proposal"] },
     title: { zh: "校园提案 · 一等奖", en: "Campus Proposal · First Prize" },
@@ -725,7 +656,6 @@ const buildCaseCard = (project, language, index, instant) => {
   const stage = document.createElement("article");
   stage.className = "stage";
   stage.dataset.case = project.id;
-  stage.dataset.capabilities = project.capabilities.join(" ");
   stage.setAttribute("data-rise", "");
   stage.style.setProperty("--accent", project.accent);
   stage.dataset.delay = String(index);
@@ -858,209 +788,6 @@ const renderProjects = (language) => {
   projectsRenderedOnce = true;
 };
 
-/* ── homepage capability story → matching project evidence ───────────── */
-
-const capabilityStoryContent = {
-  zh: [
-    {
-      kicker: "问题 → 范围 → 核心流程",
-      title: "EchoNote · Liquid Deadline · Hard Nest",
-      proof: "三个项目都从明确的使用场景开始，再决定第一版真正需要什么。",
-    },
-    {
-      kicker: "语音 → 转写 → 翻译",
-      title: "EchoNote Lecture",
-      proof: "把端侧语音识别与逐句翻译放进课堂流程，并明确首次资源下载与隐私边界。",
-    },
-    {
-      kicker: "研究 → 原型 → 实现 → 验收",
-      title: "三个可运行项目",
-      proof: "AI 加速制作；需求判断、体验取舍、测试与最终发布验收由我负责。",
-    },
-    {
-      kicker: "APP STORE × 2 · LIVE DEMO × 1",
-      title: "公开上线，是验证的起点",
-      proof: "用可下载应用与可访问 Demo 代替能力自评，让下一轮迭代有真实起点。",
-    },
-  ],
-  en: [
-    {
-      kicker: "PROBLEM → SCOPE → CORE FLOW",
-      title: "EchoNote · Liquid Deadline · Hard Nest",
-      proof: "Each project starts from a clear use context before deciding what the first release truly needs.",
-    },
-    {
-      kicker: "SPEECH → TRANSCRIPTION → TRANSLATION",
-      title: "EchoNote Lecture",
-      proof: "Places on-device speech recognition and sentence-level translation inside a lecture flow, with explicit download and privacy boundaries.",
-    },
-    {
-      kicker: "RESEARCH → PROTOTYPE → BUILD → ACCEPT",
-      title: "Three working products",
-      proof: "AI accelerates making; I retain ownership of requirements, experience trade-offs, testing, and final release acceptance.",
-    },
-    {
-      kicker: "APP STORE × 2 · LIVE DEMO × 1",
-      title: "Public launch starts validation",
-      proof: "Downloadable apps and an accessible demo replace self-ratings with evidence and give the next iteration a real starting point.",
-    },
-  ],
-};
-
-const capabilityStory = document.querySelector("[data-capability-story]");
-const capabilityStepButtons = capabilityStory
-  ? Array.from(capabilityStory.querySelectorAll("[data-capability-step-button]"))
-  : [];
-const capabilityStageCopy = capabilityStory?.querySelector("[data-capability-stage-copy]");
-const capabilityStageKicker = capabilityStory?.querySelector("[data-capability-stage-kicker]");
-const capabilityStageTitle = capabilityStory?.querySelector("[data-capability-stage-title]");
-const capabilityStageProof = capabilityStory?.querySelector("[data-capability-stage-proof]");
-const capabilityRouteNodes = capabilityStory
-  ? Array.from(capabilityStory.querySelectorAll(".route-node"))
-  : [];
-let activeCapabilityStep = 0;
-let capabilityStepObserver = null;
-
-const activateCapabilityStory = (
-  requestedIndex,
-  language = currentLanguage(),
-  animate = true,
-) => {
-  if (!capabilityStory || !capabilityStepButtons.length) return;
-  const index = clamp(Number(requestedIndex) || 0, 0, capabilityStepButtons.length - 1);
-  const content = capabilityStoryContent[language][index];
-  const changed = index !== activeCapabilityStep;
-  activeCapabilityStep = index;
-  capabilityStory.dataset.capabilityStep = String(index);
-
-  capabilityStepButtons.forEach((button, buttonIndex) => {
-    const isActive = buttonIndex === index;
-    button.classList.toggle("is-active", isActive);
-    button.setAttribute("aria-pressed", String(isActive));
-  });
-  capabilityRouteNodes.forEach((node, nodeIndex) => {
-    node.classList.toggle("is-reached", nodeIndex <= index);
-    node.classList.toggle("is-current", nodeIndex === index);
-  });
-
-  capabilityStageKicker.textContent = content.kicker;
-  capabilityStageTitle.textContent = content.title;
-  capabilityStageProof.textContent = content.proof;
-
-  if (
-    animate &&
-    changed &&
-    !prefersReducedMotion.matches &&
-    typeof capabilityStageCopy?.animate === "function"
-  ) {
-    capabilityStageCopy.getAnimations().forEach((animation) => animation.cancel());
-    capabilityStageCopy.animate(
-      [
-        { opacity: 0.16, transform: "translate3d(0, 6px, 0)" },
-        { opacity: 1, transform: "translate3d(0, 0, 0)" },
-      ],
-      { duration: 280, easing: "cubic-bezier(.2,0,0,1)" },
-    );
-  }
-};
-
-capabilityStepButtons.forEach((button) => {
-  const step = Number(button.dataset.capabilityStepButton);
-  button.addEventListener("click", () => activateCapabilityStory(step));
-  button.addEventListener("focus", () => activateCapabilityStory(step));
-  if (canHover.matches) {
-    button.addEventListener("pointerenter", () => activateCapabilityStory(step));
-  }
-});
-
-const configureCapabilityStoryObserver = () => {
-  capabilityStepObserver?.disconnect();
-  capabilityStepObserver = null;
-  if (
-    !capabilityStory ||
-    !window.matchMedia("(min-width: 901px)").matches ||
-    prefersReducedMotion.matches ||
-    !("IntersectionObserver" in window)
-  ) {
-    return;
-  }
-
-  capabilityStepObserver = new IntersectionObserver(
-    (entries) => {
-      const activeEntry = entries.find((entry) => entry.isIntersecting);
-      if (activeEntry) {
-        activateCapabilityStory(activeEntry.target.dataset.capabilityStepButton);
-      }
-    },
-    { rootMargin: "-47% 0px -47% 0px", threshold: 0 },
-  );
-  capabilityStepButtons.forEach((button) => capabilityStepObserver.observe(button));
-};
-
-prefersReducedMotion.addEventListener?.("change", configureCapabilityStoryObserver);
-window.matchMedia("(min-width: 901px)").addEventListener?.(
-  "change",
-  configureCapabilityStoryObserver,
-);
-configureCapabilityStoryObserver();
-
-/* ── kinetic statement (scroll-scrubbed character fill) ──────────────── */
-
-const kineticSection = document.querySelector("[data-kinetic]");
-const kineticTextEl = document.querySelector("[data-kinetic-text]");
-let kineticTokens = [];
-
-const buildKinetic = (language) => {
-  if (!kineticTextEl) return;
-  const text = translations[language].kineticText;
-  kineticTextEl.setAttribute("aria-label", text);
-
-  const ranges = [];
-  let cursor = 0;
-  (kineticHighlights[language] || []).forEach((phrase, order) => {
-    const at = text.indexOf(phrase, cursor);
-    if (at !== -1) {
-      ranges.push({ start: at, end: at + phrase.length, order });
-      cursor = at + phrase.length;
-    }
-  });
-
-  const tokens =
-    language === "zh" ? Array.from(text) : text.split(/(\s+)/).filter((part) => part.length);
-
-  kineticTextEl.textContent = "";
-  kineticTokens = [];
-  let offset = 0;
-  tokens.forEach((token) => {
-    const span = document.createElement("span");
-    span.className = /^\s+$/.test(token) ? "ch sp" : "ch";
-    span.setAttribute("aria-hidden", "true");
-    const range = ranges.find(
-      (candidate) => offset < candidate.end && offset + token.length > candidate.start
-    );
-    if (range) span.classList.add("hl-" + (range.order % 3));
-    span.textContent = token;
-    kineticTextEl.appendChild(span);
-    kineticTokens.push(span);
-    offset += token.length;
-  });
-
-  updateKinetic();
-};
-
-const updateKinetic = () => {
-  if (!kineticSection || !kineticTokens.length || prefersReducedMotion.matches) return;
-  const rect = kineticSection.getBoundingClientRect();
-  const vh = window.innerHeight;
-  const progress = clamp((vh * 0.92 - rect.top) / (vh * 0.72), 0, 1);
-  const count = kineticTokens.length;
-
-  kineticTokens.forEach((token, index) => {
-    const local = clamp((progress - (index / count) * 0.72) / 0.28, 0, 1);
-    token.style.opacity = (0.13 + local * 0.87).toFixed(3);
-  });
-};
-
 /* ── i18n ────────────────────────────────────────────────────────────── */
 
 const langToggle = document.querySelector("[data-lang-toggle]");
@@ -1085,22 +812,7 @@ const setLanguage = (language) => {
     if (value !== undefined) element.textContent = value;
   });
 
-  /* Bilingual label pairs: the active language sits on top, the other one
-     underneath. Switching languages swaps which is which. */
-  const alternate = translations[nextLanguage === "zh" ? "en" : "zh"];
-  document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
-    const value = alternate[element.dataset.i18nAlt];
-    if (value !== undefined) element.textContent = value;
-  });
-
-  document.querySelectorAll("[data-i18n-aria-label]").forEach((element) => {
-    const value = dictionary[element.dataset.i18nAriaLabel];
-    if (value !== undefined) element.setAttribute("aria-label", value);
-  });
-
-  buildKinetic(nextLanguage);
   renderProjects(nextLanguage);
-  activateCapabilityStory(activeCapabilityStep, nextLanguage, false);
 
   if (langCurrent) langCurrent.textContent = nextLanguage === "zh" ? "EN" : "中";
   if (langToggle) langToggle.setAttribute("aria-label", dictionary.langAria);
@@ -1108,7 +820,7 @@ const setLanguage = (language) => {
   writeStoredLanguage(nextLanguage);
 };
 
-/* ── dock: magnification + scrollspy ─────────────────────────────────── */
+/* ── dock: magnification + current page ──────────────────────────────── */
 
 const dock = document.querySelector("[data-dock]");
 const dockItems = dock ? Array.from(dock.querySelectorAll(".dock-item")) : [];
@@ -1142,32 +854,6 @@ dockItems.forEach((item) => {
   }
 });
 
-/* ── clock (Shenzhen time) ───────────────────────────────────────────── */
-
-const clockEl = document.querySelector("[data-clock]");
-if (clockEl) {
-  let clockFormat = null;
-  try {
-    clockFormat = new Intl.DateTimeFormat("zh-CN", {
-      hour12: false,
-      timeZone: "Asia/Shanghai",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-  } catch {
-    clockFormat = null;
-  }
-  const updateClock = () => {
-    const now = new Date();
-    clockEl.textContent = clockFormat
-      ? clockFormat.format(now)
-      : now.toTimeString().slice(0, 8);
-  };
-  updateClock();
-  window.setInterval(updateClock, 1000);
-}
-
 /* ── signature draw-on ───────────────────────────────────────────────── */
 
 const signature = document.querySelector("[data-signature]");
@@ -1187,21 +873,6 @@ if (signature) {
     signature.classList.add("is-in");
   }
 }
-
-/* ── scroll loop (kinetic scrub) ─────────────────────────────────────── */
-
-let scrollTicking = false;
-const onScroll = () => {
-  if (scrollTicking) return;
-  scrollTicking = true;
-  window.requestAnimationFrame(() => {
-    scrollTicking = false;
-    updateKinetic();
-  });
-};
-
-window.addEventListener("scroll", onScroll, { passive: true });
-window.addEventListener("resize", onScroll);
 
 /* ── init ────────────────────────────────────────────────────────────── */
 
