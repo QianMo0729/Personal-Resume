@@ -13,13 +13,14 @@ Generated on 2026-09-07 for the local blueprint portfolio demo.
 - `processing-report.json`: output counts, bounds, height methods, and rejected invalid relation.
 - `campus-plan-preview.png`: diagnostic raster preview of the native SVG; not a replacement for source geometry.
 
-## Three experience anchors
+## Four experience anchors
 
 | Experience | Geometry | Anchor | Validation |
 |---|---|---|---|
 | 科研经历 · 工学院南楼 | [OSM way 695571961](https://www.openstreetmap.org/way/695571961) | 113.99110, 22.60328 | Anchor is on the northern wing of the south building and lies within its footprint. The 2025 bus map labels this group COE South Tower. |
 | 校园与书院 · 学生宿舍15栋 | [OSM way 695571951](https://www.openstreetmap.org/way/695571951) | 113.9952891995979, 22.60504180349547 | Public campus-navigation POI lies inside this named OSM footprint. |
-| 实习经历 · 一号门 | 无建筑轮廓，仅为点位 | 113.9944801104224, 22.59560217717079 | Public campus-navigation gate POI (Gate 1) on the campus edge. Off-campus experience is anchored here; the landmark carries no `buildingId`, so no building is entered. |
+| 作品集 · 学生宿舍11栋 | [OSM way 695571955](https://www.openstreetmap.org/way/695571955) | 113.9941226436831, 22.60503138537687 | Public campus-navigation POI lies inside this named OSM footprint. |
+| 实习经历 · 一号门 | 无建筑轮廓，仅为点位 | 113.9944801104224, 22.59560217717079 | Public campus-navigation gate POI (Gate 1) on the campus edge. Off-campus experience is anchored here; the landmark carries no `buildingId`, and the renderer leaves through the gate along the inward normal of the nearest campus-boundary edge. |
 
 The public navigation source is [bus.sustcra.com/geojson/sustech_bldg.json](https://bus.sustcra.com/geojson/sustech_bldg.json). Its point coordinates are used only for anchors; building footprints come from OSM ways and multipolygons.
 

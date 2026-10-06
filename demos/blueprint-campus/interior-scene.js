@@ -262,6 +262,24 @@ export function createInterior(THREE, kind = 'research') {
     for (let col = 1; col < 12; col++) segment([x - width / 2 + col * width / 12, y + 0.028, z - depth / 2 + 0.05], [x - width / 2 + col * width / 12, y + 0.028, z + depth / 2 - 0.05], 'soft');
   }
 
+  function laptop(x, y, z, width = 1.2, rotation = 0, tier = 'normal') {
+    // The lid leans away from the camera side (+z); rotation turns it on the desk.
+    const cosine = Math.cos(rotation), sine = Math.sin(rotation);
+    const turn = (point) => [x + point[0] * cosine + point[2] * sine, point[1], z - point[0] * sine + point[2] * cosine];
+    const w = width / 2, d = width * 0.34, h = width * 0.64, lean = h * 0.3;
+    const base = [[-w, y, -d], [w, y, -d], [w, y, d], [-w, y, d]].map(turn);
+    quad(...base, palette.raised);
+    path(base, tier, true);
+    const lid = [[-w, y, -d], [w, y, -d], [w, y + h, -d - lean], [-w, y + h, -d - lean]].map(turn);
+    quad(...lid, palette.screen);
+    path(lid, tier, true);
+    for (let i = 1; i <= 3; i++) {
+      const t = i / 4.4;
+      segment(turn([-w * 0.7, y + h * t, -d - lean * t + 0.012]), turn([w * (i === 2 ? 0.2 : 0.62), y + h * t, -d - lean * t + 0.012]), 'soft');
+    }
+    segment(turn([-w * 0.3, y + 0.004, d * 0.45]), turn([w * 0.3, y + 0.004, d * 0.45]), 'faint');
+  }
+
   function book(x, y, z, width = 0.52, height = 0.12, depth = 0.7, tier = 'soft') {
     wireBox(x, y, z, width, height, depth, tier, palette.raised);
     segment([x - width / 2 + 0.05, y, z + depth / 2 + 0.003], [x + width / 2 - 0.05, y, z + depth / 2 + 0.003], 'faint');
@@ -434,7 +452,193 @@ export function createInterior(THREE, kind = 'research') {
     engineeringLabel('READING ATRIUM', 6.1, 7.43, -11.49, 4.7, 0.32);
   }
 
+  function venue() {
+    // A gabled event hall dressed for a hackathon: a four-day schedule wall
+    // behind the stage, team tables on the floor and an organiser desk. The
+    // roof section and long structural bays are unlike either other interior.
+    quad([-9, -0.02, -15], [17, -0.02, -15], [17, -0.02, 9], [-9, -0.02, 9]);
+    quad([-4, 0, -15.06], [16, 0, -15.06], [16, 10, -15.06], [-4, 10, -15.06]);
+    surface([-4, 10, -15.06, 16, 10, -15.06, 6, 14, -15.06], palette.paper);
+    for (let x = -9; x <= 17; x += 2) segment([x, 0.008, -15], [x, 0.008, 9], 'faint');
+    for (let z = -15; z <= 9; z += 2) segment([-9, 0.008, z], [17, 0.008, z], 'faint');
+    for (const z of [-14.8, -8.2, -1.6, 5]) {
+      const section = [[-4, 0, z], [-4, 10, z], [6, 14, z], [16, 10, z], [16, 0, z]];
+      path(section, 'normal');
+      path([[-3.83, 9.8, z], [6, 13.75, z], [15.83, 9.8, z]], 'soft');
+      segment([-3.83, 9.8, z], [15.83, 9.8, z], 'soft');
+      for (const x of [1, 6, 11]) {
+        const roofY = 14 - Math.abs(x - 6) * 0.4;
+        segment([x, 9.8, z], [x, roofY - 0.16, z], 'soft');
+        segment([x - 2.5, 9.8, z], [x, roofY - 0.16, z], 'faint');
+      }
+      wireBox(15.92, 5, z, 0.16, 10, 0.16, 'normal', palette.raised);
+    }
+    for (const [x, y] of [[-4, 10], [1, 12], [6, 14], [11, 12], [16, 10]]) segment([x, y, -15], [x, y, 6], 'soft');
+    for (const y of [0.18, 3.25, 7.4]) segment([16, y, -15], [16, y, 5], 'soft');
+
+    // Stage, with the event schedule as four day columns. The blocks are an
+    // abstract rhythm of sessions; they encode no real agenda items.
+    wireBox(6.55, 0.34, -11.35, 12.1, 0.68, 5.2, 'strong', palette.raised);
+    wireBox(6.55, 0.18, -8.32, 8.6, 0.36, 0.8, 'normal', palette.raised);
+    wireBox(7, 6.35, -14.93, 13.2, 8.2, 0.12, 'strong', palette.screen);
+    rect(7, 6.35, -14.862, 12.87, 7.88, 'soft');
+    [2.2, 5.4, 8.6, 11.8].forEach((x, i) => {
+      const z = -14.814;
+      rect(x, 6.42, -14.845, 2.86, 6.92, 'normal');
+      engineeringLabel('DAY ' + (i + 1), x, 9.3, -14.818, 1.5, 0.4);
+      for (let j = 0; j < 3; j++) {
+        const height = 0.95 + ((i + j) % 3) * 0.18;
+        const yy = 8.05 - j * 1.48 - (i % 2) * 0.16;
+        rect(x, yy, z, 2.3, height, j === 0 ? 'normal' : 'soft');
+        segment([x - 0.95, yy + height * 0.18, z], [x + 0.6, yy + height * 0.18, z], 'soft');
+        segment([x - 0.95, yy - height * 0.16, z], [x + 0.1, yy - height * 0.16, z], 'faint');
+      }
+      segment([x - 1.15, 3.7, z], [x + 1.15, 3.7, z], 'soft');
+    });
+    // A folded lectern marks the pitch position.
+    quad([2.7, 0.68, -10.9], [3.8, 0.68, -10.9], [3.57, 2.98, -11.22], [2.93, 2.98, -11.22], palette.raised);
+    path([[2.7, 0.68, -10.9], [2.93, 2.98, -11.22], [3.57, 2.98, -11.22], [3.8, 0.68, -10.9]], 'normal');
+    quad([2.56, 2.97, -11.65], [3.94, 2.97, -11.65], [3.94, 3.15, -10.92], [2.56, 3.15, -10.92], palette.raised);
+    path([[2.56, 2.97, -11.65], [3.94, 2.97, -11.65], [3.94, 3.15, -10.92], [2.56, 3.15, -10.92]], 'strong', true);
+
+    // Team tables face the stage: two laptops and two chairs each.
+    for (const [x, z] of [[8.3, -5.4], [13.0, -5.4], [8.3, -1.6], [13.0, -1.6], [8.3, 2.2], [13.0, 2.2]]) {
+      desk(x, z, 3.7, 1.5, 2.05, 'normal');
+      laptop(x - 0.95, 2.13, z - 0.05, 1.05, 0.12);
+      laptop(x + 0.9, 2.13, z + 0.02, 1.05, -0.1);
+      chair(x - 0.95, z + 1.3, 0);
+      chair(x + 0.9, z + 1.3, 0);
+    }
+    // Organiser desk beside the stage.
+    desk(0.3, -5.9, 4.2, 1.7, 2.25, 'strong');
+    monitor(-0.4, 3.32, -6.0, 2.1, 1.36, 1);
+    laptop(1.4, 2.33, -5.85, 1.2, -0.25);
+    chair(0.3, -4.2, 0);
+
+    horizontalDimension(-4, 16, 14.54, -14.95, '20.00 M');
+    segment([16.7, 0, -14.92], [16.7, 14, -14.92], 'soft');
+    for (const y of [0, 14]) segment([16.55, y, -14.92], [16.86, y, -14.92], 'normal');
+    engineeringLabel('H 14.00 M', 15.25, 11.62, -14.88, 2.6, 0.28);
+    engineeringLabel('AGENT HACKATHON / SHENZHEN', 6, 11.5, -14.99, 7.4, 0.36);
+    engineeringLabel('HACKATHON VENUE', 6.65, 0.33, -8.725, 4.6, 0.3);
+  }
+
+  function portfolio() {
+    // A dormitory study bay, cut away on the camera side. A loft bed over a
+    // wardrobe sets the scale; one oversized workstation carries the work.
+    quad([-8, -0.02, -10], [14, -0.02, -10], [14, -0.02, 9], [-8, -0.02, 9]);
+    quad([-5, 0, -10.04], [14, 0, -10.04], [14, 8, -10.04], [-5, 8, -10.04]);
+    for (let x = -8; x <= 14; x += 1.5) segment([x, 0.003, -10], [x, 0.003, 9], 'faint');
+    for (let z = -10; z <= 9; z += 1.5) segment([-8, 0.003, z], [14, 0.003, z], 'faint');
+    path([[-5, 0, -10], [-5, 8, -10], [14, 8, -10], [14, 0, -10]], 'normal');
+    path([[-5, 0.14, -9.98], [14, 0.14, -9.98], [14, 0.14, 7]], 'soft');
+    for (let z = -10; z <= 6; z += 4) segment([14, 0, z], [14, 8, z], 'soft');
+    segment([14, 8, -10], [14, 8, 7], 'soft');
+    // Balcony window on the back wall.
+    rect(10.2, 4.7, -9.99, 5.6, 4.6, 'normal');
+    for (const x of [8.33, 10.2, 12.07]) segment([x, 2.4, -9.985], [x, 7.0, -9.985], 'soft');
+    segment([7.4, 5.6, -9.985], [13.0, 5.6, -9.985], 'soft');
+
+    // Loft bed along the back wall, with a ladder at its near end.
+    wireBox(-0.2, 5.05, -8.0, 8.4, 0.26, 3.6, 'normal', palette.raised);
+    wireBox(-0.2, 5.36, -8.0, 8.0, 0.34, 3.2, 'soft', palette.raised);
+    wireBox(-3.3, 5.68, -8.0, 1.5, 0.3, 2.4, 'soft', palette.raised);
+    for (const x of [-4.3, 3.9]) for (const z of [-9.7, -6.3]) wireBox(x, 2.52, z, 0.16, 5.04, 0.16, 'normal', palette.raised);
+    segment([-4.3, 6.35, -6.3], [3.9, 6.35, -6.3], 'normal');
+    for (let x = -4.3; x <= 3.91; x += 1.025) segment([x, 5.2, -6.3], [x, 6.35, -6.3], 'soft');
+    for (const x of [4.3, 5.0]) segment([x, 0, -6.1], [x, 6.3, -6.9], 'normal');
+    for (let i = 1; i <= 6; i++) segment([4.3, 6.3 * i / 7, -6.1 - 0.8 * i / 7], [5.0, 6.3 * i / 7, -6.1 - 0.8 * i / 7], 'soft');
+    // Under the bed: bookshelf and wardrobe.
+    shelf(-2.6, -8.7, 2.8, 4.5, 3, true);
+    wireBox(1.6, 2.3, -8.5, 3.6, 4.6, 1.9, 'soft', palette.raised);
+    segment([1.6, 0.1, -7.54], [1.6, 4.5, -7.54], 'soft');
+    for (const x of [1.35, 1.85]) segment([x, 2.1, -7.53], [x, 2.7, -7.53], 'normal');
+
+    // The workstation. Its monitor is the room's subject: one window listing
+    // the five projects, drawn as tiles rather than invented screenshots.
+    desk(9.2, 2.6, 8.4, 3.4, 2.35, 'strong');
+    const sx = 9.3, sy = 4.98, sz = 1.75, screenWidth = 5.9, screenHeight = 3.5;
+    const front = sz + 0.085, zf = front + 0.02;
+    wireBox(sx, sy, sz, screenWidth, screenHeight, 0.15, 'strong', palette.screen);
+    rect(sx, sy + 0.03, front, screenWidth - 0.18, screenHeight - 0.22, 'soft');
+    wireBox(sx, 2.84, sz - 0.03, 0.22, 0.78, 0.16, 'normal');
+    wireBox(sx, 2.46, sz + 0.1, 2.0, 0.06, 0.9, 'normal');
+    const leftEdge = sx - screenWidth / 2 + 0.2, rightEdge = sx + screenWidth / 2 - 0.2;
+    const topEdge = sy + screenHeight / 2 - 0.16, bottomEdge = sy - screenHeight / 2 + 0.2;
+    const bar = topEdge - 0.34, side = leftEdge + 1.25;
+    segment([leftEdge, bar, zf], [rightEdge, bar, zf], 'normal');
+    for (let i = 0; i < 3; i++) rect(leftEdge + 0.2 + i * 0.2, topEdge - 0.17, zf, 0.09, 0.09, 'normal');
+    rect(sx + 0.3, topEdge - 0.17, zf, 2.2, 0.16, 'faint');
+    segment([side, bottomEdge, zf], [side, bar, zf], 'soft');
+    for (let i = 0; i < 6; i++) {
+      const yy = bar - 0.38 - i * 0.36;
+      segment([leftEdge + 0.18, yy, zf], [leftEdge + (i === 0 ? 1.0 : 0.72 + (i % 2) * 0.2), yy, zf], i === 0 ? 'strong' : 'soft');
+    }
+    engineeringLabel('PORTFOLIO', side + 1.05, bar - 0.28, zf + 0.004, 1.7, 0.2);
+    const glyph = (index, cx, cy, z, w, h) => {
+      if (index === 0) {
+        // Hard Nest: a website in a browser frame.
+        rect(cx, cy, z, w, h, 'soft');
+        segment([cx - w / 2, cy + h * 0.28, z], [cx + w / 2, cy + h * 0.28, z], 'soft');
+        segment([cx - w * 0.3, cy - h * 0.05, z], [cx + w * 0.3, cy - h * 0.05, z], 'normal');
+        segment([cx - w * 0.2, cy - h * 0.25, z], [cx + w * 0.2, cy - h * 0.25, z], 'faint');
+      } else if (index === 1 || index === 2) {
+        // The two iOS apps: a phone, then a waveform or a deadline stack.
+        rect(cx - w * 0.28, cy, z, h * 0.5, h, 'soft');
+        if (index === 1) {
+          const points = [];
+          for (let k = 0; k <= 16; k++) points.push([cx - w * 0.02 + k * w * 0.032, cy + Math.sin(k * 1.25) * h * (0.12 + (k % 4) * 0.06), z]);
+          path(points, 'normal');
+        } else {
+          for (let k = 0; k < 3; k++) segment([cx - w * 0.02, cy + h * (0.25 - k * 0.25), z], [cx + w * (0.5 - k * 0.14), cy + h * (0.25 - k * 0.25), z], k === 0 ? 'normal' : 'soft');
+        }
+      } else if (index === 3) {
+        // Shuren Study Buddy: two matched people.
+        for (const dx of [-0.28, 0.28]) rect(cx + w * dx, cy, z, h * 0.42, h * 0.42, 'normal');
+        segment([cx - w * 0.28 + h * 0.21, cy, z], [cx + w * 0.28 - h * 0.21, cy, z], 'soft');
+      } else {
+        // MarkPDF: a document split into page and notes.
+        rect(cx, cy, z, w * 0.8, h, 'soft');
+        segment([cx, cy - h / 2, z], [cx, cy + h / 2, z], 'soft');
+        for (let k = 0; k < 3; k++) {
+          const yy = cy + h * (0.25 - k * 0.22);
+          segment([cx - w * 0.33, yy, z], [cx - w * 0.08, yy, z], 'faint');
+          segment([cx + w * 0.08, yy, z], [cx + w * 0.33, yy, z], 'faint');
+        }
+      }
+    };
+    const gap = 0.2, tileWidth = (rightEdge - side - gap * 4) / 3, tileHeight = 0.94;
+    ['Hard Nest', 'EchoNote', 'Liquid Deadline', '树仁搭子', 'MarkPDF'].forEach((name, index) => {
+      const row = index < 3 ? 0 : 1, column = row ? index - 3 : index;
+      const cx = side + gap + tileWidth / 2 + column * (tileWidth + gap) + (row ? (tileWidth + gap) / 2 : 0);
+      const cy = bar - 0.56 - tileHeight / 2 - row * (tileHeight + 0.16);
+      rect(cx, cy, zf, tileWidth, tileHeight, 'normal');
+      glyph(index, cx, cy + 0.14, zf + 0.004, tileWidth * 0.62, tileHeight * 0.5);
+      engineeringLabel(name, cx, cy - tileHeight / 2 + 0.15, zf + 0.006, tileWidth * 0.9, 0.13);
+    });
+
+    keyboard(9.0, 2.46, 3.5, 2.6, 0.78);
+    wireBox(10.95, 2.47, 3.5, 0.34, 0.1, 0.56, 'soft');
+    laptop(5.9, 2.43, 3.0, 1.9, 0.38);
+    // A phone on a stand: two of the projects ship on iOS.
+    wireBox(12.75, 3.12, 2.95, 0.7, 1.36, 0.07, 'normal', palette.screen);
+    rect(12.75, 3.12, 2.99, 0.58, 1.22, 'soft');
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 3; c++) rect(12.57 + c * 0.18, 3.52 - r * 0.2, 2.992, 0.11, 0.11, 'faint');
+    wireBox(12.75, 2.44, 2.9, 0.5, 0.05, 0.4, 'soft');
+    // Desk lamp, books and a mug.
+    path([[6.2, 2.42, 1.5], [6.2, 4.5, 1.5], [7.25, 5.15, 1.75]], 'normal');
+    path([[7.0, 5.2, 1.5], [7.5, 5.1, 2.0], [7.62, 4.72, 2.08], [6.82, 4.86, 1.34]], 'soft', true);
+    wireBox(6.2, 2.45, 1.5, 0.7, 0.06, 0.7, 'soft');
+    book(12.6, 2.48, 1.7, 1.1, 0.1, 1.3, 'normal');
+    book(12.55, 2.59, 1.72, 1.0, 0.11, 1.2);
+    cylinder(7.45, 2.62, 3.45, 0.2, 0.4, 'soft', 12);
+    chair(9.0, 5.9, 0);
+    engineeringLabel('PORTFOLIO / WORKSTATION', 5.2, 7.36, -9.88, 5.6, 0.26);
+  }
+
   if (kind === 'college') college();
+  else if (kind === 'portfolio') portfolio();
+  else if (kind === 'internship') venue();
   else research();
 
   for (const [color, vertices] of surfaceBatches) {
@@ -467,6 +671,8 @@ export function createInterior(THREE, kind = 'research') {
   const framing = {
     research: { camera: [10, 6, 16], target: [0, 3, -3], silhouette: 'rectangular steel-frame visualization lab' },
     college: { camera: [12, 7.6, 16], target: [1.5, 3.1, -4], silhouette: 'curved book wall, circular reading atrium and open oculus' },
+    portfolio: { camera: [10.2, 5.5, 14.5], target: [4.2, 3.9, -3], silhouette: 'dormitory study bay with a loft bed and one oversized workstation' },
+    internship: { camera: [12.5, 8.7, 17], target: [1, 4, -5], silhouette: 'gabled event hall with a schedule wall and team tables' },
   };
   const view = framing[kind] || framing.research;
   group.userData.silhouette = view.silhouette;

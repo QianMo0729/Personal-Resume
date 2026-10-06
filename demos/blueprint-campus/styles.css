@@ -120,6 +120,8 @@ p, h1, h2, h3, dl, dd { margin: 0; }
 #pin-college .landmark-leader { left: 6px; transform: rotate(-28deg); }
 #pin-research .landmark-label { left: auto; right: 44px; text-align: right; }
 #pin-research .landmark-leader { left: 6px; transform: rotate(-28deg); }
+#pin-portfolio .landmark-label { left: auto; right: 44px; text-align: right; }
+#pin-portfolio .landmark-leader { left: 6px; transform: rotate(-28deg); }
 #pin-college .landmark-label { left: 46px; right: auto; text-align: left; }
 #pin-college .landmark-leader { left: 25px; transform: rotate(28deg); }
 body:has(#detail-view:not([hidden])) .stage-footer { visibility: hidden; }
@@ -300,6 +302,9 @@ body:has(#flight-controls:not([hidden])) .stage-footer { visibility: hidden; }
   #pin-research .landmark-label { right: 27px; left: auto; min-width: 69px; }
   #pin-research .landmark-category b { margin-left: 4px; }
   #pin-research .landmark-leader { left: 10px; transform: rotate(-22deg); }
+  #pin-portfolio .landmark-label { right: 27px; left: auto; min-width: 69px; }
+  #pin-portfolio .landmark-category b { margin-left: 4px; }
+  #pin-portfolio .landmark-leader { left: 10px; transform: rotate(-22deg); }
   #pin-college .landmark-label { left: 32px; right: auto; }
   #pin-college .landmark-leader { left: 24px; transform: rotate(22deg); }
   #map-controls { right: var(--edge); bottom: 101px; gap: 3px; padding-bottom: 6px; }

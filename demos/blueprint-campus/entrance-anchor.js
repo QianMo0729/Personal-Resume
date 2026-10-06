@@ -80,6 +80,39 @@ export function findEntrance(building, towardCamera = { x: 0, z: 1 }) {
   return { x, z, nx, nz, edgeLength };
 }
 
+/**
+ * Anchor for a campus gate, which has no building footprint to enter.
+ *
+ * `point` is { x, z } in metres and `boundary` the campus boundary ring. The
+ * returned nx/nz is a unit normal of the nearest boundary edge pointing INTO
+ * the campus: the side the camera approaches from before it leaves through the
+ * gate. Returns null when the boundary is unusable. The gate position itself
+ * is kept as supplied; it is a public POI, not a surveyed gate line.
+ */
+export function findGateAnchor(point, boundary) {
+  const ring = cleanRing(boundary);
+  if (ring.length < 3 || !Number.isFinite(point?.x) || !Number.isFinite(point?.z)) return null;
+  let nearest = null;
+  for (let index = 0; index < ring.length; index++) {
+    const a = ring[index];
+    const b = ring[(index + 1) % ring.length];
+    const dx = b[0] - a[0];
+    const dz = b[1] - a[1];
+    const lengthSquared = dx * dx + dz * dz;
+    if (lengthSquared < 1) continue;
+    const t = Math.max(0, Math.min(1, ((point.x - a[0]) * dx + (point.z - a[1]) * dz) / lengthSquared));
+    const distance = Math.hypot(point.x - (a[0] + t * dx), point.z - (a[1] + t * dz));
+    if (!nearest || distance < nearest.distance) nearest = { distance, dx, dz, edgeLength: Math.sqrt(lengthSquared), x: a[0] + t * dx, z: a[1] + t * dz };
+  }
+  if (!nearest) return null;
+  let nx = -nearest.dz / nearest.edgeLength;
+  let nz = nearest.dx / nearest.edgeLength;
+  // Probe one metre to each side of the edge; the inward side is inside the ring.
+  if (!pointInRing(offset(nearest.x, nearest.z, nx, nz, 1), ring)) { nx = -nx; nz = -nz; }
+  if (!pointInRing(offset(nearest.x, nearest.z, nx, nz, 1), ring)) return null;
+  return { x: point.x, z: point.z, nx, nz, edgeLength: nearest.edgeLength };
+}
+
 function cleanRing(raw) {
   if (!Array.isArray(raw)) return [];
   const result = [];

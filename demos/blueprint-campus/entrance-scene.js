@@ -1,15 +1,18 @@
 /**
- * Three schematic, blueprinted entrances with distinct architectural forms.
+ * Schematic, blueprinted entrances in three architectural forms: a technical
+ * lab passage, a residential hall shared by both dormitory stops, and an
+ * open-air campus gate for the off-campus stop.
  * Coordinates are continuous with interior-scene.js; this is not a surveyed
- * SUSTech corridor. There is deliberately no independent animation loop.
+ * SUSTech corridor or gate. There is deliberately no independent animation loop.
  */
 export function createEntrance(THREE, kind = 'research') {
-  kind = ['research', 'college'].includes(kind) ? kind : 'research';
+  kind = ['research', 'college', 'portfolio', 'internship'].includes(kind) ? kind : 'research';
+  const style = { research: 'research', college: 'college', portfolio: 'college', internship: 'gate' }[kind];
   const group = new THREE.Group();
   group.name = `blueprint-entrance-${kind}`;
   group.userData.illustrative = true;
   group.userData.description = 'Illustrative entrance; not a surveyed SUSTech doorway.';
-  group.userData.entranceType = { research: 'sliding-glass', college: 'arched-lattice' }[kind];
+  group.userData.entranceType = { research: 'sliding-glass', college: 'arched-lattice', gate: 'boom-gate' }[style];
 
   const geometrySet = new Set();
   const materialSet = new Set();
@@ -114,32 +117,34 @@ export function createEntrance(THREE, kind = 'research') {
     parent.add(mesh); geometrySet.add(geometry); materialSet.add(material);
   }
 
-  // Continuous floor and opaque walls/ceiling keep the exterior out of view.
-  // The foyer floor reaches z=9, meeting the existing room floor. Walls and
-  // ceiling stop at z=19, behind the final camera at (10,6,16), so the corridor
-  // cannot obscure the established final room composition.
   const halfWidth = 5;
   const ceiling = 9;
   const left = 10 - halfWidth, right = 10 + halfWidth;
-  box(10, -0.09, 28.5, halfWidth * 2 + 0.2, 0.18, 39, 'soft', colors.wall);
-  box(left - 0.1, ceiling / 2, 33.5, 0.2, ceiling, 29, 'normal', colors.wall);
-  box(right + 0.1, ceiling / 2, 33.5, 0.2, ceiling, 29, 'normal', colors.wall);
-  box(10, ceiling + 0.1, 33.5, halfWidth * 2 + 0.4, 0.2, 29, 'soft', colors.inset);
+  if (style !== 'gate') {
+    // Continuous floor and opaque walls/ceiling keep the exterior out of view.
+    // The foyer floor reaches z=9, meeting the existing room floor. Walls and
+    // ceiling stop at z=19, behind the final camera at (10,6,16), so the corridor
+    // cannot obscure the established final room composition.
+    box(10, -0.09, 28.5, halfWidth * 2 + 0.2, 0.18, 39, 'soft', colors.wall);
+    box(left - 0.1, ceiling / 2, 33.5, 0.2, ceiling, 29, 'normal', colors.wall);
+    box(right + 0.1, ceiling / 2, 33.5, 0.2, ceiling, 29, 'normal', colors.wall);
+    box(10, ceiling + 0.1, 33.5, halfWidth * 2 + 0.4, 0.2, 29, 'soft', colors.inset);
 
-  // The entrance facade frames an open 10 m passage; nothing closes its mouth.
-  box(-2.5, 8, 48.1, 15, 16, 0.24, 'soft', colors.wall);
-  box(22.5, 8, 48.1, 15, 16, 0.24, 'soft', colors.wall);
-  box(10, 12.5, 48.1, 10, 7, 0.24, 'normal', colors.wall);
-  box(4.82, 4.5, 48.22, 0.2, 9, 0.12, 'strong', colors.raised);
-  box(15.18, 4.5, 48.22, 0.2, 9, 0.12, 'strong', colors.raised);
-  box(10, 9.06, 48.22, 10.56, 0.16, 0.12, 'strong', colors.raised);
-  box(10, -0.04, 49, 11.6, 0.08, 2.0, 'normal', colors.wall);
+    // The entrance facade frames an open 10 m passage; nothing closes its mouth.
+    box(-2.5, 8, 48.1, 15, 16, 0.24, 'soft', colors.wall);
+    box(22.5, 8, 48.1, 15, 16, 0.24, 'soft', colors.wall);
+    box(10, 12.5, 48.1, 10, 7, 0.24, 'normal', colors.wall);
+    box(4.82, 4.5, 48.22, 0.2, 9, 0.12, 'strong', colors.raised);
+    box(15.18, 4.5, 48.22, 0.2, 9, 0.12, 'strong', colors.raised);
+    box(10, 9.06, 48.22, 10.56, 0.16, 0.12, 'strong', colors.raised);
+    box(10, -0.04, 49, 11.6, 0.08, 2.0, 'normal', colors.wall);
 
-  for (const x of [left + 0.025, right - 0.025]) {
-    for (const y of [0.18, 0.32]) segment([x, y, 19.05], [x, y, 47.95], y === 0.32 ? 'normal' : 'soft');
+    for (const x of [left + 0.025, right - 0.025]) {
+      for (const y of [0.18, 0.32]) segment([x, y, 19.05], [x, y, 47.95], y === 0.32 ? 'normal' : 'soft');
+    }
   }
 
-  if (kind === 'research') {
+  if (style === 'research') {
     // A precise, compact technical passage: chamfered ribs, overhead service
     // trays and two continuous guide lines lead directly to the glass slider.
     for (const z of [46.8, 38.5, 30.4]) {
@@ -167,7 +172,7 @@ export function createEntrance(THREE, kind = 'research') {
     segment([13.97, 4.45, 28.31], [14.27, 4.45, 28.31], 'strong');
     for (const y of [10.7, 11.0, 14.8]) segment([-8.7, y, 48.24], [28.7, y, 48.24], 'faint');
     for (const x of [-7.8, -6.8, -5.8, 25.8, 26.8, 27.8]) segment([x, 2.0, 48.25], [x, 7.2, 48.25], 'soft');
-  } else if (kind === 'college') {
+  } else if (style === 'college') {
     // An intimate residential hall: rounded timber-like lattice ribs, a bench,
     // and framed noticeboards replace the laboratory's straight service lines.
     for (const z of [46.4, 39.4, 32.4]) arch(z);
@@ -195,24 +200,66 @@ export function createEntrance(THREE, kind = 'research') {
     for (const start of [-8.5, 18]) for (let x = start; x < start + 10.8; x += 0.72) {
       if (x < 4.8 || x > 15.2) box(x, 5.1, 48.3, 0.10, 8.6, 0.12, 'soft', colors.raised);
     }
+
+  } else {
+    // Open air: the camera leaves the campus along a road instead of entering
+    // a facade. A portal with a canopy stands on the campus edge at z=48, the
+    // boom gate at z=28, and nothing roofs the passage in between.
+    box(10, -0.09, 28.5, 12.4, 0.18, 39, 'soft', colors.wall);
+    for (const x of [3.0, 17.0]) box(x, 0.06, 33.5, 1.6, 0.30, 29, 'soft', colors.raised);
+    for (const x of [5.3, 14.7]) segment([x, 0.022, 9.1], [x, 0.022, 47.9], 'normal');
+    for (let z = 10; z < 47; z += 2.8) segment([10, 0.022, z], [10, 0.022, z + 1.5], 'normal');
+    for (let x = 5.9; x < 14.2; x += 0.9) quad([x, 0.02, 43.1], [x + 0.5, 0.02, 43.1], [x + 0.5, 0.02, 45.3], [x, 0.02, 45.3], colors.raised);
+    for (const z of [43.1, 45.3]) segment([5.9, 0.024, z], [14.0, 0.024, z], 'soft');
+
+    // Portal on the campus edge: two pylons, a deep canopy and a stepped plinth.
+    for (const x of [2.9, 17.1]) {
+      box(x, 5.6, 48.2, 2.3, 11.2, 2.3, 'strong', colors.raised);
+      box(x, 0.3, 48.2, 3.0, 0.6, 3.0, 'normal', colors.wall);
+      for (const y of [3.2, 6.4, 9.6]) path([[x - 1.15, y, 49.36], [x + 1.15, y, 49.36]], 'soft');
+    }
+    box(10, 11.75, 48.2, 18.4, 0.9, 3.4, 'strong', colors.raised);
+    box(10, 12.45, 48.2, 19.4, 0.22, 4.2, 'normal', colors.wall);
+    for (let x = 1.6; x <= 18.4; x += 1.4) segment([x, 11.29, 46.55], [x, 11.29, 49.85], 'faint');
+    // The campus fence runs away from the portal on both sides.
+    for (const start of [-9.6, 18.9]) {
+      for (let x = start; x < start + 10.8; x += 0.72) box(x, 2.3, 48.3, 0.09, 4.6, 0.09, 'soft', null);
+      for (const y of [0.35, 4.3]) segment([start - 0.2, y, 48.3], [start + 10.6, y, 48.3], 'normal');
+    }
+    // Guard booth, bollards and one lamp keep the passage reading as a street.
+    box(3.0, 1.85, 38.2, 2.2, 3.4, 3.0, 'normal', colors.raised);
+    box(3.0, 3.66, 38.2, 2.8, 0.2, 3.6, 'normal', colors.wall);
+    path([[4.11, 1.5, 37.0], [4.11, 3.0, 37.0], [4.11, 3.0, 39.4], [4.11, 1.5, 39.4]], 'strong', true);
+    segment([4.11, 1.5, 38.2], [4.11, 3.0, 38.2], 'soft');
+    for (const z of [31.2, 34.6, 41.8, 46.0]) for (const x of [4.55, 15.45]) {
+      if (x < 5 && z > 36 && z < 40.5) continue;
+      box(x, 0.6, z, 0.24, 1.2, 0.24, 'normal', colors.raised);
+    }
+    box(16.6, 3.9, 35.4, 0.14, 7.8, 0.14, 'normal', colors.raised);
+    path([[16.6, 7.8, 35.4], [15.2, 8.1, 35.4]], 'normal');
+    box(15.0, 8.02, 35.4, 0.9, 0.16, 0.42, 'strong', colors.raised);
+    // Boom housings beside the gantry posts.
+    for (const x of [5.95, 14.05]) box(x, 0.8, 28, 0.7, 1.6, 0.8, 'normal', colors.raised);
   }
 
   // z=28 partition: only its side piers and lintel are opaque. The clear door
   // aperture is x=6.5..13.5, y=0..8, and remains unobstructed after opening.
-  const pierWidth = 6.5 - left;
-  box(left + pierWidth / 2, ceiling / 2, 28, pierWidth, ceiling, 0.3, 'normal', colors.wall);
-  box(right - pierWidth / 2, ceiling / 2, 28, pierWidth, ceiling, 0.3, 'normal', colors.wall);
-  box(10, (ceiling + 8) / 2, 28, 7, ceiling - 8, 0.3, 'normal', colors.wall);
+  if (style !== 'gate') {
+    const pierWidth = 6.5 - left;
+    box(left + pierWidth / 2, ceiling / 2, 28, pierWidth, ceiling, 0.3, 'normal', colors.wall);
+    box(right - pierWidth / 2, ceiling / 2, 28, pierWidth, ceiling, 0.3, 'normal', colors.wall);
+    box(10, (ceiling + 8) / 2, 28, 7, ceiling - 8, 0.3, 'normal', colors.wall);
+  }
   box(6.42, 4, 28.07, 0.12, 8, 0.26, 'strong', colors.raised);
   box(13.58, 4, 28.07, 0.12, 8, 0.26, 'strong', colors.raised);
   box(10, 8.065, 28.07, 7.28, 0.13, 0.26, 'strong', colors.raised);
   box(10, 0.023, 28, 7.0, 0.035, 0.72, 'soft', colors.raised);
-  const labelY = kind === 'research' ? 8.60 : 8.52;
+  const labelY = style === 'research' ? 8.60 : 8.52;
   box(10, labelY, 28.18, 5.8, 0.67, 0.04, 'soft', colors.inset);
   architecture.finish();
 
   let moveDoors;
-  if (kind === 'research') {
+  if (style === 'research') {
     const leaves = [];
     for (let side = 0; side < 2; side++) {
       const leaf = new THREE.Group(); leaf.name = side === 0 ? 'sliding-door-left' : 'sliding-door-right';
@@ -226,7 +273,7 @@ export function createEntrance(THREE, kind = 'research') {
       door.finish(); glass(leaf, 1.75, 4, 0.006, 3.28, 7.72, 0.085);
     }
     moveDoors = p => { leaves[0].position.x = 6.5 - 3.72 * p; leaves[1].position.x = 10 + 3.72 * p; };
-  } else if (kind === 'college') {
+  } else if (style === 'college') {
     const hinge = new THREE.Group(); hinge.name = 'college-inward-hinged-door';
     hinge.position.set(6.5, 0, 28); group.add(hinge);
     const door = builder(hinge);
@@ -237,11 +284,26 @@ export function createEntrance(THREE, kind = 'research') {
     door.box(6.18, 4.0, 0.24, 0.1, 1.3, 0.13, 'strong', colors.raised);
     for (const y of [1.2, 4.0, 6.8]) door.box(0.025, y, 0, 0.11, 0.38, 0.26, 'normal', colors.inset);
     door.finish(); moveDoors = p => { hinge.rotation.y = OPEN_ANGLE * p; };
+  } else {
+    // Two striped boom arms lift clear of the 7 m aperture.
+    const booms = [];
+    for (const side of [-1, 1]) {
+      const hinge = new THREE.Group(); hinge.name = side < 0 ? 'gate-boom-left' : 'gate-boom-right';
+      hinge.position.set(side < 0 ? 6.5 : 13.5, 1.45, 28.12); group.add(hinge); booms.push(hinge);
+      const boom = builder(hinge), reach = -side * 3.3;
+      boom.box(reach / 2, 0, 0, 3.3, 0.2, 0.14, 'strong', colors.raised);
+      for (let i = 1; i < 6; i++) boom.segment([reach * i / 6, -0.1, 0.075], [reach * i / 6 - side * 0.2, 0.1, 0.075], 'normal');
+      boom.box(side * 0.28, 0, 0, 0.5, 0.42, 0.3, 'normal', colors.inset);
+      boom.finish();
+    }
+    moveDoors = p => { booms[0].rotation.z = 1.5 * p; booms[1].rotation.z = -1.5 * p; };
   }
 
   const labels = {
     research: '马昱欣实验室',
     college: '书院公共空间',
+    portfolio: '宿舍 11 栋 · 书桌',
+    internship: '一号门',
   };
   const label = labels[kind] || labels.research;
   group.userData.label = label;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0738a5">
-    <meta name="description" content="宋和的校园个人档案。从南方科技大学的一张校园卡，走进科研、校园与实习经历。">
+    <meta name="description" content="宋和的校园个人档案。从南方科技大学的一张校园卡，走进实习、科研、校园经历与作品集。">
     <title>宋和 · 校园蓝图</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='7' fill='%230738a5'/%3E%3Cpath d='M10 10h20v20H10zM20 10v20M10 20h20' fill='none' stroke='white'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="./styles.css">
@@ -14,7 +14,7 @@
     <link rel="modulepreload" href="./entrance-scene.js">
     <link rel="modulepreload" href="./entrance-anchor.js">
     <link rel="preload" href="./assets/campus-data.json" as="fetch" crossorigin>
-    <script type="module" src="./app.js?v=20261004-experience"></script>
+    <script type="module" src="./app.js?v=20261004-rooms"></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">跳到个人档案</a>
@@ -100,6 +100,11 @@
               <span class="landmark-leader" aria-hidden="true"></span>
               <span class="landmark-label"><span class="landmark-category">校园与书院 <b aria-hidden="true">↗</b></span><span class="landmark-place">学生宿舍 15 栋</span></span>
             </button>
+            <button id="pin-portfolio" class="landmark" type="button" data-location="portfolio" aria-label="进入学生宿舍11栋，查看作品集">
+              <span class="landmark-node" aria-hidden="true"><i></i></span>
+              <span class="landmark-leader" aria-hidden="true"></span>
+              <span class="landmark-label"><span class="landmark-category">作品集 <b aria-hidden="true">↗</b></span><span class="landmark-place">学生宿舍 11 栋</span></span>
+            </button>
             <button id="pin-internship" class="landmark" type="button" data-location="internship" aria-label="从一号门走出校园，查看实习经历">
               <span class="landmark-node" aria-hidden="true"><i></i></span>
               <span class="landmark-leader" aria-hidden="true"></span>
@@ -152,6 +157,7 @@
           <button type="button" data-location="internship">实习经历 <span aria-hidden="true">↗</span></button>
           <button type="button" data-location="research">科研经历 <span aria-hidden="true">↗</span></button>
           <button type="button" data-location="college">校园与书院 <span aria-hidden="true">↗</span></button>
+          <button type="button" data-location="portfolio">作品集 <span aria-hidden="true">↗</span></button>
         </nav>
       </div>
       <div class="scene-register" aria-hidden="true"><span id="scene-register-number">01</span><div><strong id="scene-register-title">可视化实验室</strong><small id="scene-register-caption">LABORATORY / RESEARCH</small></div></div>
@@ -168,8 +174,9 @@
         <button type="button" data-location="internship"><span><strong>实习经历</strong><small>众白科技 · 深圳进化酒馆黑客松筹备</small></span><span aria-hidden="true">↗</span></button>
         <button type="button" data-location="research"><span><strong>科研经历</strong><small>马昱欣实验室 · 此前：脑-机器人实验室</small></span><span aria-hidden="true">↗</span></button>
         <button type="button" data-location="college"><span><strong>校园与书院</strong><small>树仁书院学生会 · 学生互助工作组 · 校园提案一等奖</small></span><span aria-hidden="true">↗</span></button>
+        <button type="button" data-location="portfolio"><span><strong>作品集</strong><small>EchoNote Lecture · Liquid Deadline · 树仁搭子 · MarkPDF · Hard Nest</small></span><span aria-hidden="true">↗</span></button>
       </nav>
-      <div class="quick-links"><a href="../../work.html">查看作品 <span aria-hidden="true">↗</span></a><a href="../../education.html">全部经历 <span aria-hidden="true">↗</span></a><a href="../../contact.html">联系我 <span aria-hidden="true">↗</span></a></div>
+      <div class="quick-links"><a href="../../work.html">案例详情 <span aria-hidden="true">↗</span></a><a href="../../education.html">全部经历 <span aria-hidden="true">↗</span></a><a href="../../contact.html">联系我 <span aria-hidden="true">↗</span></a></div>
     </dialog>
     <noscript><div class="noscript-note">校园漫游需要启用 JavaScript。你也可以直接<a href="../../work.html">查看我的作品</a>。</div></noscript>
   </body>

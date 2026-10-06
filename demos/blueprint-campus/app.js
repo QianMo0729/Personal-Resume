@@ -1,7 +1,7 @@
 import * as THREE from './vendor/three.module.min.js';
 import { createInterior } from './interior-scene.js';
 import { createEntrance } from './entrance-scene.js';
-import { findEntrance } from './entrance-anchor.js';
+import { findEntrance, findGateAnchor } from './entrance-anchor.js';
 
 const $ = (id) => document.getElementById(id);
 const clamp = (n, a = 0, b = 1) => Math.max(a, Math.min(b, n));
@@ -25,14 +25,20 @@ const locations = {
     title: '校园<br>与书院', subtitle: '树仁书院',
     body: `<section><h3><span>01</span>树仁书院学生会 · 秘书处</h3><p>负责会议纪要的撰写与整理，以及物资采购。</p></section><section><h3><span>02</span>学生互助工作组</h3><p>隶属学生发展与指导中心。负责“树仁卷心菜”群聊的管理与维护，参与搭子匹配的方案讨论，并负责系统开发。</p><a href="https://pair.moorn.online/" target="_blank" rel="noopener noreferrer">树仁搭子 · 在线访问 ↗</a></section><section><h3><span>03</span>校园提案大赛 · 一等奖</h3><p>“权系你我·智汇南科”校园提案大赛，四人团队，全场唯一的一等奖。</p><p>提案主题是校园电动车整治。我提出电动车道“两侧低、中间高，弯多易打滑”的问题，是所有提案中唯一引发热烈讨论的议题。</p></section><a href="../../education.html#campus">查看全部经历 ↗</a>`,
   },
-  // Off campus: anchored at a gate instead of a building, so it has neither a
-  // camera flight nor an interior. The detail copy opens over the campus atlas.
+  // Off campus: anchored at a gate instead of a building. The camera leaves
+  // through the gate and arrives at an illustrative hackathon venue.
   internship: {
-    outdoor: true, note: '校园轮廓依据地图绘制',
-    drawing: '03 / OFF CAMPUS', sceneTitle: '走出校园', sceneCaption: 'OFF CAMPUS / INTERNSHIP',
+    drawing: '03 / HACKATHON VENUE', sceneTitle: '黑客松现场', sceneCaption: 'OFF CAMPUS / INTERNSHIP',
     venue: '校园 / 一号门 / 实习经历', kicker: 'INTERNSHIP LOG / 03',
     title: '众白<br>科技', subtitle: '技术与产品团队负责人',
+    captions: ['走近一号门', '走出校园', '闸门正在抬起', '走进这段经历'],
     body: `<section><h3>深圳进化酒馆黑客松</h3><p>参与进化酒馆 Agent 黑客松深圳收官场的筹备工作，担任技术与产品团队负责人。</p><p class="detail-meta">EVOTAVERN · SHENZHEN · 2026.09.21–24</p></section><nav class="detail-links" aria-label="相关链接"><a href="https://hackathon.evomap.ai/shenzhen" target="_blank" rel="noopener noreferrer">黑客松官网 ↗</a><a href="http://www.zhonbai.top" target="_blank" rel="noopener noreferrer">众白科技 ↗</a><a href="../../education.html#internship">查看全部经历 ↗</a></nav>`,
+  },
+  portfolio: {
+    drawing: '04 / WORKSTATION', sceneTitle: '我的书桌', sceneCaption: 'WORKSTATION / PORTFOLIO',
+    venue: '校园 / 学生宿舍 11 栋 / 作品集', kicker: 'PORTFOLIO LOG / 04',
+    title: '作品集', subtitle: '五个项目，从开发到上线',
+    body: `<section><h3><span>01</span>Hard Nest</h3><p>“人宠共居”品牌概念网站，三页响应式 Demo。</p></section><section><h3><span>02</span>EchoNote Lecture</h3><p>课堂录音、实时英文转写与逐句中文翻译，端侧处理。App Store 已上线。</p></section><section><h3><span>03</span>Liquid Deadline</h3><p>让截止时间一眼可见的任务时间线与桌面小组件。App Store 已上线。</p></section><section><h3><span>04</span>树仁搭子</h3><p>面向树仁书院同学的学习搭子匹配平台，已部署。</p></section><section><h3><span>05</span>MarkPDF</h3><p>把 PDF、Markdown 笔记和课堂录音放在一起的桌面应用。</p></section><a href="../../work.html">查看全部案例 ↗</a>`,
   },
 };
 
@@ -193,7 +199,7 @@ function render(now) {
   if (fallback) {
     layer.style.opacity=String(smooth(.43,.53,visualProgress));
     const bounds=data?.bounds || {minX:-454,maxX:1068,minZ:-1057,maxZ:857};
-    const marks=data?.landmarks || {research:{x:-298.03,z:-86.83},college:{x:132.49,z:-282.95},internship:{x:49.34,z:767.87}};
+    const marks=data?.landmarks || {research:{x:-298.03,z:-86.83},college:{x:132.49,z:-282.95},portfolio:{x:12.6,z:-281.79},internship:{x:49.34,z:767.87}};
     const factor=Math.min(width*.84/(bounds.maxX-bounds.minX),height*.64/(bounds.maxZ-bounds.minZ));
     for (const [key,pos] of Object.entries(marks)) {
       $(`pin-${key}`).style.left=`${width*.5+(pos.x-(bounds.minX+bounds.maxX)/2)*factor}px`;
@@ -204,7 +210,7 @@ function render(now) {
   if (!renderer || !data) return;
   renderer.setScissorTest(false); renderer.setViewport(0,0,width,height); renderer.clear();
   layer.style.opacity=mode==='campus'?String(smooth(.43,.53,visualProgress)):'1';
-  if(mode==='interior' && roomScene) {
+  if(mode==='interior') {
     renderer.render(roomScene,roomCamera); return;
   }
   if(flight && (mode==='entering'||mode==='leaving')) {
@@ -233,7 +239,6 @@ function roomContent(key) {
   $('scene-register-caption').textContent=content.sceneCaption;
   $('detail-venue').textContent=content.venue; $('detail-kicker').textContent=content.kicker;
   $('detail-title').innerHTML=content.title; $('detail-subtitle').textContent=content.subtitle; $('detail-body').innerHTML=content.body;
-  details.querySelector('.detail-scene-note').textContent=content.note||'空间为蓝图示意';
   details.querySelectorAll('[data-location]').forEach(el=>el.setAttribute('aria-current',String(el.dataset.location===key)));
   details.hidden=false; details.inert=false; details.style.opacity='1'; details.scrollTop=0; document.body.style.overflow='hidden';
   details.classList.remove('room-arrived'); void details.offsetWidth; details.classList.add('room-arrived');
@@ -245,8 +250,12 @@ function roomContent(key) {
 // An almost-orthographic perspective at the start matches the campus atlas;
 // opening its field of view lets the same camera descend to eye level.
 function prepareRoom(key) {
-  const source=data.buildings.find(b=>b.id===data.landmarks[key].buildingId);
-  const anchor=findEntrance(source,{x:Math.sin(yaw),z:Math.cos(yaw)});
+  const landmark=data.landmarks[key];
+  const source=landmark.buildingId?data.buildings.find(b=>b.id===landmark.buildingId):null;
+  // A building is entered through a camera-facing facade. A gate has no
+  // footprint: its normal points into the campus, so the same flight
+  // approaches from inside and leaves through it.
+  const anchor=source?findEntrance(source,{x:Math.sin(yaw),z:Math.cos(yaw)}):findGateAnchor(landmark,data.campusBoundary);
   room=createInterior(THREE,key); entrance=createEntrance(THREE,key);
   assembly=new THREE.Group(); assembly.add(room.group,entrance.group);
   roomScene=new THREE.Scene(); roomScene.add(assembly);
@@ -268,19 +277,22 @@ function prepareRoom(key) {
   assembly.position.set(anchor.x*scale+anchor.nx*.04-entry.x,.025,anchor.z*scale+anchor.nz*.04-entry.z);
   assembly.updateMatrixWorld(true);
   campusGroup.scale.y=1; roomScene.add(campusGroup);
-  const building=buildingMeshes.get(source.id);
-  hiddenBuilding={...building,materials:building.mesh.material,edgeMaterial:building.edge.material};
-  // Cut an actual opening in the illustrative mass, so the original facade
-  // cannot seal the corridor while the camera approaches it.
-  const opening=[
-    new THREE.Plane(new THREE.Vector3(-1,0,0),5),new THREE.Plane(new THREE.Vector3(1,0,0),-15),
-    new THREE.Plane(new THREE.Vector3(0,-1,0),-.1),new THREE.Plane(new THREE.Vector3(0,1,0),-9),
-    new THREE.Plane(new THREE.Vector3(0,0,-1),-14),new THREE.Plane(new THREE.Vector3(0,0,1),-49),
-  ].map(plane=>plane.applyMatrix4(assembly.matrixWorld));
-  function entranceMaterial(material){const m=material.clone();m.transparent=true;m.clippingPlanes=opening;m.clipIntersection=true;return m;}
-  building.mesh.material=building.mesh.material.map(entranceMaterial);
-  building.edge.material=entranceMaterial(building.edge.material);
-  const facadeMaterials=new Set([...building.mesh.material,building.edge.material]);
+  const facadeMaterials=new Set();
+  if(source) {
+    const building=buildingMeshes.get(source.id);
+    hiddenBuilding={...building,materials:building.mesh.material,edgeMaterial:building.edge.material};
+    // Cut an actual opening in the illustrative mass, so the original facade
+    // cannot seal the corridor while the camera approaches it.
+    const opening=[
+      new THREE.Plane(new THREE.Vector3(-1,0,0),5),new THREE.Plane(new THREE.Vector3(1,0,0),-15),
+      new THREE.Plane(new THREE.Vector3(0,-1,0),-.1),new THREE.Plane(new THREE.Vector3(0,1,0),-9),
+      new THREE.Plane(new THREE.Vector3(0,0,-1),-14),new THREE.Plane(new THREE.Vector3(0,0,1),-49),
+    ].map(plane=>plane.applyMatrix4(assembly.matrixWorld));
+    function entranceMaterial(material){const m=material.clone();m.transparent=true;m.clippingPlanes=opening;m.clipIntersection=true;return m;}
+    building.mesh.material=building.mesh.material.map(entranceMaterial);
+    building.edge.material=entranceMaterial(building.edge.material);
+    for(const material of [...building.mesh.material,building.edge.material])facadeMaterials.add(material);
+  }
   campusGroup.traverse(object=>{
     if(!object.material)return;
     for(const material of Array.isArray(object.material)?object.material:[object.material]) {
@@ -354,7 +366,8 @@ function flightPose(t) {
     details.style.opacity=String(smooth(.9,1,t));
     if(t<.9)details.hidden=true;
   }
-  const caption=mode==='leaving'?'沿原路返回校园':t<.38?`走近${data.landmarks[selected].name}`:t<.57?'沿走廊向前':t<.81?'门正在打开':'走进这段经历';
+  const steps=locations[selected].captions||[`走近${data.landmarks[selected].name}`,'沿走廊向前','门正在打开','走进这段经历'];
+  const caption=mode==='leaving'?'沿原路返回校园':steps[t<.38?0:t<.57?1:t<.81?2:3];
   if($('flight-caption').textContent!==caption)$('flight-caption').textContent=caption;
   flightControls.querySelector('.flight-track i').style.transform=`scaleX(${t})`;
 }
@@ -386,7 +399,7 @@ function finishCampus() {
 }
 function showRoom(key) {
   selected=key;
-  if(!fallback && !locations[key].outdoor) {
+  if(!fallback) {
     const hasRoute=prepareRoom(key);
     if(hasRoute){flight.t=1;flightPose(1);}
   }
@@ -402,7 +415,7 @@ function enterLocation(key,fromHistory=false) {
   }
   if(mode!=='campus') {queuedLocation=key;returnCampus(true,true);return;}
   selected=key;scrollCampus();document.body.style.overflow='hidden';$('journey').inert=true;resize();
-  if(reduced || fallback || locations[key].outdoor){showRoom(key);return;}
+  if(reduced || fallback){showRoom(key);return;}
   if(!prepareRoom(key)){finishInside();return;}
   mode='entering';orbitTween=null;flightControls.hidden=false;setUIVisible(false);
   $('skip-flight').textContent='跳过运镜 ↗';
